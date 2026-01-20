@@ -7,195 +7,212 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-6HE9686NS9');
   </script>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="takumig, Portfolio">
-  <meta name="description" content="introduction of takumig">
-  <title>takumig Official Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="icon" href="img/g.jpg">
+  <meta name="description" content="takumig - Software Engineer / Consultant">
+  <meta name="keywords" content="takumig, Software Engineer, Consultant, AI, Data Analysis">
+  <title>takumig | Software Engineer / Consultant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/fav.png">
 </head>
-
 <body>
 
-  <header>
-      <!--      navigation bar-->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+  <!-- Fixed Top Navigation -->
+  <nav class="top-nav">
+    <a href="index.html" class="top-nav-logo">takumig</a>
+    <div class="top-nav-controls">
+      <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language">EN</button>
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Left Side Navigation -->
+  <aside class="side-nav">
+    <ul class="side-nav-list">
+      <li><a href="#about" class="side-nav-link active" data-section="about">ABOUT</a></li>
+      <li><a href="#experience" class="side-nav-link" data-section="experience">EXPERIENCE</a></li>
+      <li><a href="#projects" class="side-nav-link" data-section="projects">PROJECTS</a></li>
+      <li><a href="#skills" class="side-nav-link" data-section="skills">SKILLS</a></li>
+    </ul>
+  </aside>
+
+  <!-- Page Content Wrapper -->
+  <div class="page-content">
+    <!-- Header -->
+    <header class="header">
       <div class="container">
-        <a class="navbar-brand" href="index.html">takumig</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="biography.html#biography">Biography</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="skills.html#skills">Skills</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contacts.html#contacts">Contacts</a>
-            </li>
-          </ul>
+        <img src="img/icon.jpeg" alt="takumig" class="profile-img">
+        <h1 class="name">takumig</h1>
+        <p class="title">Software Engineer / Consultant</p>
+
+        <div class="header-links">
+          <a href="https://github.com/tkm5" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="contact.html">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Contact
+          </a>
         </div>
       </div>
-    </nav>
-  </header>
+    </header>
 
-<main role="main">
-    <!--    carousel-->
-    <div id="carouselExampleFade" class="carousel slide carousel-fade mt-5" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="img/c1.jpg" class="d-block w-100" alt="first_img">
+    <main class="container">
+      <!-- About Section -->
+      <section class="section" id="about">
+        <h2 data-ja="About" data-en="About">About</h2>
+        <p data-ja="生成AI・RAGを活用したAIアプリケーション開発を得意とするソフトウェアエンジニア．要件定義からアーキテクチャ設計，Dockerによるコンテナ化，本番環境へのデプロイまで，プロダクト開発の全フェーズをエンドツーエンドで推進．LangChain/LangGraphを用いたマルチエージェントシステムの構築や，MLOpsパイプラインの設計・実装も手がける．現在はAIエージェントアプリケーションの開発プロジェクトに従事．" data-en="Software Engineer specializing in AI application development using generative AI and RAG. Driving all phases of product development end-to-end, from requirements definition and architecture design to containerization with Docker and production deployment. Experienced in building multi-agent systems with LangChain/LangGraph and designing MLOps pipelines. Currently engaged in AI agent application development projects.">生成AI・RAGを活用したAIアプリケーション開発を得意とするソフトウェアエンジニア．要件定義からアーキテクチャ設計，Dockerによるコンテナ化，本番環境へのデプロイまで，プロダクト開発の全フェーズをエンドツーエンドで推進．LangChain/LangGraphを用いたマルチエージェントシステムの構築や，MLOpsパイプラインの設計・実装も手がける．現在はAIエージェントアプリケーションの開発プロジェクトに従事．</p>
+      </section>
+
+      <!-- Experience Section -->
+      <section class="section" id="experience">
+        <h2 data-ja="Experience" data-en="Experience">Experience</h2>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <span class="experience-company" data-ja="グローバルコンサルティングファーム" data-en="Global Consulting Firm">グローバルコンサルティングファーム</span>
+            <span class="experience-period">2025.05 - Present</span>
+          </div>
+          <p class="experience-role">AI Engineer</p>
         </div>
-        <div class="carousel-item">
-          <img src="img/c2.jpg" class="d-block w-100" alt="second_img">
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <span class="experience-company" data-ja="欧州系コンサルティングファーム" data-en="European Consulting Firm">欧州系コンサルティングファーム</span>
+            <span class="experience-period">2022.02 - 2025.04</span>
+          </div>
+          <p class="experience-role">Consulting Software Engineer</p>
         </div>
-        <div class="carousel-item">
-          <img src="img/c3.jpg" class="d-block w-100" alt="third_img">
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <span class="experience-company" data-ja="大手広告代理店" data-en="Major Advertising Agency">大手広告代理店</span>
+            <span class="experience-period">2020.01 - 2022.01</span>
+          </div>
+          <p class="experience-role">Data Analyst</p>
         </div>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <span class="experience-company" data-ja="大手IT企業" data-en="Major IT Company">大手IT企業</span>
+            <span class="experience-period">2018.04 - 2019.09</span>
+          </div>
+          <p class="experience-role" data-ja="法人営業" data-en="Corporate Sales">法人営業</p>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="section" id="projects">
+        <h2 data-ja="Projects" data-en="Projects">Projects</h2>
+
+        <!-- Global Consulting Firm (2025.05 - Present) -->
+        <a href="projects/business-analysis-pipeline.html" class="project-item">
+          <h3 class="project-title" data-ja="業務分析テーブル自動生成AIパイプライン" data-en="Business Analysis Table Auto-Generation AI Pipeline">業務分析テーブル自動生成AIパイプライン</h3>
+          <p class="project-meta" data-ja="グローバルコンサルティングファーム | 継続中" data-en="Global Consulting Firm | Ongoing">グローバルコンサルティングファーム | 継続中</p>
+        </a>
+
+        <a href="projects/slm-mlops.html" class="project-item">
+          <h3 class="project-title" data-ja="独自日本語SLM MLOpsパイプライン開発" data-en="Custom Japanese SLM MLOps Pipeline Development">独自日本語SLM MLOpsパイプライン開発</h3>
+          <p class="project-meta" data-ja="グローバルコンサルティングファーム | 社内プロジェクト" data-en="Global Consulting Firm | Internal Project">グローバルコンサルティングファーム | 社内プロジェクト</p>
+        </a>
+
+        <a href="projects/insurance-ai.html" class="project-item">
+          <h3 class="project-title" data-ja="大手生命保険会社：AI開発支援" data-en="Major Life Insurance Company: AI Development Support">大手生命保険会社：AI開発支援</h3>
+          <p class="project-meta" data-ja="グローバルコンサルティングファーム" data-en="Global Consulting Firm">グローバルコンサルティングファーム</p>
+        </a>
+
+        <!-- European Consulting Firm (2022.02 - 2025.04) -->
+        <a href="projects/government-rag.html" class="project-item">
+          <h3 class="project-title" data-ja="中央省庁：事業類似性構造分析" data-en="Central Government: Business Similarity Analysis">中央省庁：事業類似性構造分析</h3>
+          <p class="project-meta" data-ja="欧州系コンサルティングファーム" data-en="European Consulting Firm">欧州系コンサルティングファーム</p>
+        </a>
+
+        <a href="projects/chat-system.html" class="project-item">
+          <h3 class="project-title" data-ja="社内向けチャットシステム開発" data-en="Internal Chat System Development">社内向けチャットシステム開発</h3>
+          <p class="project-meta" data-ja="欧州系コンサルティングファーム | 社内プロジェクト" data-en="European Consulting Firm | Internal Project">欧州系コンサルティングファーム | 社内プロジェクト</p>
+        </a>
+
+        <a href="projects/creative-canvas.html" class="project-item">
+          <h3 class="project-title" data-ja="大手自動車メーカー：Creative Canvas" data-en="Major Automotive Manufacturer: Creative Canvas">大手自動車メーカー：Creative Canvas</h3>
+          <p class="project-meta" data-ja="欧州系コンサルティングファーム" data-en="European Consulting Firm">欧州系コンサルティングファーム</p>
+        </a>
+
+        <a href="projects/pharma-analytics.html" class="project-item">
+          <h3 class="project-title" data-ja="大手製薬企業：営業活動データ活用" data-en="Major Pharmaceutical Company: Sales Data Analytics">大手製薬企業：営業活動データ活用</h3>
+          <p class="project-meta" data-ja="欧州系コンサルティングファーム" data-en="European Consulting Firm">欧州系コンサルティングファーム</p>
+        </a>
+
+        <!-- Other Projects -->
+        <a href="projects/ai-agent.html" class="project-item">
+          <h3 class="project-title" data-ja="AIエージェント意思決定支援システム" data-en="AI Agent Decision Support System">AIエージェント意思決定支援システム</h3>
+          <p class="project-meta" data-ja="業務委託" data-en="Commissioned Work">業務委託</p>
+        </a>
+
+        <a href="projects/devcontainer.html" class="project-item">
+          <h3 class="project-title" data-ja="Vibe Coding DevContainer" data-en="Vibe Coding DevContainer">Vibe Coding DevContainer</h3>
+          <p class="project-meta" data-ja="個人プロジェクト | OSS" data-en="Personal Project | OSS">個人プロジェクト | OSS</p>
+        </a>
+
+        <a href="projects/home-server.html" class="project-item">
+          <h3 class="project-title" data-ja="コンテナベースの多機能ホームサーバー" data-en="Container-Based Multi-Function Home Server">コンテナベースの多機能ホームサーバー</h3>
+          <p class="project-meta" data-ja="個人プロジェクト" data-en="Personal Project">個人プロジェクト</p>
+        </a>
+
+        <a href="projects/transcription-app.html" class="project-item">
+          <h3 class="project-title" data-ja="議事録作成支援アプリ" data-en="Meeting Transcription App">議事録作成支援アプリ</h3>
+          <p class="project-meta" data-ja="個人プロジェクト" data-en="Personal Project">個人プロジェクト</p>
+        </a>
+
+        <a href="projects/hpc-parallel.html" class="project-item">
+          <h3 class="project-title" data-ja="HPC環境における並列計算アルゴリズムの実装と高速化" data-en="Implementation and Acceleration of Parallel Computing Algorithms in HPC Environment">HPC環境における並列計算アルゴリズムの実装と高速化</h3>
+          <p class="project-meta" data-ja="個人プロジェクト" data-en="Personal Project">個人プロジェクト</p>
+        </a>
+      </section>
+
+      <!-- Skills Section -->
+      <section class="section" id="skills">
+        <h2 data-ja="Skills" data-en="Skills">Skills</h2>
+
+        <div class="skills-category">
+          <p class="skills-title">Programming Languages</p>
+          <p class="skills-list">Python, JavaScript, TypeScript, C, C++, SQL, Shell Scripting</p>
+        </div>
+
+        <div class="skills-category">
+          <p class="skills-title">Tools</p>
+          <p class="skills-list">Docker, Docker Compose, Git, GitHub, Firebase, Clerk, Supabase, Tmux, Looker Studio, Figma</p>
+        </div>
+
+        <div class="skills-category">
+          <p class="skills-title">Cloud</p>
+          <p class="skills-list">Google Cloud, Azure, AWS</p>
+        </div>
+
+        <div class="skills-category">
+          <p class="skills-title">Others</p>
+          <p class="skills-list">Parallel Processing, Natural Language Processing, Large Language Model, AI Agent, Operating System, Computer Networks</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-links">
+          <a href="https://github.com/tkm5" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="contact.html">Contact</a>
+          <a href="imprint.html">Imprint</a>
+        </div>
+        <p class="copyright">&copy; 2026 takumig</p>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-
-
-    <!--    Biography-->
-  <div class="container" id="biography">
-    <div class="container">
-      <div class="row">
-      <h1 class="subs">Biography</h1>
-      <div class="row featurette align-items-center">
-        <div class="col-md-5 order-md-1　d-flex align-items-center">
-          <img class="featurette-image img-fluid mx-auto" src="img/icon.jpg" alt="Generic placeholder image">
-        </div>
-        <div class="col-md-7 order-md-2 ">
-          <h2 class="featurette-heading">takumig</h2>
-          <p class="lead">Data Scientist</p>
-          <p>Born in 1996．Graduated from the Tokyo University of Science.（Studies in 4 years）<br>
-            After working in IT companies such as Apple JP, Microsoft JP, and NTT affiliated companies,
-            I worked as a data scientist at a Hakuhodo affiliated company, where I was involved in media strategy planning and PDCA operation projects.
-            Currently working as a data scientist in the Life Science & Healthcare sector at a consulting firm.</p>
-        </div>
-      </div>
-      </div>
-    </div>
-    <hr class="featurette-divider" id="skills">
-
-    <!--skill containers-->
-    <div class="container">
-      <h1 class="subs">Skills</h1>
-      <div class="row mt-1">
-        <div class="col-lg-4 col-sm-6 mt-3">
-          <img class="mx-auto d-block rounded-circle" src="img/python.jpg" alt="python_image" width="140" height="140">
-          <h2 class="mt-4 text-center">Python</h2>
-          <p>I specializes in the use of data science libraries.<br>Highly maintainable design and implementation. Also, environment can be built using Docker.</p>
-          <div class="text-center">
-            <p><a class="btn btn-outline-light" href="https://github.com/tkm5" role="button">Github &raquo;</a></p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mt-3">
-          <img class="mx-auto d-block " src="img/ds.jpg" alt="ds_image" width="140" height="140">
-          <h2 class="mt-4 text-center">Data Science</h2>
-            <p>SQL, Big Query, pandas, seaborn, sklearn, keras, etc. can be used to implement data extraction ~ model building.</p>
-          <div class="text-center">
-            <p><a class="btn btn-outline-light" href="https://github.com/tkm5" role="button">Github &raquo;</a></p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mt-3">
-          <img class="mx-auto d-block " src="img/hc.jpg" alt="HTML/CSS_image" width="300" height="140">
-          <h2 class="mt-4 text-center">HTML / CSS</h2>
-          <p>I can create a well-designed website using HTML5, CSS3, and BootStrap. and I can also implement responsive websites.</p>
-          <div class="text-center">
-            <p><a class="btn btn-outline-light" href="https://github.com/tkm5" role="button">Github &raquo;</a></p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mt-3">
-          <img class="mx-auto d-block rounded-circle" src="img/consulting.jpg" alt="consulting_image" width="140" height="140">
-          <h2 class="mt-4 text-center">Consulting</h2>
-          <p>I can handle everything from devising data marketing initiatives to their implementation</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 mt-3">
-          <img class="mx-auto d-block rounded-circle" src="img/design.jpg" alt="documentation_image" width="140" height="140">
-          <h2 class="mt-4 text-center">Documentation</h2>
-          <p>Microsoft Office / iWork / Google Document can be used to create documents.</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 mt-3">
-          <img class="mx-auto d-block rounded-circle" src="img/movie.jpg" alt="Video_Editing_image" width="140" height="140">
-          <h2 class="mt-4 text-center">Video Editing</h2>
-          <p>Video editing using Adobe Premiere Pro and FinalCutPro is available.</p>
-        </div>
-      </div>
-    </div>
-
-    <hr class="featurette-divider" id="contacts">
-
-      <footer class="py-4 mt-5 bg-black text-end">
-        <div class="container">
-          <div class="row">
-            <div class="col text-start">
-              <p><a class="link-light fs-1" href="https://forms.gle/5hiNPrTCgrJdUWci8">Contacts</a></p>
-              <div class="mt-5">
-                <p>For requests and information,<br>please contact us using the link above.</p>
-                <ul>
-                  <li>Lecture and Interview Requests</li>
-                  <li>Creative Production Request</li>
-                  <li>Other, Work requests to takumig</li>
-                </ul>
-                <p>For inquiries to takumig, <br>Please contact us from above link.</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-              <img class="mb-2" src="img/sign.jpg" alt="sign" width="300">
-                <div>
-                  <p class="text-white-50 small">&copy; 2022 takumig</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row row-cols-auto">
-            <div class="col mt-5">
-              <ul class="link_list">
-                <li>
-                  <a class="link-secondary" href="site_policy.html">Site Policy</a>
-                </li>
-              </ul>
-          <div class="row row-cols-auto">
-            <div class="col mt-5">
-              <ul class="link_list">
-                <li class="sns_link">
-                  <a class="link-secondary" href="https://github.com/tkm5">Github</a>
-                </li>
-                <li class="sns_link">
-                  <a class="link-secondary" href="https://twitter.com/005takumig">Twitter</a>
-                </li>
-                <li class="sns_link">
-                  <a class="link-secondary" href="https://note.com/takumig">Note</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          </div>
-          </div>
-        </div>
-      </footer>
+    </footer>
   </div>
 
-</main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

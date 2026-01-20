@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Agent Decision Support System - takumig">
+  <title>AI Agent | takumig</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../img/fav.png">
+</head>
+<body>
+
+  <main class="container project-detail">
+    <a href="../index.html#projects" class="back-link">
+      &lt; <span data-ja="戻る" data-en="Back">戻る</span>
+    </a>
+
+    <h1 data-ja="AIエージェント意思決定支援システム" data-en="AI Agent Decision Support System">AIエージェント意思決定支援システム</h1>
+    <p class="project-detail-meta" data-ja="業務委託" data-en="Commissioned Work">業務委託</p>
+
+    <div class="project-section">
+      <h2 data-ja="概要" data-en="Overview">概要</h2>
+      <p data-ja="ビジネスにおける意思決定の質を高めるため，賛成（Pro）・反対（Con）の双方の視点から論理的な助言を行うAIエージェントシステムを設計・開発．LangGraph/LangChain/FastAPIを基盤とし，マルチテナント対応のB2B SaaSアーキテクチャを実現．" data-en="Designed and developed an AI agent system that provides logical advice from both Pro and Con perspectives to improve the quality of business decision-making. Built on LangGraph/LangChain/FastAPI foundation, achieving a multi-tenant B2B SaaS architecture.">ビジネスにおける意思決定の質を高めるため，賛成（Pro）・反対（Con）の双方の視点から論理的な助言を行うAIエージェントシステムを設計・開発．LangGraph/LangChain/FastAPIを基盤とし，マルチテナント対応のB2B SaaSアーキテクチャを実現．</p>
+    </div>
+
+    <div class="project-section">
+      <h2 data-ja="アーキテクチャ" data-en="Architecture">アーキテクチャ</h2>
+      <p data-ja="LangGraphによる11ステップのステートフルなワークフローを設計．ユーザーメモリ読込→検索要否判定→RAG/Web検索→コンテキスト統合→プロンプト設定→Pro/Conエージェント並列実行→応答統合→メモリ保存→最終回答生成の一連のフローを，条件分岐付きグラフで制御．" data-en="Designed an 11-step stateful workflow using LangGraph. Controlled the entire flow from user memory loading → search necessity judgment → RAG/Web search → context integration → prompt setting → Pro/Con agent parallel execution → response merging → memory saving → final answer generation through a graph with conditional branching.">LangGraphによる11ステップのステートフルなワークフローを設計．ユーザーメモリ読込→検索要否判定→RAG/Web検索→コンテキスト統合→プロンプト設定→Pro/Conエージェント並列実行→応答統合→メモリ保存→最終回答生成の一連のフローを，条件分岐付きグラフで制御．</p>
+      <p data-ja="ReActパターン（Reasoning + Acting）を実装し，エージェントが自律的に情報の過不足を判断．必要に応じてGoogle Vertex AI Searchによる社内ナレッジ検索やGemini組み込みツールによるWeb検索を実行し，最適な情報を取得・統合．" data-en="Implemented ReAct pattern (Reasoning + Acting), enabling agents to autonomously judge information sufficiency. Executes internal knowledge search via Google Vertex AI Search and web search via Gemini built-in tools as needed, retrieving and integrating optimal information.">ReActパターン（Reasoning + Acting）を実装し，エージェントが自律的に情報の過不足を判断．必要に応じてGoogle Vertex AI Searchによる社内ナレッジ検索やGemini組み込みツールによるWeb検索を実行し，最適な情報を取得・統合．</p>
+    </div>
+
+    <div class="project-section">
+      <h2 data-ja="主要機能" data-en="Key Features">主要機能</h2>
+      <p data-ja="Pro/Con デュアルエージェント: 同一コンテキストに対し，賛成・反対の両視点から独立して推論を実行し，バランスの取れた意思決定支援を提供．" data-en="Pro/Con Dual Agents: Execute independent reasoning from both supportive and critical perspectives on the same context, providing balanced decision support.">Pro/Con デュアルエージェント: 同一コンテキストに対し，賛成・反対の両視点から独立して推論を実行し，バランスの取れた意思決定支援を提供．</p>
+      <p data-ja="ユーザーメモリ管理: N:N の企業関連付け，意思決定履歴，ユーザー設定をスレッド間で永続化．LangGraph MemorySaver/InMemoryStoreによる会話履歴管理とトークン上限制御を実装．" data-en="User Memory Management: Persist N:N company affiliations, decision history, and user preferences across threads. Implemented conversation history management and token limit control using LangGraph MemorySaver/InMemoryStore.">ユーザーメモリ管理: N:N の企業関連付け，意思決定履歴，ユーザー設定をスレッド間で永続化．LangGraph MemorySaver/InMemoryStoreによる会話履歴管理とトークン上限制御を実装．</p>
+      <p data-ja="マルチテナント対応: Company IDベースのメタデータフィルタリングにより，企業ごとのナレッジ分離とアクセス制御を実現．" data-en="Multi-tenant Support: Achieved knowledge isolation and access control per company through Company ID-based metadata filtering.">マルチテナント対応: Company IDベースのメタデータフィルタリングにより，企業ごとのナレッジ分離とアクセス制御を実現．</p>
+    </div>
+
+    <div class="project-section">
+      <h2 data-ja="開発環境・品質管理" data-en="Development & Quality">開発環境・品質管理</h2>
+      <p data-ja="DevContainerによる統一開発環境を構築（uv，Oh My Zsh，Claude Code/Gemini CLI統合）．pytest/pytest-asyncio/pytest-covによる単体・統合テストを整備し，LangSmithによるトレーシング・モニタリング基盤を導入．" data-en="Built unified development environment with DevContainer (uv, Oh My Zsh, Claude Code/Gemini CLI integration). Established unit and integration tests with pytest/pytest-asyncio/pytest-cov, and introduced tracing/monitoring infrastructure with LangSmith.">DevContainerによる統一開発環境を構築（uv，Oh My Zsh，Claude Code/Gemini CLI統合）．pytest/pytest-asyncio/pytest-covによる単体・統合テストを整備し，LangSmithによるトレーシング・モニタリング基盤を導入．</p>
+    </div>
+
+    <div class="project-section">
+      <h2 data-ja="使用技術" data-en="Technologies">使用技術</h2>
+      <div class="tech-tags">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">LangGraph</span>
+        <span class="tech-tag">LangChain</span>
+        <span class="tech-tag">FastAPI</span>
+        <span class="tech-tag">Google Gemini</span>
+        <span class="tech-tag">Google Vertex AI Search</span>
+        <span class="tech-tag">ReAct Pattern</span>
+        <span class="tech-tag">Multi-Agent</span>
+        <span class="tech-tag">RAG</span>
+        <span class="tech-tag">LangSmith</span>
+        <span class="tech-tag">pytest</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://github.com/tkm5" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../imprint.html">Imprint</a>
+      </div>
+      <p class="copyright">&copy; 2026 takumig</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
