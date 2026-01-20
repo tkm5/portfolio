@@ -20,24 +20,48 @@
 
     <div class="project-section">
       <h2 data-ja="概要" data-en="Overview">概要</h2>
-      <p data-ja="クライアントのAI開発の内製化と人材育成を目標に，技術指導とアプリケーション開発支援を包括的に担当．" data-en="Comprehensively responsible for technical guidance and application development support, with the goal of internalizing the client's AI development and nurturing talent.">クライアントのAI開発の内製化と人材育成を目標に，技術指導とアプリケーション開発支援を包括的に担当．</p>
+      <p data-ja="クライアントのAI開発の内製化と人材育成を目標に，技術指導とアプリケーション開発支援を包括的に担当．Microsoft Azure上でRAG（Retrieval Augmented Generation）アーキテクチャを採用した高精度な社内文書検索AIシステムの設計・開発を主導し，エンタープライズグレードのセキュリティ要件を満たすプライベート環境への本番デプロイまでをエンドツーエンドで実現．" data-en="Comprehensively responsible for technical guidance and application development support, with the goal of internalizing the client's AI development and nurturing talent. Led the design and development of a high-precision internal document search AI system adopting RAG (Retrieval Augmented Generation) architecture on Microsoft Azure, achieving end-to-end production deployment to a private environment meeting enterprise-grade security requirements.">クライアントのAI開発の内製化と人材育成を目標に，技術指導とアプリケーション開発支援を包括的に担当．Microsoft Azure上でRAG（Retrieval Augmented Generation）アーキテクチャを採用した高精度な社内文書検索AIシステムの設計・開発を主導し，エンタープライズグレードのセキュリティ要件を満たすプライベート環境への本番デプロイまでをエンドツーエンドで実現．</p>
     </div>
 
     <div class="project-section">
-      <h2 data-ja="詳細" data-en="Details">詳細</h2>
-      <p data-ja="教育面では，Web技術（HTML/CSS/JS）からPython，Azureクラウド基盤まで，AI開発に必要な知識を体系的にレクチャーし，アジャイル開発の導入を通じてチーム開発を推進．" data-en="In terms of education, systematically lectured on the knowledge required for AI development, from web technologies (HTML/CSS/JS) to Python and Azure cloud infrastructure, and promoted team development through the introduction of agile development.">教育面では，Web技術（HTML/CSS/JS）からPython，Azureクラウド基盤まで，AI開発に必要な知識を体系的にレクチャーし，アジャイル開発の導入を通じてチーム開発を推進．</p>
-      <p data-ja="開発面では，PythonとJavaScriptを用いたRAGアプリ構築から始め，最終的にはAzureのベストプラクティスを基盤とした高精度なRAGアプリケーションの内製化を実現．運用を見据えたログ分析基盤の構築やセキュアなプライベート環境へのデプロイまで，エンドツーエンドで支援．" data-en="On the development side, started with building RAG applications using Python and JavaScript, and ultimately achieved internalization of high-precision RAG applications based on Azure best practices. Provided end-to-end support from building log analysis infrastructure for operations to deploying to secure private environments.">開発面では，PythonとJavaScriptを用いたRAGアプリ構築から始め，最終的にはAzureのベストプラクティスを基盤とした高精度なRAGアプリケーションの内製化を実現．運用を見据えたログ分析基盤の構築やセキュアなプライベート環境へのデプロイまで，エンドツーエンドで支援．</p>
+      <h2 data-ja="アーキテクチャ" data-en="Architecture">アーキテクチャ</h2>
+      <p data-ja="Azure公式リファレンス実装（azure-search-openai-demo）をベースに，金融業界特有の要件に対応するカスタマイズを実施．フロントエンドはReact/TypeScriptで構築し，バックエンドはPython（Quart非同期フレームワーク）を採用．Azure AI Searchによるベクトル検索・ハイブリッド検索・セマンティックランカーを組み合わせた多段階検索パイプラインを実装し，検索精度を最大化．" data-en="Implemented customizations based on the Azure official reference implementation (azure-search-openai-demo) to meet financial industry-specific requirements. Built frontend with React/TypeScript and adopted Python (Quart async framework) for backend. Implemented a multi-stage search pipeline combining vector search, hybrid search, and semantic ranker with Azure AI Search to maximize search accuracy.">Azure公式リファレンス実装（azure-search-openai-demo）をベースに，金融業界特有の要件に対応するカスタマイズを実施．フロントエンドはReact/TypeScriptで構築し，バックエンドはPython（Quart非同期フレームワーク）を採用．Azure AI Searchによるベクトル検索・ハイブリッド検索・セマンティックランカーを組み合わせた多段階検索パイプラインを実装し，検索精度を最大化．</p>
+      <p data-ja="ドキュメント処理基盤として，Azure Document Intelligenceを活用したPDF/Word/Excel等の構造化解析パイプラインを構築．Integrated Vectorizationによりインデックス更新を自動化し，Azure Blob Storageへのドキュメントアップロードから検索可能状態までをシームレスに連携．" data-en="Built a structured analysis pipeline for PDF/Word/Excel documents using Azure Document Intelligence as document processing infrastructure. Automated index updates through Integrated Vectorization, seamlessly connecting document uploads to Azure Blob Storage to searchable state.">ドキュメント処理基盤として，Azure Document Intelligenceを活用したPDF/Word/Excel等の構造化解析パイプラインを構築．Integrated Vectorizationによりインデックス更新を自動化し，Azure Blob Storageへのドキュメントアップロードから検索可能状態までをシームレスに連携．</p>
+    </div>
+
+    <div class="project-section">
+      <h2 data-ja="セキュリティ・インフラ" data-en="Security & Infrastructure">セキュリティ・インフラ</h2>
+      <p data-ja="金融機関のセキュリティ要件に準拠するため，Azure Private EndpointとVirtual Networkを用いた完全閉域網構成を設計・実装．Azure Container Appsによるコンテナベースのデプロイメントを採用し，自動スケーリングと高可用性を実現．Microsoft Entra ID統合による認証・認可基盤を構築し，ユーザー単位のアクセス制御を実装．" data-en="Designed and implemented a fully private network configuration using Azure Private Endpoint and Virtual Network to comply with financial institution security requirements. Adopted container-based deployment with Azure Container Apps, achieving auto-scaling and high availability. Built authentication/authorization infrastructure integrated with Microsoft Entra ID, implementing user-level access control.">金融機関のセキュリティ要件に準拠するため，Azure Private EndpointとVirtual Networkを用いた完全閉域網構成を設計・実装．Azure Container Appsによるコンテナベースのデプロイメントを採用し，自動スケーリングと高可用性を実現．Microsoft Entra ID統合による認証・認可基盤を構築し，ユーザー単位のアクセス制御を実装．</p>
+      <p data-ja="Azure Key Vaultによるシークレット管理，Application Insightsによる包括的なログ分析基盤を構築．Azure Log Analyticsと連携したKQLクエリによる運用監視ダッシュボードを実装し，レスポンス品質の継続的な評価・改善を可能とする環境を確立．" data-en="Built secret management with Azure Key Vault and comprehensive log analysis infrastructure with Application Insights. Implemented operational monitoring dashboards with KQL queries linked to Azure Log Analytics, establishing an environment enabling continuous evaluation and improvement of response quality.">Azure Key Vaultによるシークレット管理，Application Insightsによる包括的なログ分析基盤を構築．Azure Log Analyticsと連携したKQLクエリによる運用監視ダッシュボードを実装し，レスポンス品質の継続的な評価・改善を可能とする環境を確立．</p>
+    </div>
+
+    <div class="project-section">
+      <h2 data-ja="技術移転・人材育成" data-en="Technology Transfer & Training">技術移転・人材育成</h2>
+      <p data-ja="Web開発基礎（HTML/CSS/JavaScript）からPythonプログラミング，クラウドアーキテクチャまで，AI開発に必要な知識を体系的にレクチャー．Git/GitHubによるバージョン管理，Pull Requestを活用したコードレビュー文化の定着など，モダンな開発プラクティスを導入．" data-en="Systematically lectured on knowledge required for AI development, from web development basics (HTML/CSS/JavaScript) to Python programming and cloud architecture. Introduced modern development practices including version control with Git/GitHub and establishing code review culture utilizing Pull Requests.">Web開発基礎（HTML/CSS/JavaScript）からPythonプログラミング，クラウドアーキテクチャまで，AI開発に必要な知識を体系的にレクチャー．Git/GitHubによるバージョン管理，Pull Requestを活用したコードレビュー文化の定着など，モダンな開発プラクティスを導入．</p>
+      <p data-ja="アジャイル開発手法（スクラム）を導入し，2週間スプリントによる反復的な開発サイクルを確立．Notion/Jiraによるタスク管理とDaily Standupミーティングを通じて，チーム全体の開発生産性と自律性を向上．" data-en="Introduced agile development methodology (Scrum) and established iterative development cycles with 2-week sprints. Improved overall team development productivity and autonomy through task management with Notion/Jira and Daily Standup meetings.">アジャイル開発手法（スクラム）を導入し，2週間スプリントによる反復的な開発サイクルを確立．Notion/Jiraによるタスク管理とDaily Standupミーティングを通じて，チーム全体の開発生産性と自律性を向上．</p>
     </div>
 
     <div class="project-section">
       <h2 data-ja="使用技術" data-en="Technologies">使用技術</h2>
       <div class="tech-tags">
         <span class="tech-tag">Python</span>
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">Azure</span>
+        <span class="tech-tag">Quart</span>
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Azure OpenAI Service</span>
+        <span class="tech-tag">Azure AI Search</span>
+        <span class="tech-tag">Azure Container Apps</span>
+        <span class="tech-tag">Azure Blob Storage</span>
+        <span class="tech-tag">Azure Document Intelligence</span>
+        <span class="tech-tag">Azure Key Vault</span>
+        <span class="tech-tag">Application Insights</span>
+        <span class="tech-tag">Private Endpoint</span>
+        <span class="tech-tag">Microsoft Entra ID</span>
         <span class="tech-tag">RAG</span>
-        <span class="tech-tag">HTML/CSS</span>
-        <span class="tech-tag">Agile</span>
+        <span class="tech-tag">Vector Search</span>
+        <span class="tech-tag">Semantic Ranker</span>
+        <span class="tech-tag">Git/GitHub</span>
+        <span class="tech-tag">Agile/Scrum</span>
       </div>
     </div>
   </main>
