@@ -6,7 +6,7 @@ import { BackLink } from '@/components/ui';
 
 export function ImprintContent() {
   const locale = useLocale();
-  const basePath = locale === 'ja' ? '/ja' : '';
+  const basePath = `/${locale}`;
 
   const content = {
     ja: {

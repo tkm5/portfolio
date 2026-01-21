@@ -8,7 +8,7 @@ import { siteConfig } from '@/data/siteConfig';
 export function ContactForm() {
   const t = useTranslations('contact');
   const locale = useLocale();
-  const basePath = locale === 'ja' ? '/ja' : '';
+  const basePath = `/${locale}`;
 
   return (
     <>

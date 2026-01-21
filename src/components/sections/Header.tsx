@@ -6,7 +6,7 @@ import { siteConfig } from '@/data/siteConfig';
 export function Header() {
   const t = useTranslations('header');
   const locale = useLocale();
-  const basePath = locale === 'ja' ? '/ja' : '';
+  const basePath = `/${locale}`;
 
   return (
     <header className="pt-[calc(60px+4rem)] pb-8 lg:pt-[calc(60px+4rem)]">

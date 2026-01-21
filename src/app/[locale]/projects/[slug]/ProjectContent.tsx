@@ -17,7 +17,7 @@ export function ProjectContent({ slug }: { slug: string }) {
 
   const title = locale === 'ja' ? project.title.ja : project.title.en;
   const meta = locale === 'ja' ? project.meta.ja : project.meta.en;
-  const basePath = locale === 'ja' ? '/ja' : '';
+  const basePath = `/${locale}`;
 
   return (
     <>

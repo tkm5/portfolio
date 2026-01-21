@@ -5,7 +5,7 @@ import { siteConfig } from '@/data/siteConfig';
 export function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
-  const basePath = locale === 'ja' ? '/ja' : '';
+  const basePath = `/${locale}`;
 
   return (
     <footer className="py-12 mt-12 border-t border-border text-center">

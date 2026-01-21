@@ -12,7 +12,7 @@ export function ProjectCard({ project, locale }: ProjectCardProps) {
 
   return (
     <Link
-      href={`/${locale === 'en' ? '' : locale + '/'}projects/${project.slug}/`}
+      href={`/${locale}/projects/${project.slug}/`}
       className="block py-4 border-b border-border first:border-t hover:pl-2 transition-all group"
     >
       <h3 className="text-base font-normal mb-1 text-foreground group-hover:text-link-hover transition-colors">
