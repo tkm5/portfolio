@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "about": "ABOUT",
+    "experience": "EXPERIENCE",
+    "projects": "PROJECTS",
+    "skills": "SKILLS"
+  },
+  "header": {
+    "title": "Software Engineer / Consultant",
+    "github": "GitHub",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "About",
+    "description": "Software Engineer specializing in AI application development using generative AI and RAG. Driving all phases of product development end-to-end, from requirements definition and architecture design to containerization with Docker and production deployment. Experienced in building multi-agent systems with LangChain/LangGraph and designing MLOps pipelines. Currently engaged in AI agent application development projects."
+  },
+  "experience": {
+    "title": "Experience",
+    "companies": {
+      "global": "Global Consulting Firm",
+      "european": "European Consulting Firm",
+      "advertising": "Major Advertising Agency",
+      "it": "Major IT Company"
+    },
+    "roles": {
+      "aiEngineer": "AI Engineer",
+      "consultingSe": "Consulting Software Engineer",
+      "dataScientist": "Data Scientist",
+      "sales": "Corporate Sales"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "meta": {
+      "global": "Global Consulting Firm",
+      "globalInternal": "Global Consulting Firm | Internal Project",
+      "european": "European Consulting Firm",
+      "europeanInternal": "European Consulting Firm | Internal Project",
+      "commissioned": "Commissioned Work",
+      "personalOss": "Personal Project | OSS",
+      "personal": "Personal Project"
+    }
+  },
+  "skills": {
+    "title": "Skills"
+  },
+  "footer": {
+    "github": "GitHub",
+    "contact": "Contact",
+    "imprint": "Imprint"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Please use the form below to get in touch.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "backToHome": "Back to Home"
+  },
+  "project": {
+    "back": "Back",
+    "overview": "Overview",
+    "architecture": "Architecture",
+    "keyFeatures": "Key Features",
+    "devQuality": "Development & Quality",
+    "technologies": "Technologies",
+    "details": "Details",
+    "experimentTypes": "Experiment Types",
+    "infrastructure": "Infrastructure",
+    "securityInfra": "Security & Infrastructure",
+    "techTransfer": "Technology Transfer & Training",
+    "cicd": "CI/CD & DevOps",
+    "operations": "Operations & Monitoring",
+    "achievement": "Achievement",
+    "uiux": "UI/UX Design",
+    "systemArch": "System Architecture"
+  },
+  "common": {
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Toggle language"
+  }
+}

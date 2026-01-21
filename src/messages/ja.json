@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "about": "ABOUT",
+    "experience": "EXPERIENCE",
+    "projects": "PROJECTS",
+    "skills": "SKILLS"
+  },
+  "header": {
+    "title": "Software Engineer / Consultant",
+    "github": "GitHub",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "About",
+    "description": "生成AI・RAGを活用したAIアプリケーション開発を得意とするソフトウェアエンジニア．要件定義からアーキテクチャ設計，Dockerによるコンテナ化，本番環境へのデプロイまで，プロダクト開発の全フェーズをエンドツーエンドで推進．LangChain/LangGraphを用いたマルチエージェントシステムの構築や，MLOpsパイプラインの設計・実装も手がける．現在はAIエージェントアプリケーションの開発プロジェクトに従事．"
+  },
+  "experience": {
+    "title": "Experience",
+    "companies": {
+      "global": "グローバルコンサルティングファーム",
+      "european": "欧州系コンサルティングファーム",
+      "advertising": "大手広告代理店",
+      "it": "大手IT企業"
+    },
+    "roles": {
+      "aiEngineer": "AI Engineer",
+      "consultingSe": "Consulting Software Engineer",
+      "dataScientist": "Data Scientist",
+      "sales": "法人営業"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "meta": {
+      "global": "グローバルコンサルティングファーム",
+      "globalInternal": "グローバルコンサルティングファーム | 社内プロジェクト",
+      "european": "欧州系コンサルティングファーム",
+      "europeanInternal": "欧州系コンサルティングファーム | 社内プロジェクト",
+      "commissioned": "業務委託",
+      "personalOss": "個人プロジェクト | OSS",
+      "personal": "個人プロジェクト"
+    }
+  },
+  "skills": {
+    "title": "Skills"
+  },
+  "footer": {
+    "github": "GitHub",
+    "contact": "Contact",
+    "imprint": "Imprint"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "お問い合わせは以下のフォームからお願いいたします．",
+    "name": "お名前",
+    "email": "メールアドレス",
+    "message": "メッセージ",
+    "send": "送信",
+    "backToHome": "ホームに戻る"
+  },
+  "project": {
+    "back": "戻る",
+    "overview": "概要",
+    "architecture": "アーキテクチャ",
+    "keyFeatures": "主要機能",
+    "devQuality": "開発環境・品質管理",
+    "technologies": "使用技術",
+    "details": "詳細",
+    "experimentTypes": "実験タイプ",
+    "infrastructure": "インフラストラクチャ",
+    "securityInfra": "セキュリティ・インフラ",
+    "techTransfer": "技術移転・人材育成",
+    "cicd": "CI/CD・DevOps",
+    "operations": "運用・モニタリング",
+    "achievement": "成果",
+    "uiux": "UI/UX設計",
+    "systemArch": "システム構成"
+  },
+  "common": {
+    "toggleTheme": "テーマを切り替え",
+    "toggleLanguage": "言語を切り替え"
+  }
+}
