@@ -26,7 +26,13 @@
     <div class="project-section">
       <h2 data-ja="アーキテクチャ" data-en="Architecture">アーキテクチャ</h2>
       <p data-ja="設定（Config），実行（Orchestrator），エンジン（Core Logic）の役割を明確に分離した構成を採用．中央設定ファイル（config.py）を編集するだけで，複数のプロンプトやパラメータの組み合わせを一度に実行し，結果を個別に出力・管理できる体制を実現．" data-en="Adopted an architecture with clear separation of Config, Orchestrator, and Core Logic roles. By simply editing the central configuration file (config.py), multiple combinations of prompts and parameters can be executed at once, with results output and managed individually.">設定（Config），実行（Orchestrator），エンジン（Core Logic）の役割を明確に分離した構成を採用．中央設定ファイル（config.py）を編集するだけで，複数のプロンプトやパラメータの組み合わせを一度に実行し，結果を個別に出力・管理できる体制を実現．</p>
-      <p data-ja="4段階の処理パイプラインを構築: (1) Converter: 多様なファイル形式をAIが理解しやすいMarkdown形式に変換，(2) Extractor: Markdownから業務手順を抽出し構造化テーブルを作成，(3) Grouper: ユーザー視点での行動グループ分類，(4) Classifier: 技術的視点での詳細分類．" data-en="Built a 4-stage processing pipeline: (1) Converter: Convert various file formats to AI-friendly Markdown, (2) Extractor: Extract business procedures from Markdown and create structured tables, (3) Grouper: Action group classification from user perspective, (4) Classifier: Technical detailed classification.">4段階の処理パイプラインを構築: (1) Converter: 多様なファイル形式をAIが理解しやすいMarkdown形式に変換，(2) Extractor: Markdownから業務手順を抽出し構造化テーブルを作成，(3) Grouper: ユーザー視点での行動グループ分類，(4) Classifier: 技術的視点での詳細分類．</p>
+      <p data-ja="4段階の処理パイプラインを構築:" data-en="Built a 4-stage processing pipeline:">4段階の処理パイプラインを構築:</p>
+      <ol>
+        <li data-ja="Converter: 多様なファイル形式をAIが理解しやすいMarkdown形式に変換" data-en="Converter: Convert various file formats to AI-friendly Markdown">Converter: 多様なファイル形式をAIが理解しやすいMarkdown形式に変換</li>
+        <li data-ja="Extractor: Markdownから業務手順を抽出し構造化テーブルを作成" data-en="Extractor: Extract business procedures from Markdown and create structured tables">Extractor: Markdownから業務手順を抽出し構造化テーブルを作成</li>
+        <li data-ja="Grouper: ユーザー視点での行動グループ分類" data-en="Grouper: Action group classification from user perspective">Grouper: ユーザー視点での行動グループ分類</li>
+        <li data-ja="Classifier: 技術的視点での詳細分類" data-en="Classifier: Technical detailed classification">Classifier: 技術的視点での詳細分類</li>
+      </ol>
     </div>
 
     <div class="project-section">

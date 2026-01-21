@@ -25,13 +25,25 @@
 
     <div class="project-section">
       <h2 data-ja="アーキテクチャ" data-en="Architecture">アーキテクチャ</h2>
-      <p data-ja="Data Flywheelの自動化パイプラインを構築: (1) Elasticsearchによるプロンプト/レスポンスログの収集・保存，(2) workload_idベースのタスク分類と重複排除，(3) class-aware stratified splittingによる評価・学習データセットの自動生成，(4) NeMo Customizerによるファインチューニング（LoRA），(5) LLM-as-judge比較によるNeMo Evaluatorでの評価．" data-en="Built Data Flywheel automation pipeline: (1) Prompt/response log collection and storage via Elasticsearch, (2) Task classification and deduplication based on workload_id, (3) Automatic generation of evaluation and training datasets using class-aware stratified splitting, (4) Fine-tuning with NeMo Customizer (LoRA), (5) Evaluation with NeMo Evaluator using LLM-as-judge comparisons.">Data Flywheelの自動化パイプラインを構築: (1) Elasticsearchによるプロンプト/レスポンスログの収集・保存，(2) workload_idベースのタスク分類と重複排除，(3) class-aware stratified splittingによる評価・学習データセットの自動生成，(4) NeMo Customizerによるファインチューニング（LoRA），(5) LLM-as-judge比較によるNeMo Evaluatorでの評価．</p>
+      <p data-ja="Data Flywheelの自動化パイプラインを構築:" data-en="Built Data Flywheel automation pipeline:">Data Flywheelの自動化パイプラインを構築:</p>
+      <ol>
+        <li data-ja="Elasticsearchによるプロンプト/レスポンスログの収集・保存" data-en="Prompt/response log collection and storage via Elasticsearch">Elasticsearchによるプロンプト/レスポンスログの収集・保存</li>
+        <li data-ja="workload_idベースのタスク分類と重複排除" data-en="Task classification and deduplication based on workload_id">workload_idベースのタスク分類と重複排除</li>
+        <li data-ja="class-aware stratified splittingによる評価・学習データセットの自動生成" data-en="Automatic generation of evaluation and training datasets using class-aware stratified splitting">class-aware stratified splittingによる評価・学習データセットの自動生成</li>
+        <li data-ja="NeMo Customizerによるファインチューニング（LoRA）" data-en="Fine-tuning with NeMo Customizer (LoRA)">NeMo Customizerによるファインチューニング（LoRA）</li>
+        <li data-ja="LLM-as-judge比較によるNeMo Evaluatorでの評価" data-en="Evaluation with NeMo Evaluator using LLM-as-judge comparisons">LLM-as-judge比較によるNeMo Evaluatorでの評価</li>
+      </ol>
       <p data-ja="NeMo Deployment Managerを活用し，必要に応じてNIMsを動的に起動・停止することで，GPUリソースを効率的に管理．Celeryワーカーによるバックグラウンドタスク処理とRedisによるタスクキュー管理を実装．" data-en="Efficiently managed GPU resources by dynamically starting and stopping NIMs as needed using NeMo Deployment Manager. Implemented background task processing with Celery workers and task queue management with Redis.">NeMo Deployment Managerを活用し，必要に応じてNIMsを動的に起動・停止することで，GPUリソースを効率的に管理．Celeryワーカーによるバックグラウンドタスク処理とRedisによるタスクキュー管理を実装．</p>
     </div>
 
     <div class="project-section">
       <h2 data-ja="実験タイプ" data-en="Experiment Types">実験タイプ</h2>
-      <p data-ja="3種類の実験を自動実行: (1) Base: 本番プロンプトの再生，(2) ICL (In-Context Learning): トラフィック例からのfew-shotプロンプト構築（ランダム選択またはセマンティック類似度ベース），(3) Customized: LoRAファインチューニング後のベースプロンプト評価．" data-en="Automatically executed 3 experiment types: (1) Base: Replay of production prompts, (2) ICL (In-Context Learning): Few-shot prompt construction from traffic examples (random selection or semantic similarity-based), (3) Customized: Base prompt evaluation after LoRA fine-tuning.">3種類の実験を自動実行: (1) Base: 本番プロンプトの再生，(2) ICL (In-Context Learning): トラフィック例からのfew-shotプロンプト構築（ランダム選択またはセマンティック類似度ベース），(3) Customized: LoRAファインチューニング後のベースプロンプト評価．</p>
+      <p data-ja="3種類の実験を自動実行:" data-en="Automatically executed 3 experiment types:">3種類の実験を自動実行:</p>
+      <ol>
+        <li data-ja="Base: 本番プロンプトの再生" data-en="Base: Replay of production prompts">Base: 本番プロンプトの再生</li>
+        <li data-ja="ICL (In-Context Learning): トラフィック例からのfew-shotプロンプト構築（ランダム選択またはセマンティック類似度ベース）" data-en="ICL (In-Context Learning): Few-shot prompt construction from traffic examples (random selection or semantic similarity-based)">ICL (In-Context Learning): トラフィック例からのfew-shotプロンプト構築（ランダム選択またはセマンティック類似度ベース）</li>
+        <li data-ja="Customized: LoRAファインチューニング後のベースプロンプト評価" data-en="Customized: Base prompt evaluation after LoRA fine-tuning">Customized: LoRAファインチューニング後のベースプロンプト評価</li>
+      </ol>
       <p data-ja="LLM-as-judgeによる類似度メトリクス[0,1]でスコアリングし，高スコアの小規模モデルを自動的に候補として抽出．" data-en="Scored using LLM-as-judge similarity metrics [0,1], automatically extracting high-scoring small models as candidates.">LLM-as-judgeによる類似度メトリクス[0,1]でスコアリングし，高スコアの小規模モデルを自動的に候補として抽出．</p>
     </div>
 
