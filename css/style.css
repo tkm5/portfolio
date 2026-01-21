@@ -433,6 +433,15 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+.project-section ol {
+  list-style-position: inside;
+  margin-bottom: 1rem;
+}
+
+.project-section ol li {
+  margin-bottom: 0.5rem;
+}
+
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
