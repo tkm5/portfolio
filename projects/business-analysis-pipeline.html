@@ -20,12 +20,13 @@
 
     <div class="project-section">
       <h2 data-ja="概要" data-en="Overview">概要</h2>
-      <p data-ja="PDF，Word，PowerPoint，Excelなど多様な形式の業務マニュアル群をAIで横断的に分析し，単一の「業務分析テーブル」をCSV形式で自動生成するパイプラインを設計・開発．プロンプトの試行錯誤を効率化し，再現性の高い実験管理基盤を構築．" data-en="Designed and developed a pipeline that comprehensively analyzes business manuals in various formats (PDF, Word, PowerPoint, Excel) using AI and automatically generates a unified 'Business Analysis Table' in CSV format. Built a reproducible experiment management infrastructure to streamline prompt iteration.">PDF，Word，PowerPoint，Excelなど多様な形式の業務マニュアル群をAIで横断的に分析し，単一の「業務分析テーブル」をCSV形式で自動生成するパイプラインを設計・開発．プロンプトの試行錯誤を効率化し，再現性の高い実験管理基盤を構築．</p>
+      <p data-ja="コンサルタントがクライアントの業務分析を支援する際に使用する「業務分析テーブル」を自動生成．PDF，Word，PowerPoint，Excelなど多様な形式の業務マニュアル群をAIで横断的に分析し，単一の「業務分析テーブル」をCSV形式で自動生成するパイプラインを設計・開発．プロンプトの試行錯誤を効率化し，再現性の高い実験管理基盤を構築．" data-en="Auto-generates 'Business Analysis Tables' used by consultants to support client business analysis. Designed and developed a pipeline that comprehensively analyzes business manuals in various formats (PDF, Word, PowerPoint, Excel) using AI and automatically generates a unified 'Business Analysis Table' in CSV format. Built a reproducible experiment management infrastructure to streamline prompt iteration.">コンサルタントがクライアントの業務分析を支援する際に使用する「業務分析テーブル」を自動生成．PDF，Word，PowerPoint，Excelなど多様な形式の業務マニュアル群をAIで横断的に分析し，単一の「業務分析テーブル」をCSV形式で自動生成するパイプラインを設計・開発．プロンプトの試行錯誤を効率化し，再現性の高い実験管理基盤を構築．</p>
     </div>
 
     <div class="project-section">
       <h2 data-ja="アーキテクチャ" data-en="Architecture">アーキテクチャ</h2>
       <p data-ja="設定（Config），実行（Orchestrator），エンジン（Core Logic）の役割を明確に分離した構成を採用．中央設定ファイル（config.py）を編集するだけで，複数のプロンプトやパラメータの組み合わせを一度に実行し，結果を個別に出力・管理できる体制を実現．" data-en="Adopted an architecture with clear separation of Config, Orchestrator, and Core Logic roles. By simply editing the central configuration file (config.py), multiple combinations of prompts and parameters can be executed at once, with results output and managed individually.">設定（Config），実行（Orchestrator），エンジン（Core Logic）の役割を明確に分離した構成を採用．中央設定ファイル（config.py）を編集するだけで，複数のプロンプトやパラメータの組み合わせを一度に実行し，結果を個別に出力・管理できる体制を実現．</p>
+      <p data-ja="LangGraphによるパイプラインオーケストレーション: 4段階の処理フロー（Converter → Extractor → Grouper → Classifier）をLangGraphで統合管理し，ステートフルなワークフロー制御を実現．" data-en="Pipeline Orchestration with LangGraph: Integrated management of the 4-stage processing flow (Converter → Extractor → Grouper → Classifier) using LangGraph, enabling stateful workflow control.">LangGraphによるパイプラインオーケストレーション: 4段階の処理フロー（Converter → Extractor → Grouper → Classifier）をLangGraphで統合管理し，ステートフルなワークフロー制御を実現．</p>
       <p data-ja="4段階の処理パイプラインを構築:" data-en="Built a 4-stage processing pipeline:">4段階の処理パイプラインを構築:</p>
       <ol>
         <li data-ja="Converter: 多様なファイル形式をAIが理解しやすいMarkdown形式に変換" data-en="Converter: Convert various file formats to AI-friendly Markdown">Converter: 多様なファイル形式をAIが理解しやすいMarkdown形式に変換</li>
@@ -41,6 +42,7 @@
       <p data-ja="Two-Stage Classification: タスク分類を「グルーピング」と「詳細分類」の2段階に分割し，各ステップでのAI判断精度向上と中間結果の検証を容易化．" data-en="Two-Stage Classification: Split task classification into 'Grouping' and 'Detailed Classification' stages, improving AI judgment accuracy at each step and facilitating intermediate result verification.">Two-Stage Classification: タスク分類を「グルーピング」と「詳細分類」の2段階に分割し，各ステップでのAI判断精度向上と中間結果の検証を容易化．</p>
       <p data-ja="データ品質保証: Pydanticモデルを用いた入出力検証により，AIからの出力が期待通りのJSON形式であることを保証する品質ゲートを実装．" data-en="Data Quality Assurance: Implemented quality gates using Pydantic models for input/output validation, ensuring AI outputs conform to expected JSON formats.">データ品質保証: Pydanticモデルを用いた入出力検証により，AIからの出力が期待通りのJSON形式であることを保証する品質ゲートを実装．</p>
       <p data-ja="Azure連携: Azure Blob Storageとのファイル連携スクリプトを整備し，クラウド環境でのデータ入出力をシームレスに実現．" data-en="Azure Integration: Prepared file integration scripts with Azure Blob Storage, enabling seamless data input/output in cloud environments.">Azure連携: Azure Blob Storageとのファイル連携スクリプトを整備し，クラウド環境でのデータ入出力をシームレスに実現．</p>
+      <p data-ja="Webアプリケーション: Next.js/TypeScriptによるフロントエンドを開発．ファイルアップロード機能と分析実行UIを提供し，ユーザーが直感的にパイプラインを操作可能．" data-en="Web Application: Developed frontend with Next.js/TypeScript. Provides file upload functionality and analysis execution UI, enabling users to intuitively operate the pipeline.">Webアプリケーション: Next.js/TypeScriptによるフロントエンドを開発．ファイルアップロード機能と分析実行UIを提供し，ユーザーが直感的にパイプラインを操作可能．</p>
     </div>
 
     <div class="project-section">
@@ -53,6 +55,9 @@
       <div class="tech-tags">
         <span class="tech-tag">Python</span>
         <span class="tech-tag">Google Gemini</span>
+        <span class="tech-tag">LangGraph</span>
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">TypeScript</span>
         <span class="tech-tag">Azure Blob Storage</span>
         <span class="tech-tag">Pandas</span>
         <span class="tech-tag">Pydantic</span>
