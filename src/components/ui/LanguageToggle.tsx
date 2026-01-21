@@ -11,23 +11,14 @@ export function LanguageToggle() {
   const toggleLanguage = () => {
     const newLocale = locale === 'ja' ? 'en' : 'ja';
 
-    // Remove current locale from pathname if present
-    let newPath = pathname;
-    if (pathname.startsWith('/ja')) {
-      newPath = pathname.replace('/ja', '') || '/';
-    } else if (pathname.startsWith('/en')) {
-      newPath = pathname.replace('/en', '') || '/';
-    }
+    // Remove current locale prefix from pathname
+    const pathWithoutLocale = pathname.replace(/^\/(ja|en)/, '') || '/';
 
-    // Add new locale prefix
-    if (newLocale === 'ja') {
-      newPath = `/ja${newPath === '/' ? '' : newPath}`;
-    } else {
-      // English is default, no prefix needed for root
-      if (newPath === '/') {
-        newPath = '/';
-      }
-    }
+    // Build new path with appropriate locale prefix
+    const newPath =
+      newLocale === 'ja'
+        ? `/ja${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
+        : pathWithoutLocale;
 
     router.push(newPath);
   };

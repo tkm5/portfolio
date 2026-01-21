@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Project } from '@/types';
+import { getLocalizedText } from '@/utils/locale';
 
 interface ProjectCardProps {
   project: Project;
@@ -7,8 +8,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, locale }: ProjectCardProps) {
-  const title = locale === 'ja' ? project.title.ja : project.title.en;
-  const meta = locale === 'ja' ? project.meta.ja : project.meta.en;
+  const title = getLocalizedText(project.title, locale);
+  const meta = getLocalizedText(project.meta, locale);
 
   return (
     <Link

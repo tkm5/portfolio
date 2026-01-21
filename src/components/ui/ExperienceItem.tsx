@@ -1,4 +1,5 @@
 import type { Experience } from '@/types';
+import { getLocalizedText } from '@/utils/locale';
 
 interface ExperienceItemProps {
   experience: Experience;
@@ -6,8 +7,8 @@ interface ExperienceItemProps {
 }
 
 export function ExperienceItem({ experience, locale }: ExperienceItemProps) {
-  const company = locale === 'ja' ? experience.company.ja : experience.company.en;
-  const role = locale === 'ja' ? experience.role.ja : experience.role.en;
+  const company = getLocalizedText(experience.company, locale);
+  const role = getLocalizedText(experience.role, locale);
 
   return (
     <div className="mb-8">

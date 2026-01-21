@@ -37,20 +37,3 @@ export function getProjectBySlug(slug: string): Project | undefined {
 export function getAllProjectSlugs(): string[] {
   return projects.map((project) => project.slug);
 }
-
-// Re-export individual projects
-export {
-  businessAnalysisPipeline,
-  slmMlops,
-  insuranceAi,
-  governmentRag,
-  chatSystem,
-  creativeCanvas,
-  pharmaAnalytics,
-  aiAgent,
-  gasPaymentTable,
-  devcontainer,
-  homeServer,
-  transcriptionApp,
-  hpcParallel,
-};

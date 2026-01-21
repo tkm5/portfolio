@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { TopNav, Footer } from '@/components/layout';
 import { BackLink, TechTag } from '@/components/ui';
 import { getProjectBySlug } from '@/data/projects';
+import { getLocalizedText, getLocalizedArray } from '@/utils/locale';
 
 export function ProjectContent({ slug }: { slug: string }) {
   const t = useTranslations('project');
@@ -15,8 +16,8 @@ export function ProjectContent({ slug }: { slug: string }) {
     notFound();
   }
 
-  const title = locale === 'ja' ? project.title.ja : project.title.en;
-  const meta = locale === 'ja' ? project.meta.ja : project.meta.en;
+  const title = getLocalizedText(project.title, locale);
+  const meta = getLocalizedText(project.meta, locale);
   const basePath = `/${locale}`;
 
   return (
@@ -30,14 +31,10 @@ export function ProjectContent({ slug }: { slug: string }) {
           <p className="text-sm text-muted mb-8">{meta}</p>
 
           {project.sections.map((section, index) => {
-            const sectionTitle =
-              locale === 'ja' ? section.title.ja : section.title.en;
-            const sectionContent =
-              locale === 'ja' ? section.content.ja : section.content.en;
+            const sectionTitle = getLocalizedText(section.title, locale);
+            const sectionContent = getLocalizedArray(section.content, locale);
             const sectionList = section.list
-              ? locale === 'ja'
-                ? section.list.ja
-                : section.list.en
+              ? getLocalizedArray(section.list, locale)
               : null;
 
             return (

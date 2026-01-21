@@ -2,18 +2,11 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { getProjectBySlug, getAllProjectSlugs } from '@/data/projects';
 import { locales } from '../../../../../i18n';
 import { ProjectContent } from './ProjectContent';
+import { getLocalizedText } from '@/utils/locale';
 
-export function generateStaticParams() {
+export function generateStaticParams(): { locale: string; slug: string }[] {
   const slugs = getAllProjectSlugs();
-  const params: { locale: string; slug: string }[] = [];
-
-  for (const locale of locales) {
-    for (const slug of slugs) {
-      params.push({ locale, slug });
-    }
-  }
-
-  return params;
+  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 export async function generateMetadata({
@@ -24,7 +17,7 @@ export async function generateMetadata({
   const project = getProjectBySlug(slug);
   if (!project) return {};
 
-  const title = locale === 'ja' ? project.title.ja : project.title.en;
+  const title = getLocalizedText(project.title, locale);
   return {
     title: `${title} | takumig`,
     description: project.description,
