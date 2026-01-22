@@ -18,7 +18,7 @@ export function LanguageToggle() {
     const newPath =
       newLocale === 'ja'
         ? `/ja${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
-        : pathWithoutLocale;
+        : `/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
 
     router.push(newPath);
   };
