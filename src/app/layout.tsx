@@ -34,6 +34,9 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <div style={{ display: 'none' }}>
+          Impact-Site-Verification: 578d421e-1081-463d-918b-ec5e29c5b9db
+        </div>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
         </ThemeProvider>
