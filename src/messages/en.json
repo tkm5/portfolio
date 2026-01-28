@@ -12,7 +12,7 @@
   },
   "about": {
     "title": "About",
-    "description": "Software Engineer specializing in AI application development using generative AI and RAG. Driving all phases of product development end-to-end, from requirements definition and architecture design to containerization with Docker and production deployment. Experienced in building multi-agent systems with LangChain/LangGraph and designing MLOps pipelines. Currently engaged in AI agent application development projects."
+    "description": "Engineer specializing in the design and implementation of multi-agent systems powered by generative AI and RAG. Covers a wide range of technical foundations for AI application development, including agent development with LangChain/LangGraph, prompt engineering, and model evaluation and optimization. Possesses the technical capability to build entire systems end-to-end, from architecture design and MLOps pipeline implementation to CI/CD setup and production deployment. Committed to leveraging these technical skills to partner directly with clients, translating ambiguous business requirements into concrete solutions and minimizing customer time to value. Currently engaged in AI agent application design and implementation projects."
   },
   "experience": {
     "title": "Experience",
