@@ -4,7 +4,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'takumig',
-  description: 'takumig - Software Engineer / Consultant',
+  description: 'takumig - Forward Deployed Engineer',
   icons: {
     icon: '/img/fav.png',
   },
