@@ -7,6 +7,7 @@ import { governmentRag } from './government-rag';
 import { chatSystem } from './chat-system';
 import { creativeCanvas } from './creative-canvas';
 import { pharmaAnalytics } from './pharma-analytics';
+import { scheduleAgent } from './schedule-agent';
 import { aiAgent } from './ai-agent';
 import { gasPaymentTable } from './gas-payment-table';
 import { devcontainer } from './devcontainer';
@@ -22,6 +23,7 @@ export const projects: Project[] = [
   chatSystem,
   creativeCanvas,
   pharmaAnalytics,
+  scheduleAgent,
   aiAgent,
   gasPaymentTable,
   devcontainer,
