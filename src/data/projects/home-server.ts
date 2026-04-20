@@ -16,10 +16,10 @@ export const homeServer: Project = {
       title: { ja: '概要', en: 'Overview' },
       content: {
         ja: [
-          'Raspberry Pi上にDocker/Docker Composeを使用し，HomebridgeによるスマートホームハブおよびNetatalk/Avahiを用いたTime Machineサーバーを並行稼働する環境を構築．',
+          'Raspberry Pi 5（8GB RAM, NVMe SSD 2TB）上にUbuntu Server 24.04とDocker Composeで10コンテナ規模のホームサーバーをIaCとして構築．',
         ],
         en: [
-          'Built an environment on Raspberry Pi using Docker/Docker Compose, running a smart home hub with Homebridge and a Time Machine server using Netatalk/Avahi in parallel.',
+          'Built a 10-container home server as Infrastructure-as-Code on a Raspberry Pi 5 (8GB RAM, NVMe SSD 2TB) running Ubuntu Server 24.04 with Docker Compose.',
         ],
       },
     },
@@ -27,23 +27,29 @@ export const homeServer: Project = {
       title: { ja: '詳細', en: 'Details' },
       content: {
         ja: [
-          'コンテナネットワークの最適化や自動再起動・ヘルスチェック設定，ディレクトリをボリュームマウントさせることによるデータの永続化を実施．',
-          '各種家電の一元管理と信頼性の高いデータバックアップ環境を単一サーバー上で両立．',
+          'Nginx Proxy Manager，SambaによるTime Machineバックアップ，Homebridge / Home Assistantによるスマートホーム統合，Changedetection / Uptime Kumaによる監視を5プロファイルで段階起動．',
+          'Tailscale・AdGuard Home・RcloneはホストOSへ直接導入し，設定は全てGit管理，永続データは分離する構成とした．',
+          '冪等なphaseスクリプトと13項目のヘルスチェックにより再現性の高い運用を実現．PCIe Gen3有効化によりNVMe SSDの速度を約2倍化．',
         ],
         en: [
-          'Implemented container network optimization, automatic restart and health check configurations, and data persistence through directory volume mounting.',
-          'Achieved unified management of various home appliances and a reliable data backup environment on a single server.',
+          'Nginx Proxy Manager, Samba-based Time Machine backups, smart home integration via Homebridge and Home Assistant, and monitoring with Changedetection and Uptime Kuma are brought up in stages via five Docker Compose profiles.',
+          'Tailscale, AdGuard Home and Rclone run directly on the host OS; configuration is fully Git-managed and kept separate from persistent data.',
+          'Idempotent phase scripts and a 13-item health check deliver reproducible operations; enabling PCIe Gen3 roughly doubles NVMe SSD throughput.',
         ],
       },
     },
   ],
   technologies: [
-    'Raspberry Pi',
+    'Raspberry Pi 5',
+    'Ubuntu 24.04',
     'Docker',
     'Docker Compose',
+    'Nginx Proxy Manager',
+    'Samba',
     'Homebridge',
-    'Netatalk',
-    'Time Machine',
-    'Linux',
+    'Home Assistant',
+    'Tailscale',
+    'AdGuard Home',
+    'IaC',
   ],
 };

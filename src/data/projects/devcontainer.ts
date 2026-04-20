@@ -16,10 +16,10 @@ export const devcontainer: Project = {
       title: { ja: '概要', en: 'Overview' },
       content: {
         ja: [
-          'Python/Node.jsを扱う多言語開発環境をDevcontainerとして設計．Google Gemini CLI及びClaude Code を標準で組み込み，ターミナル上でシームレスなAI支援開発（Vibe Coding）を実現．',
+          'Python / Node.js を扱う多言語開発環境をDevcontainerとして設計．Claude CodeとGoogle Gemini CLIを標準で組み込み，ターミナル上でシームレスなAI支援開発（Vibe Coding）を実現．',
         ],
         en: [
-          'Designed a multi-language development environment for Python/Node.js as a Devcontainer. Built-in Google Gemini CLI and Claude Code as standard, enabling seamless AI-assisted development (Vibe Coding) on the terminal.',
+          'Designed a multi-language Python/Node.js development environment as a Devcontainer. Bundles Claude Code and the Google Gemini CLI by default, enabling seamless AI-assisted development (Vibe Coding) from the terminal.',
         ],
       },
     },
@@ -27,14 +27,14 @@ export const devcontainer: Project = {
       title: { ja: '詳細', en: 'Details' },
       content: {
         ja: [
-          '高速なパッケージ管理ツールuvやoh-my-zsh，p10k，git-deltaの導入により開発者体験を追求．',
-          '非rootユーザーを標準としながらnpmの権限問題を解決するなど，セキュリティと利便性を両立．',
-          'GitHubでOSSとして公開し，コミュニティからのフィードバックを反映しながら継続的に改善．',
+          '高速なパッケージ管理ツールuv，Oh My Zshによるzshカスタマイズ，fzf / git-delta / GitHub CLI等の導入により開発者体験を追求．',
+          '~/.claude や ~/.gemini をホストからbind mountすることで，コンテナ再生成後もAIツールの認証を維持．zsh履歴はnamed volumeで永続化．',
+          '付属のrsyncスクリプトによりリモートSSHサーバへも同一環境を展開可能な設計とし，GitHubでOSSとして公開．',
         ],
         en: [
-          'Pursued developer experience by introducing the fast package manager uv, oh-my-zsh, p10k, and git-delta.',
-          'Balanced security and convenience by using non-root users as standard while resolving npm permission issues.',
-          'Published as OSS on GitHub, continuously improving while reflecting feedback from the community.',
+          'Polished developer experience through the fast package manager uv, zsh customization via Oh My Zsh, and tooling such as fzf, git-delta and GitHub CLI.',
+          'Bind-mounts ~/.claude and ~/.gemini from the host so that AI tool credentials survive container rebuilds; zsh history is persisted on a named volume.',
+          'A bundled rsync script lets the same environment be deployed onto remote SSH servers; published as open source on GitHub.',
         ],
       },
     },
@@ -47,6 +47,8 @@ export const devcontainer: Project = {
     'uv',
     'Python',
     'Node.js',
+    'Ubuntu 24.04',
     'Zsh',
+    'rsync',
   ],
 };

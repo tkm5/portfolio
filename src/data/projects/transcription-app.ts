@@ -16,10 +16,10 @@ export const transcriptionApp: Project = {
       title: { ja: '概要', en: 'Overview' },
       content: {
         ja: [
-          '議事録作成を効率化するため，OpenAIのWhisperモデルを活用した文字起こしアプリケーションを開発．',
+          '議事録作成を効率化するため，Apple Silicon上で動作するmlx-whisperと生成AIを組み合わせた議事メモ自動生成ツールをClaude Code Skillとして開発．',
         ],
         en: [
-          "Developed a transcription application utilizing OpenAI's Whisper model to streamline meeting minute creation.",
+          'Developed a meeting minutes automation tool as a Claude Code Skill, combining mlx-whisper running on Apple Silicon with generative AI to streamline minute-taking.',
         ],
       },
     },
@@ -27,15 +27,28 @@ export const transcriptionApp: Project = {
       title: { ja: '詳細', en: 'Details' },
       content: {
         ja: [
-          'NVIDIA Inference Microservices によりNVIDIA GPU に最適化された高いスループットを実現．',
-          'また，実行環境のGPUを自動検知して処理を高速化する機能や，ローカル実行とAPI利用の両方に対応可能な柔軟なアーキテクチャを設計・実装．',
+          'macOSのVoice Memos録音から音声を自動取得し，文字起こしはMetal GPU上でmlx-whisperによりローカル実行．',
+          '議事メモ生成はGoogle Gemini APIと自宅DGX-Spark（NVIDIA GB10）上のvLLMが提供するGemma 4 31Bを切替可能とし，機密性の高い会議にも対応．',
+          '過去議事録をコンテキストとして投入することで参加者名・敬称・会議種別の一貫性を保ち，Python 3.12 + uv + pytest で保守性とテスト容易性を確保．',
         ],
         en: [
-          'Achieved high throughput optimized for NVIDIA GPUs through NVIDIA Inference Microservices.',
-          'Also designed and implemented a flexible architecture that includes automatic GPU detection for accelerated processing and supports both local execution and API utilization.',
+          'Automatically ingests audio from macOS Voice Memos; transcription runs locally on the Metal GPU via mlx-whisper.',
+          'Minute generation can switch between the Google Gemini API and Gemma 4 31B served by vLLM on a self-owned DGX-Spark (NVIDIA GB10), covering privacy-sensitive meetings.',
+          'Feeds past minutes as context to keep participant names, honorifics, and meeting types consistent; built with Python 3.12 + uv + pytest for maintainability and testability.',
         ],
       },
     },
   ],
-  technologies: ['Python', 'OpenAI Whisper', 'NVIDIA NIM', 'GPU Computing', 'Docker'],
+  technologies: [
+    'Python',
+    'mlx-whisper',
+    'Google Gemini',
+    'Gemma 4 31B',
+    'vLLM',
+    'Apple Silicon',
+    'DGX-Spark',
+    'uv',
+    'pytest',
+    'Claude Code',
+  ],
 };
