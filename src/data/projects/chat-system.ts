@@ -16,10 +16,10 @@ export const chatSystem: Project = {
       title: { ja: '概要', en: 'Overview' },
       content: {
         ja: [
-          'Azureクラウド環境を基盤とし，生成AIおよびRAG（Retrieval-Augmented Generation）技術を活用した社内問い合わせ対応チャットシステムを設計・開発・運用．Azure公式リファレンス実装（azure-search-openai-demo）をベースにカスタマイズを施し，社内ナレッジベースへの高精度な質問応答を実現．本プロジェクトの成果が評価され，2024年度コーポレートアワードを受賞．',
+          'Azure上で動作する社内向けRAGチャットシステムを設計・開発・運用．`Azure-Samples/azure-search-openai-demo` をforkし，社内規程・マニュアル・FAQ等の社内ナレッジ検索に最適化した軽量実装として仕立てた．本プロジェクトの成果が評価され，2024年度コーポレートアワードを受賞．',
         ],
         en: [
-          "Designed, developed, and operated an internal inquiry response chat system utilizing generative AI and RAG (Retrieval-Augmented Generation) technology based on Azure cloud environment. Customized based on the Azure official reference implementation (azure-search-openai-demo) to achieve high-precision Q&A for internal knowledge base. Received the 2024 Corporate Award in recognition of this project's achievements.",
+          "Designed, built, and operated an internal RAG chat system on Azure. Forked `Azure-Samples/azure-search-openai-demo` and trimmed it into a lighter deployment tuned for internal knowledge (policies, manuals, FAQs). The project was recognized with the firm's 2024 Corporate Award.",
         ],
       },
     },
@@ -27,12 +27,12 @@ export const chatSystem: Project = {
       title: { ja: 'アーキテクチャ', en: 'Architecture' },
       content: {
         ja: [
-          'フロントエンドはReact/TypeScriptで構築し，レスポンシブデザインによりPC・モバイル両対応のUIを実現．バックエンドはPython（Quart非同期フレームワーク）を採用し，ストリーミングレスポンスによるリアルタイムな回答生成を実装．Azure OpenAI Service（GPT-4）による高品質な自然言語生成と，Azure AI Searchによるベクトル検索・ハイブリッド検索・セマンティックランカーを組み合わせた多段階検索パイプラインを構築．',
-          'ドキュメント処理基盤として，Azure Document Intelligenceを活用したPDF・Word・PowerPoint等の構造化解析パイプラインを構築．社内規程・マニュアル・FAQ等の多様なドキュメント形式に対応し，Azure Blob Storageへのアップロードから検索インデックスへの自動反映までをIntegrated Vectorizationで自動化．',
+          'React + TypeScriptのフロントとPython Quartの非同期バックエンドを組み合わせ，ストリーミング応答で回答を逐次描画．Azure OpenAI Service（GPT-4）による生成と Azure AI Search のベクトル検索・ハイブリッド検索・セマンティックランカーを多段パイプラインで繋ぎ，社内ドキュメント特有の略称・正式名称の揺れに対応した．',
+          '`app.py` は 584 行の軽量実装とし，upstream（約784行）から社内利用に不要な外部統合を切り詰める一方，ユーザーフィードバック収集（サムズアップ／サムズダウン）と引用元の明示を追加．Azure Document Intelligence によるPDF / Word / PowerPointの構造化解析と Integrated Vectorization によるインデックス自動更新を組み合わせ，アップロード→検索可能化までを無人化した．',
         ],
         en: [
-          'Built frontend with React/TypeScript, achieving UI compatible with both PC and mobile through responsive design. Adopted Python (Quart async framework) for backend, implementing real-time answer generation through streaming response. Built a multi-stage search pipeline combining high-quality natural language generation with Azure OpenAI Service (GPT-4) and vector search, hybrid search, and semantic ranker with Azure AI Search.',
-          'Built a structured analysis pipeline for PDF, Word, PowerPoint documents using Azure Document Intelligence as document processing infrastructure. Supported various document formats including internal regulations, manuals, and FAQs, automating from upload to Azure Blob Storage to automatic reflection in search index through Integrated Vectorization.',
+          "A React + TypeScript frontend is paired with a Python Quart async backend; answers stream in progressively. Azure OpenAI Service (GPT-4) generation is chained with Azure AI Search's vector, hybrid, and semantic-ranker stages to handle the abbreviation / formal-name drift that is endemic to internal documents.",
+          '`app.py` is kept to 584 lines — lighter than the ~784-line upstream — by trimming external integrations that internal use does not need, while adding user feedback capture (thumbs up / thumbs down) and explicit citation rendering. Azure Document Intelligence parses PDF / Word / PowerPoint structure and Integrated Vectorization refreshes the index automatically, so the upload-to-searchable path runs unattended.',
         ],
       },
     },
@@ -40,25 +40,23 @@ export const chatSystem: Project = {
       title: { ja: 'CI/CD・DevOps', en: 'CI/CD & DevOps' },
       content: {
         ja: [
-          'Azure DevOpsを用いた本格的なCI/CDパイプラインを設計・構築．Azure Pipelinesによるビルド・テスト・デプロイの自動化を実現し，開発からステージング，本番環境への継続的デリバリーを確立．Infrastructure as Code（Bicep/ARM Templates）によるAzureリソースの宣言的管理を導入し，環境構築の再現性と一貫性を担保．',
-          'Azure Reposによるソースコード管理とブランチ戦略（Git Flow）を策定し，Pull Requestベースのコードレビュープロセスを確立．Azure Boardsによるタスク管理とスプリント計画を導入し，アジャイル開発プラクティスをチームに浸透．',
+          'ソース・ビルド・計画・作業管理を Azure DevOps に寄せ，`.azdo/pipelines/azure-dev.yml` による Azure Pipelines でビルド・テスト・デプロイを自動化．GitHub Actions ではなく Azure Pipelines を選択することで，社内セキュリティ統制（ID・監査ログ・ネットワーク境界）を既存の組織標準に合わせた．',
+          'Azure リソースは Bicep / ARM テンプレートで宣言的に管理し，環境差分を最小化．26 本以上のシェル／PowerShell スクリプトで事前準備・認証更新・データ前処理を自動化し，31 本以上のテストを CI に組み込んで回帰を防止している．ブランチ戦略は Git Flow，レビューはプルリク必須としコードレビュー文化を定着させた．',
         ],
         en: [
-          'Designed and built a full-fledged CI/CD pipeline using Azure DevOps. Achieved automation of build, test, and deployment with Azure Pipelines, establishing continuous delivery from development to staging to production environments. Introduced declarative management of Azure resources through Infrastructure as Code (Bicep/ARM Templates), ensuring reproducibility and consistency of environment construction.',
-          'Established source code management with Azure Repos and branch strategy (Git Flow), establishing a Pull Request-based code review process. Introduced task management and sprint planning with Azure Boards, spreading agile development practices throughout the team.',
+          'Source, build, planning, and work tracking all live in Azure DevOps: `.azdo/pipelines/azure-dev.yml` drives build / test / deploy through Azure Pipelines. Choosing Azure Pipelines over GitHub Actions aligned the pipeline with the firm\'s existing security controls (identity, audit trails, network boundary).',
+          'Azure resources are managed declaratively with Bicep / ARM templates to minimize environment drift. 26+ shell and PowerShell scripts automate setup, credential rotation, and data preprocessing, and 31+ tests in CI block regressions. Git Flow is used as the branching strategy, with pull-request review mandatory to embed a code-review culture.',
         ],
       },
     },
     {
-      title: { ja: '運用・モニタリング', en: 'Operations & Monitoring' },
+      title: { ja: 'ユーザーフィードバック・モニタリング', en: 'User Feedback & Monitoring' },
       content: {
         ja: [
-          'Application Insightsによる包括的なアプリケーションパフォーマンス監視を実装．カスタムメトリクスとしてユーザー満足度評価（サムズアップ/ダウン），回答精度，レスポンス時間等を収集し，Azure Log AnalyticsとKQLクエリによる運用ダッシュボードを構築．',
-          'ユーザーフィードバックを基にしたプロンプトチューニングと検索パラメータの継続的最適化により，回答品質を段階的に向上．マルチターン会話対応，引用元表示，思考プロセスの可視化等のUX改善を実装し，ユーザー体験を継続的に改善．',
+          '回答ごとにサムズアップ／サムズダウンのフィードバックを収集し，Application Insights のカスタムメトリクスとして記録．Azure Log Analytics + KQL のダッシュボードで満足度・レスポンス時間・回答精度の時系列を可視化し，プロンプトと検索パラメータを継続的に最適化．マルチターン会話・引用元表示・思考プロセスの可視化といったUX改善を並行して積み上げている．',
         ],
         en: [
-          'Implemented comprehensive application performance monitoring with Application Insights. Collected custom metrics including user satisfaction ratings (thumbs up/down), answer accuracy, and response time, building operational dashboards with Azure Log Analytics and KQL queries.',
-          'Gradually improved answer quality through prompt tuning and continuous optimization of search parameters based on user feedback. Implemented UX improvements including multi-turn conversation support, citation display, and thought process visualization, continuously improving user experience.',
+          'Every answer captures a thumbs-up / thumbs-down signal that is recorded as a custom metric in Application Insights. An Azure Log Analytics + KQL dashboard tracks satisfaction, response time, and answer accuracy over time, feeding a continuous tuning loop for prompts and search parameters. Multi-turn conversation, citation rendering, and thought-process visualization were layered in alongside.',
         ],
       },
     },
@@ -66,10 +64,10 @@ export const chatSystem: Project = {
       title: { ja: '成果', en: 'Achievement' },
       content: {
         ja: [
-          '社内問い合わせ対応の効率化と品質向上に大きく貢献し，これらの実績が評価され2024年度コーポレートアワードを受賞．本システムは社内の標準ツールとして定着し，継続的な利用と改善が行われている．',
+          '社内問い合わせ対応の効率化と品質向上に寄与した実績が評価され，2024年度コーポレートアワードを受賞．システムは社内標準ツールとして定着し，現在も継続運用・改善されている．',
         ],
         en: [
-          'Made significant contributions to improving the efficiency and quality of internal inquiry responses, receiving the 2024 Corporate Award in recognition of these achievements. This system has become established as a standard internal tool, with continuous use and improvement.',
+          'Contributions to faster, higher-quality internal Q&A earned the 2024 Corporate Award. The system is now an internal standard tool and continues to be operated and improved.',
         ],
       },
     },
@@ -88,12 +86,14 @@ export const chatSystem: Project = {
     'Azure Repos',
     'Azure Boards',
     'Application Insights',
-    'Log Analytics',
-    'Bicep/ARM',
+    'Log Analytics (KQL)',
+    'Bicep / ARM',
+    '.prompty',
+    'PowerShell',
     'RAG',
     'Vector Search',
     'Semantic Ranker',
-    'CI/CD',
+    'Integrated Vectorization',
     'Git Flow',
   ],
 };

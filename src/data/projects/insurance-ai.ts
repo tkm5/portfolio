@@ -16,10 +16,10 @@ export const insuranceAi: Project = {
       title: { ja: '概要', en: 'Overview' },
       content: {
         ja: [
-          'クライアントのAI開発の内製化と人材育成を目標に，技術指導とアプリケーション開発支援を包括的に担当．Microsoft Azure上でRAG（Retrieval Augmented Generation）アーキテクチャを採用した高精度な社内文書検索AIシステムの設計・開発を主導し，エンタープライズグレードのセキュリティ要件を満たすプライベート環境への本番デプロイまでをエンドツーエンドで実現．',
+          'クライアントのAI開発内製化と人材育成を目標に，Microsoft Azure上で社内文書検索RAGシステムの設計・開発を主導．`Azure-Samples/azure-search-openai-demo` をforkし，金融機関の閉域ネットワーク要件とEntra ID統合認証を満たすエンタープライズ仕様へ拡張．プライベート環境への本番デプロイまでをエンドツーエンドで担当した．',
         ],
         en: [
-          'Comprehensively responsible for technical guidance and application development support, with the goal of internalizing the client AI development and nurturing talent. Led the design and development of a high-precision internal document search AI system adopting RAG (Retrieval Augmented Generation) architecture on Microsoft Azure, achieving end-to-end production deployment to a private environment meeting enterprise-grade security requirements.',
+          "Led the design and development of an internal document search RAG system on Microsoft Azure, with the goal of helping the client internalize AI engineering and grow their talent. Forked `Azure-Samples/azure-search-openai-demo` and extended it to meet the closed-network requirements and Entra ID-based authentication expected by a financial institution, owning production deployment into a private environment end-to-end.",
         ],
       },
     },
@@ -27,25 +27,29 @@ export const insuranceAi: Project = {
       title: { ja: 'アーキテクチャ', en: 'Architecture' },
       content: {
         ja: [
-          'Azure公式リファレンス実装（azure-search-openai-demo）をベースに，金融業界特有の要件に対応するカスタマイズを実施．フロントエンドはReact/TypeScriptで構築し，バックエンドはPython（Quart非同期フレームワーク）を採用．Azure AI Searchによるベクトル検索・ハイブリッド検索・セマンティックランカーを組み合わせた多段階検索パイプラインを実装し，検索精度を最大化．',
-          'ドキュメント処理基盤として，Azure Document Intelligenceを活用したPDF/Word/Excel等の構造化解析パイプラインを構築．Integrated Vectorizationによりインデックス更新を自動化し，Azure Blob Storageへのドキュメントアップロードから検索可能状態までをシームレスに連携．',
+          'フロントエンドはReact + TypeScript（Viteビルド），バックエンドはPython Quartの非同期APIで構成．Azure AI Searchによるベクトル検索・BM25・セマンティックランカーを多段に組み合わせ，社内規程のような固有名詞と言い換えが混在するドキュメントでも高い想起率と関連度を両立する検索パイプラインを組んだ．',
+          'ドキュメント投入は Azure Document Intelligence でのOCR・表構造解析と Integrated Vectorization を組み合わせ，Blob Storage へのアップロードから検索可能化までをイベント駆動で自動化．プロンプトは upstream の Jinja2 ベースから `.prompty`（`chat_answer_question.prompty` 等）へ移し替え，プロンプトのレビュー・差分追跡をコード同等に扱えるようにした．',
+          '環境差分は `azure-dev.yaml` に 130+ の環境変数として集約し，テナント・部署ごとのデプロイを同じコードベースから派生できる設計．ホスティングは Azure Container Apps を選択し，Bicep による IaC でスケール・可用性を宣言的に管理している．',
         ],
         en: [
-          'Implemented customizations based on the Azure official reference implementation (azure-search-openai-demo) to meet financial industry-specific requirements. Built frontend with React/TypeScript and adopted Python (Quart async framework) for backend. Implemented a multi-stage search pipeline combining vector search, hybrid search, and semantic ranker with Azure AI Search to maximize search accuracy.',
-          'Built a structured analysis pipeline for PDF/Word/Excel documents using Azure Document Intelligence as document processing infrastructure. Automated index updates through Integrated Vectorization, seamlessly connecting document uploads to Azure Blob Storage to searchable state.',
+          'A React + TypeScript frontend (Vite) is paired with a Python Quart async backend. Azure AI Search stacks vector search, BM25, and the semantic ranker into a multi-stage pipeline — the combination keeps both recall and relevance high on internal policy documents where proper nouns and paraphrases mix freely.',
+          'Ingestion chains Azure Document Intelligence (OCR and table parsing) with Integrated Vectorization so uploads to Blob Storage become searchable through an event-driven flow. Prompts were migrated from the upstream Jinja2 layout to `.prompty` files (e.g. `chat_answer_question.prompty`), which lets prompt review and diff tracking be handled with the same tools as code.',
+          "Environment differences live in `azure-dev.yaml` as 130+ environment variables, so per-tenant and per-department deployments can be forked from one codebase. Hosting runs on Azure Container Apps with scale and availability declared in Bicep IaC.",
         ],
       },
     },
     {
-      title: { ja: 'セキュリティ・インフラ', en: 'Security & Infrastructure' },
+      title: { ja: 'セキュリティ・閉域ネットワーク', en: 'Security & Private Networking' },
       content: {
         ja: [
-          '金融機関のセキュリティ要件に準拠するため，Azure Private EndpointとVirtual Networkを用いた完全閉域網構成を設計・実装．Azure Container Appsによるコンテナベースのデプロイメントを採用し，自動スケーリングと高可用性を実現．Microsoft Entra ID統合による認証・認可基盤を構築し，ユーザー単位のアクセス制御を実装．',
-          'Azure Key Vaultによるシークレット管理，Application Insightsによる包括的なログ分析基盤を構築．Azure Log Analyticsと連携したKQLクエリによる運用監視ダッシュボードを実装し，レスポンス品質の継続的な評価・改善を可能とする環境を確立．',
+          '金融業界のセキュリティ要件に対応するため，`network-isolation.bicep` でVNet・Private Endpoint・DNSプライベートゾーンを一式で定義．upstreamでは限定的だった閉域構成を宣言的IaCに統合し，インターネット側へのパブリック経路を持たない完全内部通信を実現した．',
+          '認証・認可は `authentication.py` でEntra IDのテナントID・サーバーApp ID・クライアントApp IDを厳密に管理し，ドキュメント単位のACLと組み合わせて部署横断の情報漏洩を防止．Azure Key Vaultでシークレットを外出しし，Application Insightsとの連携用に43KB規模のBicepテンプレートでカスタム KPI ダッシュボードを構築している．',
+          'Azure Log Analytics上でKQLクエリによる運用監視ダッシュボードを実装し，回答レイテンシ・検索ヒット率・ユーザー別利用状況といったRAG固有のKPIを継続計測．回答品質劣化の早期検知を可能にした．',
         ],
         en: [
-          'Designed and implemented a fully private network configuration using Azure Private Endpoint and Virtual Network to comply with financial institution security requirements. Adopted container-based deployment with Azure Container Apps, achieving auto-scaling and high availability. Built authentication/authorization infrastructure integrated with Microsoft Entra ID, implementing user-level access control.',
-          'Built secret management with Azure Key Vault and comprehensive log analysis infrastructure with Application Insights. Implemented operational monitoring dashboards with KQL queries linked to Azure Log Analytics, establishing an environment enabling continuous evaluation and improvement of response quality.',
+          'To meet financial-industry security requirements, `network-isolation.bicep` defines the VNet, Private Endpoints, and private DNS zones as a single declarative bundle. The closed-network setup — only partially covered upstream — is fully integrated into IaC, leaving no public path to the internet.',
+          'Authentication and authorization are tightened in `authentication.py`, which strictly manages the Entra ID tenant ID and server / client App IDs; document-level ACLs then prevent cross-department leakage. Secrets are externalized to Azure Key Vault, and a 43 KB Bicep template builds an Application Insights custom KPI dashboard.',
+          'An Azure Log Analytics dashboard built with KQL continuously tracks RAG-specific KPIs — answer latency, retrieval hit rate, per-user usage — so quality regressions are caught early.',
         ],
       },
     },
@@ -53,12 +57,10 @@ export const insuranceAi: Project = {
       title: { ja: '技術移転・人材育成', en: 'Technology Transfer & Training' },
       content: {
         ja: [
-          'Web開発基礎（HTML/CSS/JavaScript）からPythonプログラミング，クラウドアーキテクチャまで，AI開発に必要な知識を体系的にレクチャー．Git/GitHubによるバージョン管理，Pull Requestを活用したコードレビュー文化の定着など，モダンな開発プラクティスを導入．',
-          'アジャイル開発手法（スクラム）を導入し，2週間スプリントによる反復的な開発サイクルを確立．Daily Standupミーティングを通じて，チーム全体の開発生産性と自律性を向上．',
+          'Web基礎（HTML / CSS / JavaScript）からPython・Azureアーキテクチャまでを体系的にレクチャーし，Git / GitHub・Pull Request・コードレビューの運用を段階的にチームへ定着．アジャイル（スクラム・2週間スプリント・Daily Standup）を導入し，外部依存から自走チームへの移行を半年スパンで設計・実行した．',
         ],
         en: [
-          'Systematically lectured on knowledge required for AI development, from web development basics (HTML/CSS/JavaScript) to Python programming and cloud architecture. Introduced modern development practices including version control with Git/GitHub and establishing code review culture utilizing Pull Requests.',
-          'Introduced agile development methodology (Scrum) and established iterative development cycles with 2-week sprints. Improved overall team development productivity and autonomy through Daily Standup meetings.',
+          'Delivered structured lectures spanning web fundamentals (HTML / CSS / JavaScript) through Python and Azure architecture, and incrementally embedded Git / GitHub, pull-request, and code-review practices into the team. Scrum with two-week sprints and daily standups was introduced to plan and drive a half-year transition from external dependency to a self-directed team.',
         ],
       },
     },
@@ -68,6 +70,7 @@ export const insuranceAi: Project = {
     'Quart',
     'React',
     'TypeScript',
+    'Vite',
     'Azure OpenAI Service',
     'Azure AI Search',
     'Azure Container Apps',
@@ -75,12 +78,14 @@ export const insuranceAi: Project = {
     'Azure Document Intelligence',
     'Azure Key Vault',
     'Application Insights',
-    'Private Endpoint',
+    'Azure Private Endpoint',
     'Microsoft Entra ID',
+    'Bicep',
+    '.prompty',
     'RAG',
     'Vector Search',
     'Semantic Ranker',
-    'Git/GitHub',
+    'Integrated Vectorization',
     'Agile/Scrum',
   ],
 };
