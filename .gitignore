@@ -1,9 +1,14 @@
 # Dependencies
 node_modules/
 
-# Next.js
-.next/
-out/
+# Astro
+dist/
+.astro/
+
+# Cloudflare
+.wrangler/
+.cloudflare/
+.dev.vars*
 
 # Debug
 npm-debug.log*
@@ -11,12 +16,8 @@ npm-debug.log*
 # Local env files
 .env*.local
 
-# Vercel
-.vercel
-
 # TypeScript
 *.tsbuildinfo
-next-env.d.ts
 
 # Private files
 CV/

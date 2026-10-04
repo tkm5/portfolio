@@ -1,0 +1,84 @@
+---
+/**
+ * Section navigation for the home page. A small script highlights the
+ * section in view, replacing the former useActiveSection hook.
+ */
+import { getTranslations, type Locale } from '@/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale, 'nav');
+const sections = ['about', 'experience', 'projects', 'skills'] as const;
+const activeClasses = 'text-foreground before:w-2';
+const inactiveClasses = 'text-muted hover:text-foreground before:w-0';
+---
+
+<aside
+  class="hidden lg:flex fixed top-[60px] left-0 w-[180px] h-[calc(100vh-60px)] flex-col justify-center p-6 z-40"
+>
+  <ul class="space-y-6">
+    {
+      sections.map((section, index) => (
+        <li>
+          <a
+            href={`#${section}`}
+            data-section={section}
+            class={`relative pl-4 text-xs tracking-widest transition-colors ${
+              index === 0 ? activeClasses : inactiveClasses
+            } before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-px before:bg-foreground before:transition-all`}
+          >
+            {t[section]}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</aside>
+
+<script>
+  const ACTIVE = ['text-foreground', 'before:w-2'];
+  const INACTIVE = ['text-muted', 'hover:text-foreground', 'before:w-0'];
+
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-section]'));
+  const sectionIds = links.map((link) => link.dataset.section ?? '');
+
+  /** Marks one side-nav link as active and the rest as inactive. */
+  function setActive(id: string): void {
+    for (const link of links) {
+      const isActive = link.dataset.section === id;
+      link.classList.remove(...(isActive ? INACTIVE : ACTIVE));
+      link.classList.add(...(isActive ? ACTIVE : INACTIVE));
+    }
+  }
+
+  /** Same rule as the old hook: the section containing scrollY + 150 wins. */
+  function handleScroll(): void {
+    const scrollPos = window.scrollY + 150;
+    for (const id of sectionIds) {
+      const section = document.getElementById(id);
+      if (section) {
+        const top = section.offsetTop;
+        if (scrollPos >= top && scrollPos < top + section.offsetHeight) {
+          setActive(id);
+          break;
+        }
+      }
+    }
+  }
+
+  // Throttle scroll handler
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  handleScroll(); // Initial check
+</script>

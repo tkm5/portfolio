@@ -1,0 +1,45 @@
+---
+import GitHubIcon from '@/components/icons/GitHubIcon.astro';
+import MailIcon from '@/components/icons/MailIcon.astro';
+import { siteConfig } from '@/data/siteConfig';
+import { getTranslations, type Locale } from '@/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale, 'header');
+const basePath = `/${locale}`;
+---
+
+<header class="pt-[calc(60px+4rem)] pb-8 lg:pt-[calc(60px+4rem)]">
+  <div class="max-w-content mx-auto px-6">
+    <img
+      src="/img/icon.jpeg"
+      alt={siteConfig.name}
+      class="w-20 h-20 md:w-[100px] md:h-[100px] rounded-full mb-5 object-cover"
+    />
+    <h1 class="text-2xl md:text-[2rem] font-semibold mb-2">{siteConfig.name}</h1>
+    <p class="text-base text-muted mb-6">{t.title}</p>
+
+    <div class="flex items-center gap-6 flex-wrap">
+      <a
+        href={siteConfig.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-link hover:text-link-hover transition-colors"
+      >
+        <GitHubIcon />
+        {t.github}
+      </a>
+      <a
+        href={`${basePath}/contact/`}
+        class="inline-flex items-center gap-2 text-link hover:text-link-hover transition-colors"
+      >
+        <MailIcon />
+        {t.contact}
+      </a>
+    </div>
+  </div>
+</header>

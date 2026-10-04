@@ -1,0 +1,74 @@
+---
+/**
+ * Contact page. The form posts directly to Formspree (no client JavaScript),
+ * exactly as the previous ContactForm component did.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TopNav from '@/components/layout/TopNav.astro';
+import Footer from '@/components/layout/Footer.astro';
+import BackLink from '@/components/ui/BackLink.astro';
+import { siteConfig } from '@/data/siteConfig';
+import { getTranslations, locales, toLocale } from '@/i18n';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = toLocale(Astro.params.locale);
+const t = getTranslations(locale, 'contact');
+const basePath = `/${locale}`;
+const fieldClass =
+  'w-full bg-card border border-border rounded px-3 py-2 text-foreground text-sm font-mono focus:outline-hidden focus:border-link-hover transition-colors';
+---
+
+<BaseLayout>
+  <TopNav locale={locale} />
+  <div class="lg:pl-[180px]">
+    <main class="max-w-content mx-auto px-6 py-16 pt-[calc(60px+4rem)]">
+      <BackLink href={`${basePath}/`} locale={locale} labelKey="backToHome" />
+
+      <h1 class="text-xl md:text-2xl font-normal mb-2">{t.title}</h1>
+      <p class="text-sm text-muted mb-8">{t.description}</p>
+
+      <form
+        action={`https://formspree.io/f/${siteConfig.formspreeId}`}
+        method="POST"
+        class="max-w-[500px]"
+      >
+        <div class="mb-6">
+          <label for="name" class="block text-sm text-muted mb-2">
+            {t.name}
+          </label>
+          <input type="text" id="name" name="name" required class={fieldClass} />
+        </div>
+
+        <div class="mb-6">
+          <label for="email" class="block text-sm text-muted mb-2">
+            {t.email}
+          </label>
+          <input type="email" id="email" name="email" required class={fieldClass} />
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="block text-sm text-muted mb-2">
+            {t.message}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows={5}
+            required
+            class={`${fieldClass} resize-y min-h-[120px]`}></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="bg-foreground text-background border-none rounded px-8 py-3 text-sm font-mono cursor-pointer hover:opacity-80 transition-opacity"
+        >
+          {t.send}
+        </button>
+      </form>
+    </main>
+    <Footer locale={locale} />
+  </div>
+</BaseLayout>

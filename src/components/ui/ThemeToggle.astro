@@ -1,0 +1,67 @@
+---
+/**
+ * Dark/light switch. Both icons are rendered and CSS shows the one matching
+ * the class set by the head script, so the correct icon appears without a
+ * hydration flash.
+ */
+import SunIcon from '@/components/icons/SunIcon.astro';
+import MoonIcon from '@/components/icons/MoonIcon.astro';
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class="p-1 text-link hover:text-link-hover transition-colors"
+  aria-label="Toggle theme"
+>
+  <SunIcon class="w-5 h-5 light:hidden" />
+  <MoonIcon class="w-5 h-5 hidden light:inline" />
+</button>
+
+<script>
+  type Theme = 'light' | 'dark';
+
+  const root = document.documentElement;
+
+  /** Returns the theme currently applied to <html>. */
+  function currentTheme(): Theme {
+    return root.classList.contains('light') ? 'light' : 'dark';
+  }
+
+  /** Applies a theme class and the matching color-scheme to <html>. */
+  function applyTheme(theme: Theme): void {
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+    root.style.colorScheme = theme;
+    updateLabels(theme);
+  }
+
+  /** Mirrors the aria-label the React toggle used. */
+  function updateLabels(theme: Theme): void {
+    const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((button) => {
+      button.setAttribute('aria-label', label);
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const next: Theme = currentTheme() === 'dark' ? 'light' : 'dark';
+      try {
+        localStorage.setItem('theme', next);
+      } catch {
+        // Storage can be unavailable (e.g. privacy mode); still switch for this page.
+      }
+      applyTheme(next);
+    });
+  });
+
+  // Keep other open tabs in sync, as next-themes did.
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'theme') {
+      applyTheme(event.newValue === 'light' ? 'light' : 'dark');
+    }
+  });
+
+  updateLabels(currentTheme());
+</script>

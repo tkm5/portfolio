@@ -1,0 +1,71 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TopNav from '@/components/layout/TopNav.astro';
+import Footer from '@/components/layout/Footer.astro';
+import BackLink from '@/components/ui/BackLink.astro';
+import TechTag from '@/components/ui/TechTag.astro';
+import { projects } from '@/data/projects';
+import { getTranslations, locales, toLocale } from '@/i18n';
+import type { Project } from '@/types';
+import { getLocalizedArray, getLocalizedText } from '@/utils/locale';
+
+export function getStaticPaths() {
+  return locales.flatMap((locale) =>
+    projects.map((project) => ({ params: { locale, slug: project.slug }, props: { project } }))
+  );
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const locale = toLocale(Astro.params.locale);
+const t = getTranslations(locale, 'project');
+const title = getLocalizedText(project.title, locale);
+const meta = getLocalizedText(project.meta, locale);
+const basePath = `/${locale}`;
+---
+
+<BaseLayout title={`${title} | takumig`} description={project.description}>
+  <TopNav locale={locale} />
+  <div class="lg:pl-[180px]">
+    <main class="max-w-content mx-auto px-6 py-16 pt-[calc(60px+4rem)]">
+      <BackLink href={`${basePath}/#projects`} locale={locale} />
+
+      <h1 class="text-xl md:text-2xl font-normal mb-2">{title}</h1>
+      <p class="text-sm text-muted mb-8">{meta}</p>
+
+      {
+        project.sections.map((section) => {
+          const sectionList = section.list ? getLocalizedArray(section.list, locale) : null;
+          return (
+            <div class="mb-8">
+              <h2 class="text-base font-normal mt-8 mb-4">
+                {getLocalizedText(section.title, locale)}
+              </h2>
+              {getLocalizedArray(section.content, locale).map((paragraph) => (
+                <p class="text-foreground mb-4 leading-relaxed">{paragraph}</p>
+              ))}
+              {sectionList && (
+                <ol class="list-decimal list-inside mb-4 space-y-2">
+                  {sectionList.map((item) => (
+                    <li class="text-foreground">{item}</li>
+                  ))}
+                </ol>
+              )}
+            </div>
+          );
+        })
+      }
+
+      <div class="mb-8">
+        <h2 class="text-base font-normal mt-8 mb-4">{t.technologies}</h2>
+        <div class="flex flex-wrap gap-2">
+          {project.technologies.map((tech) => <TechTag name={tech} />)}
+        </div>
+      </div>
+    </main>
+    <Footer locale={locale} />
+  </div>
+</BaseLayout>

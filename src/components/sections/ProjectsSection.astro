@@ -1,0 +1,19 @@
+---
+import ProjectCard from '@/components/ui/ProjectCard.astro';
+import { projects } from '@/data/projects';
+import { getTranslations, type Locale } from '@/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale, 'projects');
+---
+
+<section class="py-4" id="projects">
+  <h2 class="text-lg md:text-xl text-muted uppercase tracking-widest mt-12 mb-6">
+    {t.title}
+  </h2>
+  {projects.map((project) => <ProjectCard project={project} locale={locale} />)}
+</section>
