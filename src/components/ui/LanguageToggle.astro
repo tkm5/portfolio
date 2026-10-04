@@ -1,0 +1,22 @@
+---
+/**
+ * Links to the same page in the other locale. A plain link replaces the
+ * former client-side router.push(), so it also works without JavaScript.
+ */
+import { getAlternatePath, type Locale } from '@/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const href = getAlternatePath(Astro.url.pathname, locale);
+---
+
+<a
+  href={href}
+  class="px-2 py-1 text-sm border border-border rounded text-link hover:text-link-hover hover:border-link-hover transition-all"
+  aria-label="Toggle language"
+>
+  {locale === 'ja' ? 'EN' : 'JP'}
+</a>

@@ -1,0 +1,27 @@
+---
+import ThemeToggle from '@/components/ui/ThemeToggle.astro';
+import LanguageToggle from '@/components/ui/LanguageToggle.astro';
+import { siteConfig } from '@/data/siteConfig';
+import type { Locale } from '@/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 h-[60px] bg-background border-b border-border flex justify-between items-center px-4 lg:px-8 z-50 transition-colors"
+>
+  <a
+    href="/"
+    class="text-lg font-normal text-foreground hover:text-link-hover transition-colors"
+  >
+    {siteConfig.name}
+  </a>
+  <div class="flex items-center gap-4">
+    <LanguageToggle locale={locale} />
+    <ThemeToggle />
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Assets-only Worker: Cloudflare serves the static Astro build directly,
+  // no Worker script runs. The site is served on the custom domain only;
+  // the workers.dev subdomain is disabled to avoid duplicate content.
+  "name": "portfolio",
+  "compatibility_date": "2026-10-04",
+  "workers_dev": false,
+  "routes": [{ "pattern": "takumig.io", "custom_domain": true }],
+  "assets": {
+    "directory": "./dist",
+    // /en/contact -> /en/contact/ (matches the old trailingSlash export).
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths get dist/404.html with a 404 status.
+    "not_found_handling": "404-page"
+  }
+}

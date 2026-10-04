@@ -1,0 +1,26 @@
+---
+import type { Project } from '@/types';
+import type { Locale } from '@/i18n';
+import { getLocalizedText } from '@/utils/locale';
+
+interface Props {
+  project: Project;
+  locale: Locale;
+}
+
+const { project, locale } = Astro.props;
+const title = getLocalizedText(project.title, locale);
+const meta = getLocalizedText(project.meta, locale);
+---
+
+<a
+  href={`/${locale}/projects/${project.slug}/`}
+  class="block py-4 border-b border-border first:border-t hover:pl-2 transition-all group"
+>
+  <h3
+    class="text-base font-normal mb-1 text-foreground group-hover:text-link-hover transition-colors"
+  >
+    {title}
+  </h3>
+  <p class="text-sm text-muted">{meta}</p>
+</a>

@@ -1,0 +1,40 @@
+---
+import { siteConfig } from '@/data/siteConfig';
+import { getTranslations, type Locale } from '@/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale, 'footer');
+const basePath = `/${locale}`;
+---
+
+<footer class="py-12 mt-12 border-t border-border text-center">
+  <div class="max-w-content mx-auto px-6">
+    <div class="flex justify-center gap-8 mb-6 flex-col sm:flex-row">
+      <a
+        href={siteConfig.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-muted hover:text-link-hover transition-colors"
+      >
+        {t.github}
+      </a>
+      <a
+        href={`${basePath}/contact/`}
+        class="text-sm text-muted hover:text-link-hover transition-colors"
+      >
+        {t.contact}
+      </a>
+      <a
+        href={`${basePath}/imprint/`}
+        class="text-sm text-muted hover:text-link-hover transition-colors"
+      >
+        {t.imprint}
+      </a>
+    </div>
+    <p class="text-xs text-muted">&copy; 2026 {siteConfig.name}</p>
+  </div>
+</footer>

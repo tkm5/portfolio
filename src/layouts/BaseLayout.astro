@@ -1,0 +1,68 @@
+---
+/**
+ * Root document shared by every page: metadata, analytics and the theme
+ * bootstrap that used to come from next-themes.
+ */
+import '@/styles/global.css';
+import { siteConfig } from '@/data/siteConfig';
+import { defaultLocale, type Locale } from '@/i18n';
+
+interface Props {
+  /** Page locale, written to `<html lang>`. */
+  locale?: Locale;
+  /** Document title. */
+  title?: string;
+  /** Meta description. */
+  description?: string;
+}
+
+const {
+  locale = defaultLocale,
+  title = siteConfig.name,
+  description = siteConfig.description,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      // Apply the stored theme before first paint so dark mode never flashes.
+      // Same storage key and default ('dark') as the previous next-themes setup.
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme') || 'dark';
+          var theme =
+            stored === 'system'
+              ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+              : stored;
+          var root = document.documentElement;
+          root.classList.remove('light', 'dark');
+          root.classList.add(theme);
+          if (theme === 'light' || theme === 'dark') root.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
+    <slot name="head" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HE9686NS9"></script>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/img/fav.png" />
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-6HE9686NS9');
+    </script>
+  </head>
+  <body>
+    <div style="display: none">Impact-Site-Verification: 578d421e-1081-463d-918b-ec5e29c5b9db</div>
+    <slot />
+  </body>
+</html>
