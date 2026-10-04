@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-個人ポートフォリオサイト．Astro 6（静的出力）+ Tailwind CSS 4 + TypeScript（strict）で構成し，Cloudflare Workers の static assets で配信する．
+個人ポートフォリオサイト．Astro 7（静的出力）+ Tailwind CSS 4 + TypeScript（strict）で構成し，Cloudflare Workers の static assets で配信する．
 
 ## Architecture
 
@@ -51,7 +51,7 @@ npm run deploy    # build のあと wrangler deploy（通常は CI が実行）
 ```
 
 - `main` への push で `.github/workflows/deploy.yml` が Cloudflare Workers へデプロイする（Secrets: `CLOUDFLARE_API_TOKEN`，`CLOUDFLARE_ACCOUNT_ID`）
-- Vite は Astro 6 に合わせて 7 系に固定している（`package.json` の `overrides`）
+- TypeScript は `@astrojs/check` の peer 範囲（`^5 || ^6`）に合わせて 6 系に据え置いている
 
 ### Adding New Project
 1. `src/data/projects/` に新規 `.ts` を作成する（既存ファイルをテンプレートとして使う）

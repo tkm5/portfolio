@@ -6,7 +6,7 @@ Personal portfolio website built with Astro, featuring internationalization (EN/
 
 ## Tech Stack
 
-- **Framework:** Astro 6 (static output)
+- **Framework:** Astro 7 (static output)
 - **Language:** TypeScript (strict)
 - **Styling:** Tailwind CSS 4 (`@tailwindcss/vite`) + CSS Variables
 - **i18n:** Astro built-in i18n routing (`/en/`, `/ja/`)
