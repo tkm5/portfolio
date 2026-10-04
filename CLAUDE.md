@@ -4,52 +4,59 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-個人ポートフォリオサイト．静的HTML/CSS/JavaScriptで構成されたビルドツール不要のシンプルな構成．
+個人ポートフォリオサイト．Astro 6（静的出力）+ Tailwind CSS 4 + TypeScript（strict）で構成し，Cloudflare Workers の static assets で配信する．
 
 ## Architecture
 
 ```
 portfolio/
-├── index.html          # メインページ（About, Experience, Projects, Skills）
-├── contact.html        # お問い合わせフォーム
-├── imprint.html        # 法的情報
-├── css/style.css       # 全ページ共通スタイル（CSS変数によるダーク/ライトテーマ）
-├── js/main.js          # 言語切替・テーマ切替・スクロール検知
-└── projects/           # プロジェクト詳細ページ（各HTMLファイル）
+├── astro.config.mjs        # i18n（en / ja，prefixDefaultLocale），trailingSlash: 'always'，Tailwind の Vite プラグイン
+├── wrangler.jsonc          # Workers static assets（Worker 名 portfolio，dist/ を配信）
+├── public/                 # 静的ファイル（index.html が / を /en/ へリダイレクト）
+└── src/
+    ├── pages/              # [locale]/ 配下に home，contact，imprint，projects/[slug]，ルートに 404
+    ├── layouts/            # BaseLayout（head，GA，テーマ初期化スクリプト）
+    ├── components/         # layout / sections / ui / icons（すべて .astro）
+    ├── data/               # projects/*.ts，experiences.ts，skills.ts，siteConfig.ts
+    ├── i18n/               # locales 定義，getTranslations()，messages/{en,ja}.json
+    └── styles/global.css   # Tailwind エントリ，@theme トークン，CSS 変数
 ```
 
 ## Key Patterns
 
 ### Internationalization (i18n)
-- `data-ja` と `data-en` 属性を使用した多言語対応
-- 例: `<p data-ja="日本語テキスト" data-en="English text">日本語テキスト</p>`
-- `js/main.js` の `setLanguage()` が言語切替を処理
+- Astro 組み込みの i18n ルーティングを使い，URL は `/en/...` と `/ja/...`（末尾スラッシュあり）
+- 固定文言は `src/i18n/messages/{en,ja}.json`，ページでは `getTranslations(locale, 'namespace')` で取得する
+- データ側の文言は `{ ja, en }` オブジェクトで持ち，`src/utils/locale.ts` の `getLocalizedText()` / `getLocalizedArray()` で切り替える
+- 言語切替（`LanguageToggle.astro`）は，ロケール接頭辞を入れ替えた同じページへのリンク
 
 ### Theming
-- CSS変数（`:root` と `[data-theme="light"]`）でダーク/ライトモード対応
-- `js/main.js` の `setTheme()` がテーマ切替を処理
-- システム設定（`prefers-color-scheme`）を初期値として使用
+- CSS 変数（`:root` と `.light`）でダーク / ライトを切り替える．既定はダーク
+- `BaseLayout.astro` の head 内インラインスクリプトが `localStorage.theme` を読み，描画前に `<html>` へクラスを付けるのでちらつかない
+- 切替ボタンは `ThemeToggle.astro`．アイコンは `light:` カスタムバリアントで出し分ける
 
 ### Project Pages
-- `projects/` ディレクトリ内の各HTMLファイルは同一構造
-- `.project-section` で各セクション（概要，アーキテクチャ，使用技術等）を区切る
-- `.tech-tags` で使用技術をタグ表示
+- `src/data/projects/*.ts` の 1 ファイルが 1 プロジェクト．`src/data/projects/index.ts` の配列順が一覧の表示順になる
+- 詳細ページ `src/pages/[locale]/projects/[slug]/index.astro` は `getStaticPaths()` で全ロケール × 全 slug を生成する
+- 使用技術のタグは `TechTag.astro` で表示する
 
 ## Development
 
-### Local Preview
 ```bash
-# Python
-python -m http.server 8000
-
-# Node.js
-npx serve .
+npm ci
+npm run dev       # Astro 開発サーバー（http://localhost:4321/en/）
+npm run build     # astro check のあと dist/ に静的出力
+npm run preview   # wrangler dev で dist/ を配信（http://localhost:8787/en/）
+npm run deploy    # build のあと wrangler deploy（通常は CI が実行）
 ```
 
+- `main` への push で `.github/workflows/deploy.yml` が Cloudflare Workers へデプロイする（Secrets: `CLOUDFLARE_API_TOKEN`，`CLOUDFLARE_ACCOUNT_ID`）
+- Vite は Astro 6 に合わせて 7 系に固定している（`package.json` の `overrides`）
+
 ### Adding New Project
-1. `projects/` に新規HTMLファイルを作成（既存ファイルをテンプレートとして使用）
-2. `index.html` の `#projects` セクションにリンクを追加
-3. `data-ja` と `data-en` 属性で日英両方のテキストを設定
+1. `src/data/projects/` に新規 `.ts` を作成する（既存ファイルをテンプレートとして使う）
+2. `src/data/projects/index.ts` の `projects` 配列に追加する
+3. `title`，`meta`，`sections` は `ja` と `en` の両方を書く
 
 ## Style Guidelines
 

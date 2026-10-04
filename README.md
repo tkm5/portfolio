@@ -1,17 +1,17 @@
 # Portfolio
 
-Personal portfolio website built with Next.js 14, featuring internationalization (EN/JA) and dark/light theme support.
+Personal portfolio website built with Astro, featuring internationalization (EN/JA) and dark/light theme support.
 
 **Live Site:** [takumig.black](https://takumig.black)
 
 ## Tech Stack
 
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS + CSS Variables
-- **i18n:** next-intl
-- **Theme:** next-themes
-- **Deployment:** GitHub Pages (Static Export)
+- **Framework:** Astro 6 (static output)
+- **Language:** TypeScript (strict)
+- **Styling:** Tailwind CSS 4 (`@tailwindcss/vite`) + CSS Variables
+- **i18n:** Astro built-in i18n routing (`/en/`, `/ja/`)
+- **Theme:** Inline script (class on `<html>`, stored in `localStorage`)
+- **Deployment:** Cloudflare Workers static assets (Wrangler)
 
 ## Features
 
@@ -24,7 +24,7 @@ Personal portfolio website built with Next.js 14, featuring internationalization
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 22.12+
 - npm
 
 ### Installation
@@ -41,7 +41,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000/en/](http://localhost:3000/en/) in your browser.
+Open [http://localhost:4321/en/](http://localhost:4321/en/) in your browser.
 
 ### Build
 
@@ -49,26 +49,39 @@ Open [http://localhost:3000/en/](http://localhost:3000/en/) in your browser.
 npm run build
 ```
 
-Static files are generated in the `out/` directory.
+`astro check` runs first, then static files are generated in the `dist/` directory.
+
+### Preview
+
+```bash
+npm run preview
+```
+
+Serves `dist/` with `wrangler dev` (Workers static assets, same trailing-slash and 404 handling as production) at [http://localhost:8787/en/](http://localhost:8787/en/).
 
 ## Project Structure
 
 ```
 portfolio/
 ├── src/
-│   ├── app/
+│   ├── pages/
+│   │   ├── 404.astro          # Not-found page
 │   │   └── [locale]/          # Localized pages (en, ja)
-│   │       ├── page.tsx       # Home page
-│   │       ├── contact/       # Contact page
+│   │       ├── index.astro    # Home page
+│   │       ├── contact/       # Contact page (posts to Formspree)
 │   │       ├── imprint/       # Imprint page
 │   │       └── projects/[slug]/ # Project detail pages
+│   ├── layouts/               # BaseLayout (head, theme bootstrap)
 │   ├── components/
 │   │   ├── layout/            # TopNav, SideNav, Footer
 │   │   ├── sections/          # Header, About, Experience, Projects, Skills
 │   │   └── ui/                # TechTag, ProjectCard, ThemeToggle, etc.
 │   ├── data/                  # Project, Experience, Skills data
-│   └── messages/              # Translation files (en.json, ja.json)
-├── public/                    # Static assets
+│   ├── i18n/                  # Locale helpers and translation files (messages/en.json, ja.json)
+│   └── styles/global.css      # Tailwind entry, theme tokens, CSS variables
+├── public/                    # Static assets (index.html redirects / to /en/)
+├── astro.config.mjs           # Astro + i18n + Tailwind configuration
+├── wrangler.jsonc             # Cloudflare Workers static assets configuration
 └── .github/workflows/         # GitHub Actions for deployment
 ```
 
@@ -107,7 +120,13 @@ The site will be automatically deployed via GitHub Actions.
 
 ## Deployment
 
-Pushing to `main` branch triggers automatic deployment to GitHub Pages via GitHub Actions.
+Pushing to `main` branch triggers automatic deployment to Cloudflare Workers (Worker name `portfolio`) via GitHub Actions. The workflow needs the repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+
+To deploy manually from a machine that is logged in with `npx wrangler login`:
+
+```bash
+npm run deploy
+```
 
 ```bash
 git push origin main
