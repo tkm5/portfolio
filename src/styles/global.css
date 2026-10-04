@@ -13,7 +13,13 @@
   /* The previous Tailwind config defined no 2xl breakpoint. */
   --breakpoint-2xl: initial;
 
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  /*
+   * Hiragino Sans pins the Japanese glyphs to the font macOS browsers fell
+   * back to while every page was served as lang="en". Without it, lang="ja"
+   * makes the generic `monospace` resolve to a Japanese fixed-width font
+   * (Osaka-Mono on macOS) and the Japanese text changes shape.
+   */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', 'Hiragino Sans', monospace;
 
   --container-content: 720px;
 }
@@ -80,7 +86,7 @@
   body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-family: var(--font-mono);
     font-size: 16px;
     line-height: 1.8;
     transition: background-color 0.3s ease, color 0.3s ease;

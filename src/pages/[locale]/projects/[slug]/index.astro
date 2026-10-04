@@ -27,7 +27,7 @@ const meta = getLocalizedText(project.meta, locale);
 const basePath = `/${locale}`;
 ---
 
-<BaseLayout title={`${title} | takumig`} description={project.description}>
+<BaseLayout locale={locale} title={`${title} | takumig`} description={project.description}>
   <TopNav locale={locale} />
   <div class="lg:pl-[180px]">
     <main class="max-w-content mx-auto px-6 py-16 pt-[calc(60px+4rem)]">

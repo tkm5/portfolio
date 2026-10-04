@@ -90,7 +90,7 @@ const content = {
 const c = locale === 'ja' ? content.ja : content.en;
 ---
 
-<BaseLayout>
+<BaseLayout locale={locale}>
   <TopNav locale={locale} />
   <div class="lg:pl-[180px]">
     <main class="max-w-content mx-auto px-6 py-16 pt-[calc(60px+4rem)]">
