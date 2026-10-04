@@ -2,7 +2,7 @@
 
 Personal portfolio website built with Astro, featuring internationalization (EN/JA) and dark/light theme support.
 
-**Live Site:** [takumig.black](https://takumig.black)
+**Live Site:** [takumig.io](https://takumig.io)
 
 ## Tech Stack
 

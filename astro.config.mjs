@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://docs.astro.build/en/reference/configuration-reference/
 export default defineConfig({
-  site: 'https://takumig.black',
+  site: 'https://takumig.io',
   output: 'static',
   // Every page is emitted as <route>/index.html and linked with a trailing
   // slash, matching the previous Next.js `trailingSlash: true` export.
