@@ -79,7 +79,7 @@ portfolio/
 │   ├── data/                  # Project, Experience, Skills data
 │   ├── i18n/                  # Locale helpers and translation files (messages/en.json, ja.json)
 │   └── styles/global.css      # Tailwind entry, theme tokens, CSS variables
-├── public/                    # Static assets (index.html redirects / to /en/)
+├── public/                    # Static assets (/ -> /en/ is a Cloudflare Redirect Rule)
 ├── astro.config.mjs           # Astro + i18n + Tailwind configuration
 ├── wrangler.jsonc             # Cloudflare Workers static assets configuration
 └── .github/workflows/         # GitHub Actions for deployment

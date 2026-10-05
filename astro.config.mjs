@@ -16,8 +16,8 @@ export default defineConfig({
     locales: ['en', 'ja'],
     defaultLocale: 'en',
     routing: {
-      // Both locales live under a prefix (/en/, /ja/). The bare root is served
-      // by public/index.html, which redirects to /en/.
+      // Both locales live under a prefix (/en/, /ja/). The bare root is
+      // redirected to /en/ (301) by a Cloudflare Redirect Rule on the zone.
       prefixDefaultLocale: true,
       redirectToDefaultLocale: false,
     },
