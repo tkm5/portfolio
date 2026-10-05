@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 portfolio/
 ├── astro.config.mjs        # i18n（en / ja，prefixDefaultLocale），trailingSlash: 'always'，Tailwind の Vite プラグイン
 ├── wrangler.jsonc          # Workers static assets（Worker 名 portfolio，dist/ を配信）
-├── public/                 # 静的ファイル（index.html が / を /en/ へリダイレクト）
+├── public/                 # 静的ファイル（/ から /en/ への 301 は Cloudflare の Redirect Rule）
 └── src/
     ├── pages/              # [locale]/ 配下に home，contact，imprint，projects/[slug]，ルートに 404
     ├── layouts/            # BaseLayout（head，GA，テーマ初期化スクリプト）
