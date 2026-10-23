@@ -10,8 +10,8 @@
 - [x] Task 2: `astro.config.mjs` に `prefetch` 設定を明示する
 
 ### Checkpoint A
-- [ ] `npm run build`（astro check を含む）が成功する
-- [ ] `npm run preview` で遷移がクライアント側になっている（Network に document 再取得がない）
+- [x] `npm run build`（astro check を含む）が成功する
+- [x] `npm run preview` で遷移がクライアント側になっている（Network に document 再取得がない）
 
 ## Phase 2: 遷移後も動く UI
 - [x] Task 3: `ThemeToggle.astro` をイベント委譲 + `astro:page-load` でのラベル更新に書き換える
@@ -19,11 +19,11 @@
 - [x] Task 5: GA の page_view を `astro:page-load` に一本化し，`TopNav.astro` のロゴを `/${locale}/` にする
 
 ### Checkpoint B
-- [ ] `npm run build` が成功する
-- [ ] ブラウザで一連の操作（テーマ切替 → 詳細へ → 言語切替 → 戻る → サイドナビ）がすべて動き，console にエラーがない
+- [x] `npm run build` が成功する
+- [x] ブラウザで一連の操作（テーマ切替 → 詳細へ → 言語切替 → 戻る → サイドナビ）がすべて動き，console にエラーがない
 
 ## Phase 3: 仕上げ
-- [ ] Task 6: `wrangler` をマイナー更新し（4.152.0），`npm run preview` で配信を確認する
+- [x] Task 6: `wrangler` をマイナー更新し（4.152.0），`npm run preview` で配信を確認する
 - [ ] Task 7: `CLAUDE.md` の Key Patterns に ClientRouter とライフサイクルイベントの扱いを追記する
 
 ## Checkpoint: Complete
