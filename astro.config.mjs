@@ -12,6 +12,11 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
+  // These are the defaults when ClientRouter is used, written out for clarity.
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
   i18n: {
     locales: ['en', 'ja'],
     defaultLocale: 'en',

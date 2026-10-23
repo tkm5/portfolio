@@ -42,8 +42,9 @@ const inactiveClasses = 'text-muted hover:text-foreground before:w-0';
   const ACTIVE = ['text-foreground', 'before:w-2'];
   const INACTIVE = ['text-muted', 'hover:text-foreground', 'before:w-0'];
 
-  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-section]'));
-  const sectionIds = links.map((link) => link.dataset.section ?? '');
+  // Re-queried on every astro:page-load because ClientRouter swaps the DOM.
+  let links: HTMLAnchorElement[] = [];
+  let sectionIds: string[] = [];
 
   /** Marks one side-nav link as active and the rest as inactive. */
   function setActive(id: string): void {
@@ -56,6 +57,7 @@ const inactiveClasses = 'text-muted hover:text-foreground before:w-0';
 
   /** Same rule as the old hook: the section containing scrollY + 150 wins. */
   function handleScroll(): void {
+    if (links.length === 0) return; // Page without the side nav
     const scrollPos = window.scrollY + 150;
     for (const id of sectionIds) {
       const section = document.getElementById(id);
@@ -80,5 +82,10 @@ const inactiveClasses = 'text-muted hover:text-foreground before:w-0';
       ticking = true;
     }
   });
-  handleScroll(); // Initial check
+
+  document.addEventListener('astro:page-load', () => {
+    links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-section]'));
+    sectionIds = links.map((link) => link.dataset.section ?? '');
+    handleScroll(); // Initial check
+  });
 </script>
