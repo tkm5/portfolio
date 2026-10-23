@@ -24,9 +24,9 @@
 
 ## Phase 3: 仕上げ
 - [x] Task 6: `wrangler` をマイナー更新し（4.152.0），`npm run preview` で配信を確認する
-- [ ] Task 7: `CLAUDE.md` の Key Patterns に ClientRouter とライフサイクルイベントの扱いを追記する
+- [x] Task 7: `CLAUDE.md` の Key Patterns に ClientRouter とライフサイクルイベントの扱いを追記する
 
 ## Checkpoint: Complete
-- [ ] 全受け入れ条件を満たす
-- [ ] 見た目（配色，レイアウト，文言）に差分がない
+- [x] 全受け入れ条件を満たす
+- [x] 見た目（配色，レイアウト，文言）に差分がない
 - [ ] PR を作成し，CI（deploy.yml）のビルドが通る
