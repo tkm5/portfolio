@@ -8,8 +8,8 @@ export const experiences: Experience[] = [
     },
     period: '2025.05 - Present',
     role: {
-      ja: 'AI Engineer',
-      en: 'AI Engineer',
+      ja: 'Forward Deployed Engineer',
+      en: 'Forward Deployed Engineer',
     },
   },
   {
