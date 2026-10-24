@@ -13,10 +13,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 portfolio/
 ├── astro.config.mjs        # i18n（en / ja，prefixDefaultLocale），trailingSlash: 'always'，Tailwind の Vite プラグイン
 ├── wrangler.jsonc          # Workers static assets（Worker 名 portfolio，dist/ を配信）
-├── public/                 # 静的ファイル（/ から /en/ への 301 は Cloudflare の Redirect Rule）
+├── public/                 # 静的ファイルと _headers（キャッシュとセキュリティヘッダー）．/ から /en/ への 301 は Cloudflare の Redirect Rule
 └── src/
+    ├── assets/             # 画像ソース（Astro <Image> でビルド時に最適化）
     ├── pages/              # [locale]/ 配下に home，contact，imprint，projects/[slug]，ルートに 404
-    ├── layouts/            # BaseLayout（head，GA，テーマ初期化スクリプト）
+    ├── layouts/            # BaseLayout（head，Cloudflare Web Analytics，テーマ初期化スクリプト）
     ├── components/         # layout / sections / ui / icons（すべて .astro）
     ├── data/               # projects/*.ts，experiences.ts，skills.ts，siteConfig.ts
     ├── i18n/               # locales 定義，getTranslations()，messages/{en,ja}.json
@@ -41,9 +42,15 @@ portfolio/
 - `<ClientRouter />`（`astro:transitions`）は `BaseLayout.astro` の head に置いている
 - バンドルされる `<script>` は 1 回の訪問で 1 度しか実行されない．DOM に紐づく初期化は `astro:page-load` で行うか，`document` へのイベント委譲で書く（`ThemeToggle.astro`，`SideNav.astro` が例）
 - 遷移のたびに `<html>` の属性が置き換わるので，テーマは `astro:after-swap` で再適用する
-- GA は `gtag('config', …, { send_page_view: false })` で自動送信を止め，`astro:page-load` ごとに `page_view` を手動で 1 回送る
-- プリフェッチは全リンクで有効（`astro.config.mjs` の `prefetch: { prefetchAll: true, defaultStrategy: 'hover' }`）
+- アクセス解析は Cloudflare Web Analytics．本番では Cloudflare がエッジでビーコンを自動注入する（ゾーン設定，EU 訪問者は除外）ので，`siteConfig.cloudflareAnalyticsToken` は空のままにする．自動注入を止めたときだけトークンを入れると `BaseLayout.astro` が `spa: true` のビーコンを出力する（GA は使わない）
+- プリフェッチは全リンクで有効（`astro.config.mjs` の `prefetch: { prefetchAll: true, defaultStrategy: 'viewport' }`）
 - クライアントスクリプトを新しく足すときは上記に従う．`is:inline` スクリプトから `document` にリスナーを登録する場合は，`window.__themeSwapBound` のようなフラグで二重登録を防ぐ
+
+### Assets and Caching
+- 画像は `src/assets/` に置き，`astro:assets` の `<Image>` で出す（webp，`width` / `height` を明示，Retina 向けに `densities` を指定）．`public/` の画像を素の `<img>` で読み込まない
+- favicon は `public/img/favicon-32.png` と `public/img/apple-touch-icon.png`
+- `public/_headers` が Workers static assets のキャッシュとセキュリティヘッダーを決める．ハッシュ付きの `/_astro/*` は immutable，`/img/*` は 7 日間キャッシュするので，`/img/*` のファイルを差し替えるときは別名にする
+- プリフェッチは全リンクで `viewport`（リンクが画面に入った時点で取得する）
 
 ### Project Pages
 - `src/data/projects/*.ts` の 1 ファイルが 1 プロジェクト．`src/data/projects/index.ts` の配列順が一覧の表示順になる

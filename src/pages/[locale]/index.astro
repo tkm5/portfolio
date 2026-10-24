@@ -18,7 +18,6 @@ const locale = toLocale(Astro.params.locale);
 ---
 
 <BaseLayout locale={locale}>
-  <link slot="head" rel="preload" as="image" href="/img/icon.jpeg" />
   <TopNav locale={locale} />
   <SideNav locale={locale} />
   <div class="lg:pl-[180px]">

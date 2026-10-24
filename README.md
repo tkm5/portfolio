@@ -12,6 +12,8 @@ Personal portfolio website built with Astro, featuring internationalization (EN/
 - **Styling:** Tailwind CSS 4 (`@tailwindcss/vite`) + CSS Variables
 - **i18n:** Astro built-in i18n routing (`/en/`, `/ja/`)
 - **Theme:** Inline script (class on `<html>`, stored in `localStorage`)
+- **Images:** Astro `<Image>` (build-time WebP, Retina densities)
+- **Analytics:** Cloudflare Web Analytics (injected by Cloudflare at the edge; in-code beacon only when `siteConfig.cloudflareAnalyticsToken` is set)
 - **Deployment:** Cloudflare Workers static assets (Wrangler)
 
 ## Features
@@ -65,6 +67,7 @@ Serves `dist/` with `wrangler dev` (Workers static assets, same trailing-slash a
 ```
 portfolio/
 ├── src/
+│   ├── assets/                # Image sources optimised at build time by Astro <Image>
 │   ├── pages/
 │   │   ├── 404.astro          # Not-found page
 │   │   └── [locale]/          # Localized pages (en, ja)
@@ -81,6 +84,8 @@ portfolio/
 │   ├── i18n/                  # Locale helpers and translation files (messages/en.json, ja.json)
 │   └── styles/global.css      # Tailwind entry, theme tokens, CSS variables
 ├── public/                    # Static assets (/ -> /en/ is a Cloudflare Redirect Rule)
+│   ├── _headers               # Cache and security headers for Workers static assets
+│   └── img/                   # favicon-32.png, apple-touch-icon.png
 ├── astro.config.mjs           # Astro + i18n + Tailwind configuration
 ├── wrangler.jsonc             # Cloudflare Workers static assets configuration
 └── .github/workflows/         # GitHub Actions for deployment
@@ -134,6 +139,10 @@ git push origin main
 ```
 
 Deployment typically completes in about 1 minute.
+
+### Analytics
+
+Analytics uses Cloudflare Web Analytics. In production the beacon is injected automatically by Cloudflare at the edge (zone setting Web Analytics → Manage site → "Enable", currently set to exclude EU visitors), so no token is needed and `cloudflareAnalyticsToken` stays empty. If automatic injection is ever turned off, switch the site to "Enable with JS Snippet installation", copy the token from the snippet into `cloudflareAnalyticsToken` in `src/data/siteConfig.ts`, and rebuild; the beacon is then rendered with `spa: true` so client-side navigations are counted.
 
 ## License
 

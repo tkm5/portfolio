@@ -12,10 +12,11 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
-  // These are the defaults when ClientRouter is used, written out for clarity.
+  // prefetchAll is the default when ClientRouter is used, written out for clarity.
+  // 'viewport' prefetches links as they scroll into view (e.g. the project list).
   prefetch: {
     prefetchAll: true,
-    defaultStrategy: 'hover',
+    defaultStrategy: 'viewport',
   },
   i18n: {
     locales: ['en', 'ja'],
