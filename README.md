@@ -13,7 +13,7 @@ Personal portfolio website built with Astro, featuring internationalization (EN/
 - **i18n:** Astro built-in i18n routing (`/en/`, `/ja/`)
 - **Theme:** Inline script (class on `<html>`, stored in `localStorage`)
 - **Images:** Astro `<Image>` (build-time WebP, Retina densities)
-- **Analytics:** Cloudflare Web Analytics (beacon rendered only when `siteConfig.cloudflareAnalyticsToken` is set)
+- **Analytics:** Cloudflare Web Analytics (injected by Cloudflare at the edge; in-code beacon only when `siteConfig.cloudflareAnalyticsToken` is set)
 - **Deployment:** Cloudflare Workers static assets (Wrangler)
 
 ## Features
@@ -142,7 +142,7 @@ Deployment typically completes in about 1 minute.
 
 ### Analytics
 
-Analytics uses Cloudflare Web Analytics and is off until a token is set. To enable it, create the site in the Cloudflare dashboard under Analytics & Logs → Web Analytics, choosing the JS snippet (not automatic setup), copy the token from the snippet into `cloudflareAnalyticsToken` in `src/data/siteConfig.ts`, then rebuild and deploy. The beacon is sent with `spa: true`, so client-side navigations are counted as page views.
+Analytics uses Cloudflare Web Analytics. In production the beacon is injected automatically by Cloudflare at the edge (zone setting Web Analytics → Manage site → "Enable", currently set to exclude EU visitors), so no token is needed and `cloudflareAnalyticsToken` stays empty. If automatic injection is ever turned off, switch the site to "Enable with JS Snippet installation", copy the token from the snippet into `cloudflareAnalyticsToken` in `src/data/siteConfig.ts`, and rebuild; the beacon is then rendered with `spa: true` so client-side navigations are counted.
 
 ## License
 

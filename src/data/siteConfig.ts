@@ -7,6 +7,7 @@ export const siteConfig: SiteConfig = {
   url: 'https://takumig.io',
   github: 'https://github.com/tkm5',
   formspreeId: 'xwvvqqnp',
-  // Cloudflare Web Analytics site token; empty disables the beacon.
+  // Cloudflare Web Analytics site token. Production uses Cloudflare's automatic
+  // edge injection, so this stays empty; set it only if automatic injection is off.
   cloudflareAnalyticsToken: '',
 };

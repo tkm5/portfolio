@@ -42,7 +42,7 @@ portfolio/
 - `<ClientRouter />`（`astro:transitions`）は `BaseLayout.astro` の head に置いている
 - バンドルされる `<script>` は 1 回の訪問で 1 度しか実行されない．DOM に紐づく初期化は `astro:page-load` で行うか，`document` へのイベント委譲で書く（`ThemeToggle.astro`，`SideNav.astro` が例）
 - 遷移のたびに `<html>` の属性が置き換わるので，テーマは `astro:after-swap` で再適用する
-- アクセス解析は `BaseLayout.astro` の Cloudflare Web Analytics ビーコンで行う．`siteConfig.cloudflareAnalyticsToken` が空でないときだけ出力し，`spa: true` を指定してクライアントサイド遷移も計測する（GA は使わない）
+- アクセス解析は Cloudflare Web Analytics．本番では Cloudflare がエッジでビーコンを自動注入する（ゾーン設定，EU 訪問者は除外）ので，`siteConfig.cloudflareAnalyticsToken` は空のままにする．自動注入を止めたときだけトークンを入れると `BaseLayout.astro` が `spa: true` のビーコンを出力する（GA は使わない）
 - プリフェッチは全リンクで有効（`astro.config.mjs` の `prefetch: { prefetchAll: true, defaultStrategy: 'viewport' }`）
 - クライアントスクリプトを新しく足すときは上記に従う．`is:inline` スクリプトから `document` にリスナーを登録する場合は，`window.__themeSwapBound` のようなフラグで二重登録を防ぐ
 
