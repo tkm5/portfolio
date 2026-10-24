@@ -3,6 +3,7 @@
  * Root document shared by every page: metadata, analytics and the theme
  * bootstrap that used to come from next-themes.
  */
+import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
 import { siteConfig } from '@/data/siteConfig';
 import { defaultLocale, type Locale } from '@/i18n';
@@ -31,7 +32,7 @@ const {
     <script is:inline>
       // Apply the stored theme before first paint so dark mode never flashes.
       // Same storage key and default ('dark') as the previous next-themes setup.
-      (function () {
+      function applyStoredTheme() {
         try {
           var stored = localStorage.getItem('theme') || 'dark';
           var theme =
@@ -45,8 +46,16 @@ const {
           root.classList.add(theme);
           if (theme === 'light' || theme === 'dark') root.style.colorScheme = theme;
         } catch (e) {}
-      })();
+      }
+      applyStoredTheme();
+      // ClientRouter replaces <html> attributes on navigation, so re-apply the
+      // theme right after each swap (still before paint).
+      if (!window.__themeSwapBound) {
+        window.__themeSwapBound = true;
+        document.addEventListener('astro:after-swap', applyStoredTheme);
+      }
     </script>
+    <ClientRouter />
     <slot name="head" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HE9686NS9"></script>
     <title>{title}</title>
@@ -58,7 +67,15 @@ const {
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
-      gtag('config', 'G-6HE9686NS9');
+      // page_view is sent manually on astro:page-load (initial load and every
+      // client-side navigation), so disable the automatic one.
+      gtag('config', 'G-6HE9686NS9', { send_page_view: false });
+      if (!window.__gaPageViewBound) {
+        window.__gaPageViewBound = true;
+        document.addEventListener('astro:page-load', function () {
+          gtag('event', 'page_view', { page_location: location.href, page_title: document.title });
+        });
+      }
     </script>
   </head>
   <body>

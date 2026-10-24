@@ -1,12 +1,13 @@
 # Portfolio
 
-Personal portfolio website built with Astro, featuring internationalization (EN/JA) and dark/light theme support.
+Personal portfolio website built with Astro, featuring internationalization (EN/JA), dark/light theme support, and client-side page transitions.
 
 **Live Site:** [takumig.io](https://takumig.io)
 
 ## Tech Stack
 
 - **Framework:** Astro 7 (static output)
+- **Navigation:** Astro `<ClientRouter />` (View Transitions) — client-side page transitions with prefetch; every page is still prerendered
 - **Language:** TypeScript (strict)
 - **Styling:** Tailwind CSS 4 (`@tailwindcss/vite`) + CSS Variables
 - **i18n:** Astro built-in i18n routing (`/en/`, `/ja/`)
