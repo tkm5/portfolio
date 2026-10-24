@@ -1,7 +1,7 @@
 ---
 /**
- * Root document shared by every page: metadata, analytics and the theme
- * bootstrap that used to come from next-themes.
+ * Root document shared by every page: metadata, Cloudflare Web Analytics and the
+ * theme bootstrap that used to come from next-themes.
  */
 import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
@@ -57,26 +57,20 @@ const {
     </script>
     <ClientRouter />
     <slot name="head" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HE9686NS9"></script>
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" href="/img/fav.png" />
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      // page_view is sent manually on astro:page-load (initial load and every
-      // client-side navigation), so disable the automatic one.
-      gtag('config', 'G-6HE9686NS9', { send_page_view: false });
-      if (!window.__gaPageViewBound) {
-        window.__gaPageViewBound = true;
-        document.addEventListener('astro:page-load', function () {
-          gtag('event', 'page_view', { page_location: location.href, page_title: document.title });
-        });
-      }
-    </script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    {
+      siteConfig.cloudflareAnalyticsToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: siteConfig.cloudflareAnalyticsToken, spa: true })}
+        />
+      )
+    }
   </head>
   <body>
     <div style="display: none">Impact-Site-Verification: 578d421e-1081-463d-918b-ec5e29c5b9db</div>

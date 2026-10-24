@@ -52,4 +52,6 @@ export interface SiteConfig {
   url: string;
   github: string;
   formspreeId: string;
+  /** Cloudflare Web Analytics site token; an empty or missing value disables the beacon. */
+  cloudflareAnalyticsToken?: string;
 }
