@@ -8,7 +8,10 @@ import { chatSystem } from './chat-system';
 import { aiTutorPoc } from './ai-tutor-poc';
 import { realEstateDataPlatform } from './real-estate-data-platform';
 import { codingAgentTooling } from './coding-agent-tooling';
+import { devcontainer } from './devcontainer';
+import { homeServer } from './home-server';
 import { transcriptionApp } from './transcription-app';
+import { hpcParallel } from './hpc-parallel';
 
 export const projects: Project[] = [
   insuranceAi,
@@ -20,6 +23,9 @@ export const projects: Project[] = [
   realEstateDataPlatform,
   codingAgentTooling,
   transcriptionApp,
+  devcontainer,
+  homeServer,
+  hpcParallel,
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
