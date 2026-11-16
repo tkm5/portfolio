@@ -6,6 +6,9 @@ import { insuranceAi } from './insurance-ai';
 import { governmentSimilarity } from './government-similarity';
 import { operationsTransformation } from './operations-transformation';
 import { chatSystem } from './chat-system';
+import { aiTutorPoc } from './ai-tutor-poc';
+import { realEstateDataPlatform } from './real-estate-data-platform';
+import { codingAgentTooling } from './coding-agent-tooling';
 import { creativeCanvas } from './creative-canvas';
 import { pharmaAnalytics } from './pharma-analytics';
 import { scheduleAgent } from './schedule-agent';
@@ -22,6 +25,10 @@ export const projects: Project[] = [
   operationsTransformation,
   chatSystem,
   governmentSimilarity,
+  aiTutorPoc,
+  realEstateDataPlatform,
+  codingAgentTooling,
+  transcriptionApp,
   slmMlops,
   creativeCanvas,
   pharmaAnalytics,
@@ -30,7 +37,6 @@ export const projects: Project[] = [
   gasPaymentTable,
   devcontainer,
   homeServer,
-  transcriptionApp,
   hpcParallel,
 ];
 
