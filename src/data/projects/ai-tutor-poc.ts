@@ -7,8 +7,8 @@ export const aiTutorPoc: Project = {
     en: 'Education Company: 24/7 AI Tutor PoC Development',
   },
   meta: {
-    ja: '個人受託 | Forward Deployed Engineer',
-    en: 'Independent Engagement | Forward Deployed Engineer',
+    ja: '業務委託 | Forward Deployed Engineer',
+    en: 'Commissioned Work | Forward Deployed Engineer',
   },
   description: "An AI tutor PoC that answers in line with a cram school's teaching policy and only answers when two vendors' LLMs agree",
   sections: [

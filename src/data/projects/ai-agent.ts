@@ -7,8 +7,8 @@ export const aiAgent: Project = {
     en: 'AI Agent Decision Support System',
   },
   meta: {
-    ja: '業務委託',
-    en: 'Commissioned Work',
+    ja: '業務委託 | Forward Deployed Engineer',
+    en: 'Commissioned Work | Forward Deployed Engineer',
   },
   description: 'An AI agent that argues the same question from both sides, calling internal-document search and web search only when needed',
   sections: [

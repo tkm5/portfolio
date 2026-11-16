@@ -7,8 +7,8 @@ export const scheduleAgent: Project = {
     en: 'AI Scheduling Agent',
   },
   meta: {
-    ja: '業務委託',
-    en: 'Commissioned Work',
+    ja: '業務委託 | Forward Deployed Engineer',
+    en: 'Commissioned Work | Forward Deployed Engineer',
   },
   description: 'A PoC agent that elicits implicit scheduling preferences through dialogue, combining LLM steps with deterministic rules in LangGraph',
   sections: [

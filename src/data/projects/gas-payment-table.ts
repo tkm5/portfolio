@@ -7,8 +7,8 @@ export const gasPaymentTable: Project = {
     en: 'Payment Schedule Automation',
   },
   meta: {
-    ja: '業務委託',
-    en: 'Commissioned Work',
+    ja: '業務委託 | Forward Deployed Engineer',
+    en: 'Commissioned Work | Forward Deployed Engineer',
   },
   description: 'A Google Apps Script system that reads invoices on Google Drive with the Gemini API and builds a monthly payment schedule in Google Sheets',
   sections: [

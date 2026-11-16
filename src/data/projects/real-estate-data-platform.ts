@@ -7,8 +7,8 @@ export const realEstateDataPlatform: Project = {
     en: 'Real-Estate Asset Management Company: Information Consolidation and AI-Ready Platform Proposal',
   },
   meta: {
-    ja: '個人受託 | Forward Deployed Engineer',
-    en: 'Independent Engagement | Forward Deployed Engineer',
+    ja: '業務委託 | Forward Deployed Engineer',
+    en: 'Commissioned Work | Forward Deployed Engineer',
   },
   description: 'Requirements and architecture for a unified database and a platform where AI agents can safely use the data',
   sections: [
