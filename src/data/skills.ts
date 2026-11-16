@@ -11,7 +11,7 @@ export const skills: SkillCategory[] = [
   },
   {
     title: 'Cloud',
-    skills: 'Azure, Google Cloud',
+    skills: 'Google Cloud, Azure',
   },
   {
     title: 'Others',
