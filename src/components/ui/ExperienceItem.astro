@@ -11,6 +11,7 @@ interface Props {
 const { experience, locale } = Astro.props;
 const company = getLocalizedText(experience.company, locale);
 const role = getLocalizedText(experience.role, locale);
+const summary = experience.summary ? getLocalizedText(experience.summary, locale) : null;
 ---
 
 <div class="mb-8">
@@ -19,4 +20,5 @@ const role = getLocalizedText(experience.role, locale);
     <span class="text-sm text-muted">{experience.period}</span>
   </div>
   <p class="text-sm text-muted">{role}</p>
+  {summary && <p class="text-sm text-foreground leading-relaxed mt-2">{summary}</p>}
 </div>

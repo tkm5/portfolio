@@ -1,0 +1,17 @@
+# Old project URLs (removed or renamed pages). Workers static assets apply these before serving files.
+/en/projects/government-rag/ /en/projects/government-similarity/ 301
+/en/projects/government-rag /en/projects/government-similarity/ 301
+/en/projects/slm-mlops/ /en/#projects 301
+/en/projects/slm-mlops /en/#projects 301
+/en/projects/creative-canvas/ /en/#projects 301
+/en/projects/creative-canvas /en/#projects 301
+/en/projects/pharma-analytics/ /en/#projects 301
+/en/projects/pharma-analytics /en/#projects 301
+/ja/projects/government-rag/ /ja/projects/government-similarity/ 301
+/ja/projects/government-rag /ja/projects/government-similarity/ 301
+/ja/projects/slm-mlops/ /ja/#projects 301
+/ja/projects/slm-mlops /ja/#projects 301
+/ja/projects/creative-canvas/ /ja/#projects 301
+/ja/projects/creative-canvas /ja/#projects 301
+/ja/projects/pharma-analytics/ /ja/#projects 301
+/ja/projects/pharma-analytics /ja/#projects 301

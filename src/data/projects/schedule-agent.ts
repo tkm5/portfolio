@@ -4,116 +4,118 @@ export const scheduleAgent: Project = {
   slug: 'schedule-agent',
   title: {
     ja: 'AI日程調整エージェント',
-    en: 'AI Schedule Adjustment Agent',
+    en: 'AI Scheduling Agent',
   },
   meta: {
     ja: '業務委託',
     en: 'Commissioned Work',
   },
-  description: 'AI Schedule Adjustment Agent',
+  description: 'A PoC agent that elicits implicit scheduling preferences through dialogue, combining LLM steps with deterministic rules in LangGraph',
   sections: [
     {
-      title: { ja: '概要', en: 'Overview' },
+      title: { ja: '背景と課題', en: 'Context and Problem' },
       content: {
         ja: [
-          'ユーザーとの対話を通じて暗黙的な嗜好を学習し，日程提案の精度を向上させるAIエージェントを設計・開発．LangGraphによる4つのLLMエージェントとルールベース処理を組み合わせたハイブリッドアーキテクチャを採用し，FastAPIバックエンド + Next.js 16フロントエンドのフルスタック構成で実装．',
+          '日程調整には「昼休みは空けたい」「この種類の会議は午前に」のような，書かれていない個人の判断基準がある．AIエージェントが対話を通じてこの暗黙の基準を学び，提案を改善できるかを確かめる技術検証(PoC)を担当した．検証の計画書を書き，実装も1人で行った．',
         ],
         en: [
-          'Designed and developed an AI agent that learns implicit user preferences through dialogue to improve schedule proposal accuracy. Adopted a hybrid architecture combining 4 LLM agents with rule-based processing via LangGraph, implemented as a full-stack system with FastAPI backend and Next.js 16 frontend.',
+          'Scheduling depends on unwritten personal criteria such as "keep lunch free" or "this kind of meeting in the morning". Worked on a PoC that tests whether an AI agent can learn these implicit criteria through dialogue and improve its proposals: wrote the test plan and built the implementation alone.',
         ],
       },
     },
     {
-      title: { ja: 'アーキテクチャ', en: 'Architecture' },
-      content: {
+      title: { ja: '問いの分解と検証の設計', en: 'Breaking Down the Question and Designing the Test' },
+      list: {
         ja: [
-          '柔軟な意図理解・優先度推定・提案生成にはLLMエージェントを，精密なカレンダー計算や嗜好フィルタリングにはルールベース処理を適用するハイブリッド設計．LLMの柔軟性とルールの正確性を組み合わせることで，ハルシネーションリスクを抑えつつ高精度な日程調整を実現．',
-          'Human-in-the-Loop（LangGraphのinterrupt()）により，候補確認・追加質問のインタラクティブなループを実装．ユーザーが候補を却下した場合，却下理由をコンテキストとして次回提案に反映し，同じパターンの繰り返しを回避．',
+          '問いの分解: 暗黙知の獲得（対話で引き出せるか），蓄積（構造化して保持できるか），活用（蓄えた知識で提案が良くなるか）の3要素に分け，判断基準を1対1で対応させた．',
+          '検証の順序: 下流の「活用」から逆順に検証し，人が用意した理想の知識を使って変数を1つずつ切り分け，各段の最良の方式を固定してから次へ進む実験計画を立てた．',
+          '方式の選択: 検索2方式・保存3方式を比べる計画にし，キーによる検索と構造化JSONでの保存から実装した．',
+          '評価: 短いPoCで統計的な有意差は出せないため，利用者によるレビューと，同じシナリオでの対話前後の比較で確かめる形にした．',
         ],
         en: [
-          'Hybrid design applying LLM agents for flexible intent understanding, priority estimation, and proposal generation, while using rule-based processing for precise calendar calculations and preference filtering. By combining LLM flexibility with rule accuracy, achieves high-precision scheduling while mitigating hallucination risks.',
-          "Human-in-the-Loop via LangGraph's interrupt() implements an interactive loop for candidate confirmation and follow-up questions. When users reject candidates, the rejection reason is fed back into context for subsequent proposals, avoiding repetition of the same patterns.",
+          'Decomposition: split the question into acquiring implicit knowledge (can dialogue draw it out), storing it (can it be structured and kept), and using it (does stored knowledge improve proposals), with one decision criterion per part.',
+          'Order of testing: test in reverse, starting from "use", with human-prepared ideal knowledge so one variable changes at a time, fixing the best method at each stage before moving on.',
+          'Choice of method: the plan compared two retrieval methods and three storage methods, and implementation started with key lookup and structured JSON storage.',
+          'Evaluation: a short PoC cannot reach statistical significance, so results are checked by user review and by comparing the same scenario before and after dialogue.',
+        ],
+      },
+      content: { ja: [], en: [] },
+    },
+    {
+      title: { ja: '処理の流れ', en: 'How It Works' },
+      content: {
+        ja: [
+          'LangGraphで12ノードのグラフを組み，LLMを使う6つの段と，ルールで決める段，記憶の読み書き，利用者への確認を分けた．当初の構成案にあった4つの役割に，依頼文の解析と，提案の承認・却下を判定する段を足した．',
+        ],
+        en: [
+          "A 12-node LangGraph graph that separates six LLM steps from rule-based steps, memory reads and writes, and user confirmation. To the four roles in the initial design, added request parsing and a step that judges approval or rejection of a proposal.",
         ],
       },
       list: {
         ja: [
-          'parse_request（LLM）: 自然言語リクエストの意図解析と構造化',
-          'estimate_priority（LLM）: ミーティング優先度の推定',
-          'extract_free_busy（RULE）: カレンダーの空き時間抽出・祝日除外・移動可能イベント検出',
-          'load_memory（STORE）: ユーザー嗜好・QA履歴の読み込み',
-          'apply_prefs_filters（RULE）: 8種の嗜好フィルタによる候補絞り込み',
-          'propose_schedule（LLM）: 学習済み嗜好を考慮した日程候補の提案生成',
-          'confirm / select_questions（HITL）: ユーザー確認・追加質問による嗜好学習ループ',
+          '依頼の解析と優先度の推定(LLM) → 参加者全員の空き時間の算出（ルール，祝日除外・業務時間・30分枠） → 記憶の読み込み → 好みの規則の適用（ルール） → 候補の提案(LLM)．',
+          '確認: interrupt()で候補を利用者に示す．承認なら終了し，却下や候補なしなら質問を1〜3問選んで聞き(LLM)，回答を構造化して記憶に保存し，空き時間を算出し直して提案し直す．',
+          '却下の理由は次の提案と質問の選択に渡す．却下理由からLLMが抜き出した日付を，コードで除外日に加え，ルールで枠を除く．',
+          '記憶: LangGraphのStoreに，利用者ごとの好み（1文書を深いマージで更新）と，追記だけの質疑の履歴を持つ．読み込みは参加者全員，書き込みは依頼者だけにし，複数人の条件は「会議数の上限は最も厳しい値」「昼休みは誰かが守るなら守る」のように合成する．',
         ],
         en: [
-          'parse_request (LLM): Intent analysis and structuring of natural language requests',
-          'estimate_priority (LLM): Meeting priority estimation',
-          'extract_free_busy (RULE): Calendar free slot extraction, holiday exclusion, movable event detection',
-          'load_memory (STORE): Loading user preferences and QA history',
-          'apply_prefs_filters (RULE): Candidate filtering through 8 preference-based filters',
-          'propose_schedule (LLM): Schedule proposal generation considering learned preferences',
-          'confirm / select_questions (HITL): User confirmation and preference learning loop via follow-up questions',
+          'Parse the request and estimate priority (LLM) → compute free time for all participants (rules: holidays excluded, business hours, 30-minute slots) → load memory → preference rules → propose candidates (LLM).',
+          'Confirmation: interrupt() shows the candidates to the user. Approval ends the run; on rejection or no candidates, the agent picks one to three questions (LLM), structures the answer into memory, recomputes free time, and proposes again.',
+          'The rejection reason goes to the next proposal and to question selection. Dates that the LLM extracts from the rejection reason are added to the excluded dates in code, and those slots are removed by rule.',
+          "Memory: LangGraph's Store holds each user's preferences (one document updated by deep merge) and an append-only Q&A history. Memory is read for all participants but written only for the requester, and several people's conditions are combined by rules such as \"the strictest daily meeting cap wins\" and \"lunch is protected if anyone protects it\".",
         ],
       },
     },
     {
-      title: { ja: 'メモリ・学習機構', en: 'Memory & Learning' },
-      content: {
+      title: { ja: '技術的な判断', en: 'Technical Decisions' },
+      list: {
         ja: [
-          'LangGraph Store（BaseStore）を活用し，Semantic Memoryの2つのパターンを実装．Profileパターンでは，ユーザーごとに1ドキュメントの構造化嗜好データを管理し，deep mergeによる差分更新で嗜好を継続的に学習．Collectionパターンでは，QA履歴を追記専用の個別レコードとして蓄積し，過去の対話コンテキストを検索可能な形で保持．',
-          '6カテゴリ24種の質問テンプレート（時間帯・予定移動・参加者・形式・スケジュール・負荷）によるプログレッシブな嗜好収集を実装．候補が見つからない場合は，段階的な制約緩和（ランチ枠活用 → 予定移動 → 参加者削減 → 時間短縮 → 期限延長）により探索空間を拡大．',
+          'ルールはコードで: 昼休みの保護や会議数の上限をLLMに任せると守られ方が安定しなかったため，8つの規則をLLMの前に決定的に適用した．LLMは利用者から条件を引き出すことに集中させた．',
+          '質問と緩和: 6分類24個の質問テンプレートから段階的に好みを聞き，候補がないときは昼休みの利用 → 予定の移動 → 参加者の削減 → 時間の短縮 → 期限の延長の順に条件を緩める．',
+          '入力の防御: プロンプトに入れる値はすべてXMLタグをエスケープし，入力は10,000文字までに制限し，利用者IDの書式と解決後のパスを検査してパストラバーサルを防いだ．',
+          'LLMの生成は1か所のファクトリーにまとめ，モデルの変更が段ごとに漏れないようにした．LLMの出力はすべてPydanticのスキーマで受ける．',
         ],
         en: [
-          "Implemented two Semantic Memory patterns using LangGraph Store (BaseStore). The Profile pattern manages structured preference data as a single document per user, continuously learning preferences through deep merge updates. The Collection pattern accumulates QA history as append-only individual records, maintaining past dialogue context in a searchable format.",
-          'Implemented progressive preference elicitation through 24 question templates across 6 categories (time of day, event rescheduling, participants, format, schedule, workload). When no candidates are found, progressively relaxes constraints (lunch slot usage -> event shuffling -> participant reduction -> duration shortening -> deadline extension) to expand the search space.',
+          'Rules in code: left to the LLM, rules such as lunch protection and meeting caps were followed inconsistently, so eight rules are applied deterministically before the LLM call, and the LLM focuses on drawing conditions out of the user.',
+          'Questions and relaxation: preferences are elicited step by step from 24 question templates in 6 categories; when no candidate exists, conditions relax in order: use lunch, move events, drop participants, shorten, extend the deadline.',
+          'Input hardening: every value placed in a prompt is XML-escaped, input is capped at 10,000 characters, and user IDs are checked by pattern and resolved path to prevent path traversal.',
+          'LLM creation goes through one factory so a model change cannot be missed in a single step, and every LLM output is received through a Pydantic schema.',
         ],
       },
+      content: { ja: [], en: [] },
     },
     {
-      title: { ja: '主要機能', en: 'Key Features' },
-      content: {
+      title: { ja: '検証と見つかった問題', en: 'Verification and Problems Found' },
+      list: {
         ja: [
-          '嗜好フィルタエンジン: タイムスロットソート，ランチ保護，ハードブロック除外，キャパシティ制限，移動可能イベント判定，作業ブロック再配置，外部/内部優先度制御，任意参加者マッチングの8種のルールベースフィルタを実装．',
-          '空き時間解析エンジン: 全参加者のカレンダーを横断的に分析し，祝日除外，ランチタイム検出，移動可能イベント抽出を含む共通空き時間の算出を実現．',
-          'フロントエンド: Next.js 16 / React 19によるSPA．FullCalendarによるカレンダー表示，Zustandによるエージェント通信の状態管理，TanStack Queryによるサーバー状態管理，Tailwind CSS 4によるスタイリングを実装．',
+          'テスト(計数): テスト関数289件（33ファイル）と，13グループ132件のシナリオ定義を書いた（リポジトリを静的に数えた値で，実行結果ではない）．シナリオのテストはカレンダーだけ差し替えて実際のグラフを動かし，API経由の出力を好みの違反（昼休み・終日の予定・時間帯）について検査する．',
+          '観察: 用意された確認シナリオと照らすと，初版は基本の流れしか通らなかった．原因を整理すると，最も影響が大きかったのは学習後に空き時間を算出し直していないことで，再計算の段，予定の移動，参加者ごとの空き枠，期限と時間の緩和を足した．',
+          '観察: 試用で「この日は除く」が無視された．依頼を構造化するスキーマに除外日の項目がなく，入口で条件が落ちていたため，項目を足してルールで枠を除き，却下理由からLLMが抜き出した日付もコードで除外日に加えるよう直した．',
+          'クライアント様が試しやすいよう，FastAPIのAPIとNext.jsの画面を作り，Dockerでまとめて渡せる形にした．',
         ],
         en: [
-          'Preference Filter Engine: Implemented 8 rule-based filters including time slot sorting, lunch protection, hard block exclusion, capacity limits, movable event detection, work block rescheduling, external/internal priority control, and optional participant matching.',
-          "Free/Busy Analysis Engine: Cross-analyzes all participants' calendars to calculate common free slots, including holiday exclusion, lunch time detection, and movable event extraction.",
-          'Frontend: SPA built with Next.js 16 / React 19. Features FullCalendar for calendar display, Zustand for agent communication state management, TanStack Query for server state management, and Tailwind CSS 4 for styling.',
+          'Tests (counted): 289 test functions in 33 files and 132 scenario definitions in 13 groups (a static count of the repository, not a run result). Scenario tests run the real graph with only the calendars replaced, and a checker inspects API output for preference violations (lunch, full-day events, time of day).',
+          "Observed: checked against the prepared verification scenarios, the first version passed only the basic flow. The biggest cause was not recomputing free time after learning, so the fix added a recompute step, moving events, per-participant slots, and deadline and duration relaxation.",
+          'Observed: during trial use, "exclude this date" was ignored because the structured request schema had no field for it and the condition was lost at the entrance. The fix added the field, skips those slots by rule, and adds dates the LLM extracts from a rejection reason to the excluded dates in code.',
+          'To make trial use easy, built a FastAPI API and a Next.js screen, packaged together with Docker for hand-off.',
         ],
       },
-    },
-    {
-      title: { ja: '開発環境・品質管理', en: 'Development & Quality' },
-      content: {
-        ja: [
-          'pytestによる単体テスト・シナリオテストを整備し，LLMモック・カレンダーフィクスチャによる再現性の高いテスト基盤を構築．LangSmithによるLLMトレーシング・モニタリング，Dockerによるコンテナ化デプロイ，LangGraph Studioによるグラフの可視化・デバッグ環境を整備．Pydantic v2のwith_structured_output()による全LLM出力の型検証を実装．',
-        ],
-        en: [
-          "Established unit tests and scenario tests with pytest, building a reproducible testing infrastructure using LLM mocks and calendar fixtures. Set up LLM tracing and monitoring with LangSmith, containerized deployment with Docker, and graph visualization/debugging environment with LangGraph Studio. Implemented type validation for all LLM outputs using Pydantic v2's with_structured_output().",
-        ],
-      },
+      content: { ja: [], en: [] },
     },
   ],
   technologies: [
     'Python',
-    'FastAPI',
     'LangGraph',
     'LangChain',
-    'LangGraph Store (Semantic Memory)',
-    'LangSmith',
     'Pydantic',
-    'pytest',
+    'FastAPI',
     'Next.js',
     'React',
     'TypeScript',
-    'Zustand',
     'FullCalendar',
-    'TanStack Query',
+    'Zustand',
     'Tailwind CSS',
+    'pytest',
     'Docker',
-    'Multi-Agent',
-    'Human-in-the-Loop',
   ],
 };

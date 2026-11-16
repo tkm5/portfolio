@@ -3,89 +3,102 @@ import type { Project } from '@/types';
 export const insuranceAi: Project = {
   slug: 'insurance-ai',
   title: {
-    ja: '大手生命保険会社：RAGシステム開発支援',
-    en: 'Major Life Insurance Company: RAG System Development Support',
+    ja: '大手生命保険グループのIT子会社：RAGアプリ内製化のための技術指導と開発',
+    en: "Major Life Insurance Group's IT Subsidiary: Technical Coaching and Development for In-House RAG Apps",
   },
   meta: {
     ja: 'グローバルコンサルティングファーム',
     en: 'Global Consulting Firm',
   },
-  description: 'Major Life Insurance Company: RAG System Development Support',
+  description: 'Technical coaching and development so a life insurance group IT subsidiary can build and modify RAG apps in-house',
   sections: [
     {
-      title: { ja: '概要', en: 'Overview' },
+      title: { ja: '背景と課題', en: 'Context and Problem' },
       content: {
         ja: [
-          'クライアントのAI開発内製化と人材育成を目標に，Microsoft Azure上で社内文書検索RAGシステムの設計・開発を主導．`Azure-Samples/azure-search-openai-demo` をforkし，金融機関の閉域ネットワーク要件とEntra ID統合認証を満たすエンタープライズ仕様へ拡張．プライベート環境への本番デプロイまでをエンドツーエンドで担当した．',
+          'クライアント様は大手生命保険グループのIT子会社だった．目標は，技術社員が自らRAGアプリを開発・改修できる状態をつくること（RAGアプリの内製化）だった．対象はクライアント様の技術者約10名だった．',
+          '講義だけで終えず，クライアント様の技術者と一緒に作りながら進めた．PythonとJavaScriptでRAGアプリを一から作る段階から始め，Azureのベストプラクティスを基盤としたRAGアプリの内製化へ進めた．',
         ],
         en: [
-          "Led the design and development of an internal document search RAG system on Microsoft Azure, with the goal of helping the client internalize AI engineering and grow their talent. Forked `Azure-Samples/azure-search-openai-demo` and extended it to meet the closed-network requirements and Entra ID-based authentication expected by a financial institution, owning production deployment into a private environment end-to-end.",
+          "The client was a major life insurance group's IT subsidiary. The goal was for its own engineers to build and modify RAG apps themselves, bringing RAG development in-house. About 10 client engineers took part.",
+          "Rather than stopping at lectures, the work was done by building alongside the client's engineers: first a RAG app written from scratch in Python and JavaScript, then in-house development of RAG apps built on Azure's best practices.",
         ],
       },
     },
     {
-      title: { ja: 'アーキテクチャ', en: 'Architecture' },
+      title: { ja: '講義と教材', en: 'Lectures and Teaching Material' },
       content: {
         ja: [
-          'フロントエンドはReact + TypeScript（Viteビルド），バックエンドはPython Quartの非同期APIで構成．Azure AI Searchによるベクトル検索・BM25・セマンティックランカーを多段に組み合わせ，社内規程のような固有名詞と言い換えが混在するドキュメントでも高い想起率と関連度を両立する検索パイプラインを組んだ．',
-          'ドキュメント投入は Azure Document Intelligence でのOCR・表構造解析と Integrated Vectorization を組み合わせ，Blob Storage へのアップロードから検索可能化までをイベント駆動で自動化．プロンプトは upstream の Jinja2 ベースから `.prompty`（`chat_answer_question.prompty` 等）へ移し替え，プロンプトのレビュー・差分追跡をコード同等に扱えるようにした．',
-          '環境差分は `azure-dev.yaml` に 130+ の環境変数として集約し，テナント・部署ごとのデプロイを同じコードベースから派生できる設計．ホスティングは Azure Container Apps を選択し，Bicep による IaC でスケール・可用性を宣言的に管理している．',
+          'Python・Azure・Web技術を体系的に講義し，アジャイル開発を導入した．第1段階の教材として，自分でRAGアプリ一式と4章構成の教科書を作成した．教科書のコードは穴埋め形式にして，受講者が自分の手で書く形にした（穴埋め箇所は350か所，教科書のMarkdownから計数）．',
         ],
         en: [
-          'A React + TypeScript frontend (Vite) is paired with a Python Quart async backend. Azure AI Search stacks vector search, BM25, and the semantic ranker into a multi-stage pipeline — the combination keeps both recall and relevance high on internal policy documents where proper nouns and paraphrases mix freely.',
-          'Ingestion chains Azure Document Intelligence (OCR and table parsing) with Integrated Vectorization so uploads to Blob Storage become searchable through an event-driven flow. Prompts were migrated from the upstream Jinja2 layout to `.prompty` files (e.g. `chat_answer_question.prompty`), which lets prompt review and diff tracking be handled with the same tools as code.',
-          "Environment differences live in `azure-dev.yaml` as 130+ environment variables, so per-tenant and per-department deployments can be forked from one codebase. Hosting runs on Azure Container Apps with scale and availability declared in Bicep IaC.",
+          'Taught Python, Azure, and web technologies systematically and introduced agile development. For the first stage, wrote a complete RAG app and a four-chapter textbook. The textbook code is in fill-in-the-blank form so participants write it themselves (350 blanks, counted in the textbook Markdown).',
         ],
       },
     },
     {
-      title: { ja: 'セキュリティ・閉域ネットワーク', en: 'Security & Private Networking' },
-      content: {
+      title: { ja: '第1段階の教材アプリの構成（自作）', en: 'First-Stage Teaching App (Built Myself)' },
+      list: {
         ja: [
-          '金融業界のセキュリティ要件に対応するため，`network-isolation.bicep` でVNet・Private Endpoint・DNSプライベートゾーンを一式で定義．upstreamでは限定的だった閉域構成を宣言的IaCに統合し，インターネット側へのパブリック経路を持たない完全内部通信を実現した．',
-          '認証・認可は `authentication.py` でEntra IDのテナントID・サーバーApp ID・クライアントApp IDを厳密に管理し，ドキュメント単位のACLと組み合わせて部署横断の情報漏洩を防止．Azure Key Vaultでシークレットを外出しし，Application Insightsとの連携用に43KB規模のBicepテンプレートでカスタム KPI ダッシュボードを構築している．',
-          'Azure Log Analytics上でKQLクエリによる運用監視ダッシュボードを実装し，回答レイテンシ・検索ヒット率・ユーザー別利用状況といったRAG固有のKPIを継続計測．回答品質劣化の早期検知を可能にした．',
+          '環境構築: リソースグループ・Azure OpenAIとモデルのデプロイ・ストレージ・Azure AI Search・App Service・Document Intelligenceを，番号付きのAzure CLIスクリプト10本で順に作る．.envの値をApp Serviceの設定へ流し込むスクリプトも用意した．',
+          '取り込み: Blobに置いたPDFからpypdfでテキストを抜き出し，1,000文字・重なり200文字で分割して埋め込みを作り，ファイル名と番号から決まるIDで検索インデックスに登録する．分割幅が重なり以下なら例外にして，設定の誤りで無限に分割しないようにした．',
+          'インデックス: タイトル・本文とベクトル項目を持ち，ベクトルはHNSWで検索する．タイトルと本文を優先するセマンティック設定も定義した．',
+          '検索と回答: キーワード検索とベクトル検索を組み合わせて上位3件を取り，インデックスにセマンティック設定があるときだけセマンティックランキングに切り替える．回答は渡した文脈だけに基づくようシステムプロンプトで制約した．',
+          'アプリ: FlaskのJSON API(/api/chat)と，Jinja2のテンプレートと素のJavaScriptの画面を作り，gunicornでApp Serviceに載せた．',
+          '追加の実験: Document Intelligenceのprebuilt-readで手書きのPDFをMarkdownに変換する実験と，その解説資料を作成した．',
         ],
         en: [
-          'To meet financial-industry security requirements, `network-isolation.bicep` defines the VNet, Private Endpoints, and private DNS zones as a single declarative bundle. The closed-network setup — only partially covered upstream — is fully integrated into IaC, leaving no public path to the internet.',
-          'Authentication and authorization are tightened in `authentication.py`, which strictly manages the Entra ID tenant ID and server / client App IDs; document-level ACLs then prevent cross-department leakage. Secrets are externalized to Azure Key Vault, and a 43 KB Bicep template builds an Application Insights custom KPI dashboard.',
-          'An Azure Log Analytics dashboard built with KQL continuously tracks RAG-specific KPIs — answer latency, retrieval hit rate, per-user usage — so quality regressions are caught early.',
+          'Provisioning: ten numbered Azure CLI scripts create the resource group, Azure OpenAI and model deployments, storage, Azure AI Search, App Service, and Document Intelligence in order, plus a script that pushes .env values into App Service settings.',
+          'Ingestion: pypdf extracts text from PDFs in Blob Storage; the text is split into 1,000-character chunks with a 200-character overlap, embedded, and uploaded with IDs derived from the file name and chunk number. A chunk size not larger than the overlap raises an error, so a bad setting cannot split forever.',
+          'Index: title, content, and a vector field searched with HNSW, plus a semantic configuration that prioritizes title and content.',
+          'Retrieval and answer: keyword and vector search combined for the top 3 chunks, switching to semantic ranking only when the index has a semantic configuration. The system prompt restricts answers to the supplied context.',
+          'App: a Flask JSON API (/api/chat) and a page built from a Jinja2 template and plain JavaScript, served by gunicorn on App Service.',
+          'Extra experiment: converting handwritten PDFs to Markdown with Document Intelligence prebuilt-read, with an explainer document.',
+        ],
+      },
+      content: { ja: [], en: [] },
+    },
+    {
+      title: { ja: 'クライアント様環境のシステム', en: 'The System in the Client Environment' },
+      content: {
+        ja: [
+          'AzureのRAGサンプル(Azure-Samples/azure-search-openai-demo)を拡張した新システムを構築し，セキュリティ要件を満たす閉域構成でクライアント様環境にデプロイした．土台にしたサンプルは，ReactのフロントエンドとPython(Quart)のバックエンド，キーワード・ベクトル・セマンティックランキングを組み合わせた検索，Document Intelligenceによる文書の取り込みを備える．',
+          '運用改善を進めたいというクライアント様の要望に応え，OpenTelemetryとLog Analyticsでログ基盤を整備した．',
+        ],
+        en: [
+          "Built a new system by extending Azure's RAG sample (Azure-Samples/azure-search-openai-demo) and deployed it into the client's environment in a private network that met the security requirements. The sample it starts from provides a React frontend with a Python (Quart) backend, retrieval that combines keyword, vector, and semantic ranking, and document ingestion with Document Intelligence.",
+          "At the client's request to improve operations, added a logging platform with OpenTelemetry and Log Analytics.",
         ],
       },
     },
     {
-      title: { ja: '技術移転・人材育成', en: 'Technology Transfer & Training' },
+      title: { ja: '結果', en: 'Outcome' },
       content: {
         ja: [
-          'Web基礎（HTML / CSS / JavaScript）からPython・Azureアーキテクチャまでを体系的にレクチャーし，Git / GitHub・Pull Request・コードレビューの運用を段階的にチームへ定着．アジャイル（スクラム・2週間スプリント・Daily Standup）を導入し，外部依存から自走チームへの移行を半年スパンで設計・実行した．',
+          'RAGアプリの内製化を実現した．構築したシステムはクライアント様の全技術社員が利用した．',
         ],
         en: [
-          'Delivered structured lectures spanning web fundamentals (HTML / CSS / JavaScript) through Python and Azure architecture, and incrementally embedded Git / GitHub, pull-request, and code-review practices into the team. Scrum with two-week sprints and daily standups was introduced to plan and drive a half-year transition from external dependency to a self-directed team.',
+          "RAG app development was brought in-house, and the system was used by all of the client's engineers.",
         ],
       },
     },
   ],
   technologies: [
     'Python',
-    'Quart',
-    'React',
-    'TypeScript',
-    'Vite',
-    'Azure OpenAI Service',
+    'JavaScript',
+    'Flask',
+    'gunicorn',
+    'pypdf',
+    'Azure CLI',
+    'Azure App Service',
     'Azure AI Search',
-    'Azure Container Apps',
+    'Azure OpenAI Service',
+    'Azure AI Document Intelligence',
     'Azure Blob Storage',
-    'Azure Document Intelligence',
-    'Azure Key Vault',
-    'Application Insights',
-    'Azure Private Endpoint',
-    'Microsoft Entra ID',
-    'Bicep',
-    '.prompty',
+    'Azure Cosmos DB',
+    'Log Analytics',
+    'OpenTelemetry',
     'RAG',
-    'Vector Search',
-    'Semantic Ranker',
-    'Integrated Vectorization',
-    'Agile/Scrum',
+    'Agile',
   ],
 };

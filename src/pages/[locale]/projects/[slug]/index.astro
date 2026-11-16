@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import TopNav from '@/components/layout/TopNav.astro';
 import Footer from '@/components/layout/Footer.astro';
 import BackLink from '@/components/ui/BackLink.astro';
+import LinkedText from '@/components/ui/LinkedText.astro';
 import TechTag from '@/components/ui/TechTag.astro';
 import { projects } from '@/data/projects';
 import { getTranslations, locales, toLocale } from '@/i18n';
@@ -45,12 +46,16 @@ const basePath = `/${locale}`;
                 {getLocalizedText(section.title, locale)}
               </h2>
               {getLocalizedArray(section.content, locale).map((paragraph) => (
-                <p class="text-foreground mb-4 leading-relaxed">{paragraph}</p>
+                <p class="text-foreground mb-4 leading-relaxed">
+                  <LinkedText text={paragraph} />
+                </p>
               ))}
               {sectionList && (
                 <ol class="list-decimal list-inside mb-4 space-y-2">
                   {sectionList.map((item) => (
-                    <li class="text-foreground">{item}</li>
+                    <li class="text-foreground">
+                      <LinkedText text={item} />
+                    </li>
                   ))}
                 </ol>
               )}

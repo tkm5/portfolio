@@ -11,6 +11,10 @@ export const experiences: Experience[] = [
       ja: 'Forward Deployed Engineer',
       en: 'Forward Deployed Engineer',
     },
+    summary: {
+      ja: '大手生命保険グループのIT子会社でRAGアプリ内製化のための技術指導と開発を担当．大手生命保険会社では，業務マニュアルから業務分析テーブルを自動生成するパイプラインを2名で開発し，全社オペレーション変革の技術支援も担当．',
+      en: "Coached and built alongside a life insurance group's IT subsidiary to bring RAG apps in-house. For a major life insurer, built, with a teammate, a pipeline that generates business-analysis tables from operations manuals and provided technical support for a company-wide operations transformation.",
+    },
   },
   {
     company: {
@@ -21,6 +25,10 @@ export const experiences: Experience[] = [
     role: {
       ja: 'Consulting Software Engineer',
       en: 'Consulting Software Engineer',
+    },
+    summary: {
+      ja: 'データ分析・AIのPoCを設計・実装．社内問い合わせ用RAGチャットを作成し，全社で利用され2024年度コーポレートアワードを受賞．中央省庁の調査研究では，事業内容をベクトル化した検索手法を考案・実装．',
+      en: 'Designed and built data-analysis and AI PoCs. Built the internal inquiry chat as RAG; it was used firm-wide and won the FY2024 Corporate Award. For a central government ministry, devised and implemented embedding-based retrieval of program descriptions.',
     },
   },
   {
@@ -33,6 +41,10 @@ export const experiences: Experience[] = [
       ja: 'Data Scientist',
       en: 'Data Scientist',
     },
+    summary: {
+      ja: '保険グループのTV CM・ラジオ・新聞を組み合わせた販促で，新聞媒体のデータ分析とKPI設計を担当．ハンバーガーチェーンでは，POSデータのクラスタリングでペルソナを設計し，ペルソナ群ごとのクーポン配信戦略と広告配信戦略を立案．',
+      en: "Handled newspaper data analysis and KPI design for an insurance group's promotions across TV, radio, and newspapers. For a hamburger chain, designed personas by clustering POS data and planned coupon and ad-delivery strategies for each persona group.",
+    },
   },
   {
     company: {
@@ -43,6 +55,10 @@ export const experiences: Experience[] = [
     role: {
       ja: '法人営業',
       en: 'Corporate Sales',
+    },
+    summary: {
+      ja: '大手生命保険会社や大手不動産会社などのクライアント様に，業務DXのソリューションを提案．',
+      en: 'Proposed business DX solutions to major clients such as leading life insurers and real estate firms.',
     },
   },
 ];

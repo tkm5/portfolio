@@ -1,34 +1,36 @@
 import type { Project } from '@/types';
 
 import { businessAnalysisPipeline } from './business-analysis-pipeline';
-import { slmMlops } from './slm-mlops';
 import { insuranceAi } from './insurance-ai';
-import { governmentRag } from './government-rag';
+import { governmentSimilarity } from './government-similarity';
+import { operationsTransformation } from './operations-transformation';
 import { chatSystem } from './chat-system';
-import { creativeCanvas } from './creative-canvas';
-import { pharmaAnalytics } from './pharma-analytics';
+import { aiTutorPoc } from './ai-tutor-poc';
+import { realEstateDataPlatform } from './real-estate-data-platform';
 import { scheduleAgent } from './schedule-agent';
 import { aiAgent } from './ai-agent';
 import { gasPaymentTable } from './gas-payment-table';
+import { codingAgentTooling } from './coding-agent-tooling';
 import { devcontainer } from './devcontainer';
 import { homeServer } from './home-server';
 import { transcriptionApp } from './transcription-app';
 import { hpcParallel } from './hpc-parallel';
 
 export const projects: Project[] = [
-  businessAnalysisPipeline,
-  slmMlops,
   insuranceAi,
-  governmentRag,
+  businessAnalysisPipeline,
+  operationsTransformation,
   chatSystem,
-  creativeCanvas,
-  pharmaAnalytics,
+  governmentSimilarity,
+  aiTutorPoc,
+  realEstateDataPlatform,
   scheduleAgent,
   aiAgent,
   gasPaymentTable,
+  codingAgentTooling,
+  transcriptionApp,
   devcontainer,
   homeServer,
-  transcriptionApp,
   hpcParallel,
 ];
 

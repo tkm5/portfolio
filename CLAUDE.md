@@ -51,11 +51,13 @@ portfolio/
 - favicon は `public/img/favicon-32.png` と `public/img/apple-touch-icon.png`
 - `public/_headers` が Workers static assets のキャッシュとセキュリティヘッダーを決める．ハッシュ付きの `/_astro/*` は immutable，`/img/*` は 7 日間キャッシュするので，`/img/*` のファイルを差し替えるときは別名にする
 - プリフェッチは全リンクで `viewport`（リンクが画面に入った時点で取得する）
+- `public/_redirects` holds 301 redirects for removed or renamed project URLs; Workers static assets apply it before serving files, so add a line there instead of an Astro `redirects` entry (which emits meta-refresh pages)
 
 ### Project Pages
 - `src/data/projects/*.ts` の 1 ファイルが 1 プロジェクト．`src/data/projects/index.ts` の配列順が一覧の表示順になる
 - 詳細ページ `src/pages/[locale]/projects/[slug]/index.astro` は `getStaticPaths()` で全ロケール × 全 slug を生成する
 - 使用技術のタグは `TechTag.astro` で表示する
+- Project text is plain text; only names listed in `KNOWN_LINKS` (`src/utils/links.ts`) are rendered as external links by `LinkedText.astro`, so add a label and URL there instead of writing HTML in content
 
 ## Development
 
