@@ -16,10 +16,10 @@ export const homeServer: Project = {
       title: { ja: '概要', en: 'Overview' },
       content: {
         ja: [
-          'Raspberry Pi 5(8GB RAM)＋NVMe SSD 2TB上にUbuntu Server 24.04 LTS arm64を載せ，Docker Composeに10サービスを定義し，シェルスクリプトとあわせてホームサーバーをInfrastructure as Codeとして構築．スマートホームハブ，Time Machineバックアップ，Web変更検知，死活監視，Tailscaleによる外出先からの接続を単一筐体に同居させ，設定をGitで管理して再構築できるようにした．',
+          'Raspberry Pi 5(8GB RAM)＋NVMe SSD 2TB上にUbuntu Server 24.04 LTS arm64を載せ，Docker Composeに10サービスを定義し，シェルスクリプトとあわせてホームサーバーをInfrastructure as Codeとして構築した．スマートホームハブ，Time Machineバックアップ，Web変更検知，死活監視，Tailscaleによる外出先からの接続を単一筐体に同居させ，設定をGitで管理して再構築できるようにした．',
         ],
         en: [
-          'Built a home server as Infrastructure-as-Code, with 10 services defined in Docker Compose, on a Raspberry Pi 5 (8GB RAM) with a 2TB NVMe SSD running Ubuntu Server 24.04 LTS arm64, using Docker Compose and shell scripts. Consolidates a smart-home hub, Time Machine backups, web change detection, uptime monitoring, and remote access over Tailscale into a single box, with configuration kept in Git so the environment can be rebuilt.',
+          'Built a home server as Infrastructure-as-Code on a Raspberry Pi 5 (8GB RAM) with a 2TB NVMe SSD running Ubuntu Server 24.04 LTS arm64: 10 services defined in Docker Compose, plus shell scripts. Consolidates a smart-home hub, Time Machine backups, web change detection, uptime monitoring, and remote access over Tailscale into a single box, with configuration kept in Git so the environment can be rebuilt.',
         ],
       },
     },
@@ -27,9 +27,9 @@ export const homeServer: Project = {
       title: { ja: 'アーキテクチャ', en: 'Architecture' },
       content: {
         ja: [
-          'Docker Compose profiles（`phase1`〜`phase4`および`full`）で依存関係順に段階起動する構成を採用．検証中は特定フェーズのみを立ち上げ，通常運用では`full`で全サービスを起動する．各フェーズにセットアップスクリプトを1対1で対応させ，フェーズごとに再実行できる．',
-          'Bridge / Host の2種ネットワークを用途別に明示的に使い分け．SMB・mDNS・Bluetoothを使うコンテナ（Samba，Homebridge，Home Assistant）はHostネットワークに配置し，それ以外のHTTP系はBridgeに隔離．Homepageダッシュボードの`siteMonitor`は，Bridgeサービスはコンテナ名で，HostサービスはDocker bridgeのゲートウェイIPで解決する二層の命名規則を実装して統一的に監視している．',
-          'Nginx Proxy ManagerのREST API（Bearerトークン）でプロキシホストを操作する手順を，リポジトリのドキュメントに記録した．AvahiのCNAMEパブリッシャー（`/etc/avahi/cname.d/services.conf`）で`<service>.local → ubuntu-pi.local`を動的発行し，家庭内DNSを汚さず全サービスに`.local`ドメインを付与．',
+          'Docker Compose profiles（`phase1`〜`phase4`および`full`）で依存関係順に段階起動する構成にした．検証中は特定フェーズのみを立ち上げ，通常運用では`full`で全サービスを起動する．各フェーズにセットアップスクリプトを1対1で対応させ，フェーズごとに再実行できる．',
+          'Bridge / Host の2種ネットワークを用途別に明示的に使い分けた．SMB・mDNS・Bluetoothを使うコンテナ（Samba，Homebridge，Home Assistant）はHostネットワークに配置し，それ以外のHTTP系はBridgeに隔離した．Homepageダッシュボードの`siteMonitor`は，Bridgeサービスはコンテナ名で，HostサービスはDocker bridgeのゲートウェイIPで解決する二層の命名規則を実装し，両方を1か所で監視できるようにした．',
+          'Nginx Proxy ManagerのREST API（Bearerトークン）でプロキシホストを操作する手順を，リポジトリのドキュメントに記録した．AvahiのCNAMEパブリッシャー（`/etc/avahi/cname.d/services.conf`）で`<service>.local → ubuntu-pi.local`を動的発行し，家庭内DNSを汚さず全サービスに`.local`ドメインを付与した．',
         ],
         en: [
           'Uses Docker Compose profiles (`phase1`–`phase4` and `full`) to bring the stack up in dependency order. During validation only the relevant phase is started; in normal operation `full` starts every service. Each phase has a matching setup script, so each phase can be re-run.',
@@ -60,12 +60,12 @@ export const homeServer: Project = {
         ja: [
           '`phase0-prereq.sh`から`phase4-utility.sh`までのスクリプトは，インストールや設定ファイルの作成の前に既存の状態を確認し，再実行しても重複しない．',
           '`verify-all.sh`で12項目（Docker，8サービスのHTTP応答またはコンテナの状態，Samba，Tailscale，Rclone）を確認し，1件でも失敗すれば終了コード1を返す．',
-          'RcloneでHome AssistantのデータをGoogle Driveへ毎日同期する（`--bwlimit 5M`で帯域を制限）．Time Machineのデータはローカルに残す．永続データはGit管理外の`~/data/`，設定は`configs/`に分けた．',
+          'Rcloneのcronで毎日Google Driveへバックアップするようにした（`--bwlimit 5M`で帯域を制限）．永続データはGit管理外の`~/data/`，設定は`configs/`に分けた．',
         ],
         en: [
           'The scripts from `phase0-prereq.sh` through `phase4-utility.sh` check the existing state before installing packages or writing config files, so re-runs do not duplicate work.',
           '`verify-all.sh` runs 12 checks (Docker; the HTTP response or container state of 8 services; Samba; Tailscale; Rclone) and exits with code 1 if any fails.',
-          'Rclone syncs the Home Assistant data to Google Drive daily (bandwidth capped with `--bwlimit 5M`); Time Machine data stays local. Persistent data lives in the git-ignored `~/data/`, separate from configuration in `configs/`.',
+          'A daily Rclone cron job backs up to Google Drive (bandwidth capped with `--bwlimit 5M`). Persistent data lives in the git-ignored `~/data/`, separate from configuration in `configs/`.',
         ],
       },
     },

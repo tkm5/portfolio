@@ -16,7 +16,7 @@ export const devcontainer: Project = {
       title: { ja: '概要', en: 'Overview' },
       content: {
         ja: [
-          'Python / Node.jsを横断する多言語開発環境をVS Code Dev Containersとして定義し，ローカルMacでもリモートSSHサーバでも同一構成を再現．Claude CodeとGoogle Gemini CLIを標準同梱し，コンテナを開いた瞬間からターミナル上でAI支援開発(Vibe Coding)が始められる状態とした．GitHubで公開．',
+          'Python / Node.jsを横断する多言語開発環境をVS Code Dev Containersとして定義し，ローカルMacでもリモートSSHサーバでも同一構成を再現できるようにした．Claude CodeとGoogle Gemini CLIを標準同梱し，コンテナを開いた瞬間からターミナル上でAI支援開発(Vibe Coding)が始められる状態にし，GitHubで公開した．',
         ],
         en: [
           'A VS Code Dev Container template that reproduces a unified Python / Node.js development environment on local Macs and remote SSH servers alike. Claude Code and the Google Gemini CLI are bundled by default, so AI-assisted development (Vibe Coding) is available in the terminal the moment the container opens. Published on GitHub.',
@@ -27,9 +27,9 @@ export const devcontainer: Project = {
       title: { ja: 'アーキテクチャ', en: 'Architecture' },
       content: {
         ja: [
-          'ベースイメージは Ubuntu 24.04(Noble)．uv公式のマルチステージビルドから uvバイナリのみを抽出し，Pythonランタイム管理をuvに完全委譲することでシステムPythonを汚さない構成とした．Node.jsは公式バイナリtarballを`dpkg --print-architecture`の結果で分岐してダウンロードし（`amd64`はNodeの`x64`に読み替え，`arm64`はそのまま），amd64とarm64の両方に対応する（arm64のLinuxサーバで動作確認）．',
+          'ベースイメージにはUbuntu 24.04(Noble)を使った．uv公式のマルチステージビルドから uvバイナリのみを抽出し，Pythonランタイム管理をuvに完全委譲することでシステムPythonを汚さない構成とした．Node.jsは公式バイナリtarballを`dpkg --print-architecture`の結果で分岐してダウンロードし（`amd64`はNodeの`x64`に読み替え，`arm64`はそのまま），amd64とarm64の両方に対応する（arm64のLinuxサーバで動作確認）．',
           '非rootユーザー`devcontainer`で起動し，`/usr/local/share/npm-global`を事前作成・所有させ`NPM_CONFIG_PREFIX`を設定することで，sudoなしで`npm install -g`できる状態にした．',
-          '`workspaceMount`は`delegated` consistencyでbind mount．Nodeのヒープ上限`NODE_OPTIONS=--max-old-space-size=4096`をコンテナの環境変数で指定．',
+          '`workspaceMount`は`delegated` consistencyでbind mountし，Nodeのヒープ上限`NODE_OPTIONS=--max-old-space-size=4096`をコンテナの環境変数で指定した．',
         ],
         en: [
           'Built on Ubuntu 24.04 (Noble). The official uv multi-stage image is used only to copy the uv binary in; Python runtime management is fully delegated to uv, leaving the system Python untouched. Node.js is downloaded from the official tarball branching on `dpkg --print-architecture` (`amd64` maps to the Node name `x64`, `arm64` stays as is), so both amd64 and arm64 are supported (verified on an arm64 Linux server).',
@@ -43,7 +43,7 @@ export const devcontainer: Project = {
           'シェル: Zsh + Oh My Zsh + `zsh-syntax-highlighting` + fzf + git-delta',
           '言語・ツール: Node.js 24.22.1 / uv 0.13.5 / GitHub CLI / tmux / jq / tree / emacs-nox',
           'VS Code拡張を13種自動インストール（Claude Code，Gemini Companion，Cursor Pyright，Prettier / ESLint / Black，GitLens，Markdown All in One，Mermaid Chart 等）',
-          '履歴の永続化: `zsh_history`をnamed volume（`devcontainer-zsh-history-<id>`）へマウントしコンテナ再ビルドでも保全',
+          '履歴の永続化: `zsh_history`をnamed volume（`devcontainer-zsh-history-<id>`）へマウントし，コンテナを再ビルドしても残るようにした',
         ],
         en: [
           'AI CLIs: Claude Code (official installer) and Google Gemini CLI (`@google/gemini-cli`)',
@@ -58,8 +58,8 @@ export const devcontainer: Project = {
       title: { ja: 'ホスト連携とリモート展開', en: 'Host Integration & Remote Deployment' },
       content: {
         ja: [
-          'ホストの`~/.claude` / `~/.claude.json` / `~/.gemini`をbind mountすることで，AIツールの認証をコンテナ再ビルド後も引き継ぐ．macOS側のClaude Codeが認証ファイルを消す既知の不具合は，回避策とともに`docs/known-issues.md`に記録した．`.zshrc`はGit管理（共通設定），`.gitconfig`は`.gitignore`対象とし，付属の`sync-devcontainer.sh`がローカルの`~/.gitconfig`から生成する設計．個人情報をリポジトリに入れない．',
-          '`scripts/sync-devcontainer.sh`でMacの認証ファイル群を任意のリモートSSHサーバへrsyncで同期．リモート側で`git clone`後にDev Containers：Reopen in Container するだけで同一環境を起動できるため，VS Code Remote-SSHと組み合わせてノートPCからリモートSSHサーバ上のdevcontainerで作業できる．',
+          'ホストの`~/.claude` / `~/.claude.json` / `~/.gemini`をbind mountすることで，AIツールの認証をコンテナ再ビルド後も引き継ぐ．macOS側のClaude Codeが認証ファイルを消す既知の不具合は，回避策とともに`docs/known-issues.md`に記録した．`.zshrc`はGit管理（共通設定），`.gitconfig`は`.gitignore`対象とし，付属の`sync-devcontainer.sh`がローカルの`~/.gitconfig`から生成する形にして，個人情報をリポジトリに入れないようにした．',
+          '`scripts/sync-devcontainer.sh`でMacの認証ファイル群を任意のリモートSSHサーバへrsyncで同期する．リモート側で`git clone`後にDev Containers：Reopen in Container するだけで同一環境を起動できるため，VS Code Remote-SSHと組み合わせてノートPCからリモートSSHサーバ上のdevcontainerで作業できる．',
           'ビルド引数（`NODE_VERSION`，`UV_VERSION`，`GEMINI_CLI_VERSION`，`GIT_DELTA_VERSION`，`ZSH_IN_DOCKER_VERSION`）で主要ツールの版を外部化し，既定値はDockerfileと`devcontainer.json`の2か所に置いた．イメージのビルドでは`apt-get clean && rm -rf /var/lib/apt/lists/*`でaptのキャッシュを消す．',
         ],
         en: [

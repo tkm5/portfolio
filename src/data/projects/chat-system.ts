@@ -27,7 +27,7 @@ export const chatSystem: Project = {
       title: { ja: '構成', en: 'How It Works' },
       content: {
         ja: [
-          'Azure AI Searchで検索し，Azure OpenAI Serviceで回答を生成する構成．ほかのAzureのサービスと組み合わせて作成した．',
+          'Azure AI Searchで検索し，Azure OpenAI Serviceで回答を生成する構成にした．ほかのAzureのサービスと組み合わせて作成した．',
         ],
         en: [
           'Azure AI Search handles retrieval and Azure OpenAI Service generates the answer, combined with other Azure services.',
