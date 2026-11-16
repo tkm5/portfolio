@@ -12,34 +12,13 @@
   },
   "about": {
     "title": "About",
-    "description": "曖昧な要求を動くシステムへ具体化し，AIの適用可否を見極めたうえで，技術的な判断の根拠をクライアント様と合意形成することを強みとするエンジニア．グローバルコンサルティングファームでは，大手生命保険会社の全社オペレーション変革の技術支援と，大手生命保険グループIT子会社のRAG内製化を担当．個人でもForward Deployed EngineerとしてAI案件を受託し，教育事業者向けAIチューターのPoCを設計から実装まで1人で開発した．それ以前は，欧州系コンサルティングファームでデータ分析・AIのPoCを設計・実装し，社内向けAIチャットシステムで2024年度コーポレートアワードを受賞．広告代理店ではデータアナリストとしてデータドリブンな意思決定を推進し，新卒で入社したIT企業ではソリューション提案に従事．北陸先端科学技術大学院大学の博士前期課程（2027年3月修了見込み）では，LLM時代の基礎演算を対象に，PythonからC++/CUDAまでの実装の性能と実装コストを比べ，処理系を選ぶ指針をまとめる課題研究を進めている．"
+    "description": "曖昧な要求を動くシステムへ具体化し，AIの適用可否を見極めたうえで，技術的な判断の根拠をクライアント様と合意形成することを強みとするエンジニア．グローバルコンサルティングファームでは，大手生命保険会社の全社オペレーション変革の技術支援と，大手生命保険グループIT子会社のRAG内製化を担当．個人でもForward Deployed EngineerとしてAI案件を受託し，教育事業者向けAIチューターのPoCを設計から実装まで1人で開発した．それ以前は，欧州系コンサルティングファームでデータ分析・AIのPoCを設計・実装し，社内向けAIチャットシステムで2024年度コーポレートアワードを受賞．広告代理店ではデータ分析を通じてデータドリブンな意思決定を推進し，新卒で入社したIT企業ではソリューション提案に従事．"
   },
   "experience": {
-    "title": "Experience",
-    "companies": {
-      "global": "グローバルコンサルティングファーム",
-      "european": "欧州系コンサルティングファーム",
-      "advertising": "大手広告代理店",
-      "it": "大手IT企業"
-    },
-    "roles": {
-      "specialistSenior": "スペシャリストシニア",
-      "consultant": "コンサルタント",
-      "dataAnalyst": "データアナリスト",
-      "sales": "法人営業"
-    }
+    "title": "Experience"
   },
   "projects": {
-    "title": "Projects",
-    "meta": {
-      "global": "グローバルコンサルティングファーム",
-      "globalInternal": "グローバルコンサルティングファーム | 社内プロジェクト",
-      "european": "欧州系コンサルティングファーム",
-      "europeanInternal": "欧州系コンサルティングファーム | 社内プロジェクト",
-      "commissioned": "業務委託",
-      "personalOss": "個人プロジェクト | OSS",
-      "personal": "個人プロジェクト"
-    }
+    "title": "Projects"
   },
   "skills": {
     "title": "Skills"
@@ -60,21 +39,7 @@
   },
   "project": {
     "back": "戻る",
-    "overview": "概要",
-    "architecture": "アーキテクチャ",
-    "keyFeatures": "主要機能",
-    "devQuality": "開発環境・品質管理",
-    "technologies": "使用技術",
-    "details": "詳細",
-    "experimentTypes": "実験タイプ",
-    "infrastructure": "インフラストラクチャ",
-    "securityInfra": "セキュリティ・インフラ",
-    "techTransfer": "技術移転・人材育成",
-    "cicd": "CI/CD・DevOps",
-    "operations": "運用・モニタリング",
-    "achievement": "成果",
-    "uiux": "UI/UX設計",
-    "systemArch": "システム構成"
+    "technologies": "使用技術"
   },
   "common": {
     "toggleTheme": "テーマを切り替え",

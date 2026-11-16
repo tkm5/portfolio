@@ -12,34 +12,13 @@
   },
   "about": {
     "title": "About",
-    "description": "Engineer who turns ambiguous requirements into working systems, judges where AI fits, and builds client consensus on the basis for technical decisions. At a global consulting firm, provided technical support for a major life insurer's company-wide operations transformation and helped a life insurance group's IT subsidiary bring RAG in-house. Also takes on independent AI engagements as a Forward Deployed Engineer, including an AI tutor PoC for an education company, designed and built single-handedly. Previously built data-analysis and AI PoCs at a European consulting firm (FY2024 Corporate Award for an internal AI chat), drove data-driven decisions as a data analyst at an advertising agency, and proposed solutions at an IT company. In a part-time master's program at JAIST (expected March 2027), the research project in progress compares performance and implementation cost across the Python-to-C++/CUDA spectrum for foundational operations in the LLM era, toward guidelines for choosing a language and runtime."
+    "description": "Engineer who turns ambiguous requirements into working systems, judges where AI fits, and builds client consensus on the basis for technical decisions. At a global consulting firm, provided technical support for a major life insurer's company-wide operations transformation and helped a life insurance group's IT subsidiary bring RAG in-house. Also takes on independent AI engagements as a Forward Deployed Engineer, including an AI tutor PoC for an education company, designed and built single-handedly. Previously built data-analysis and AI PoCs at a European consulting firm (FY2024 Corporate Award for an internal AI chat), drove data-driven decisions through data analysis at an advertising agency, and proposed solutions at an IT company."
   },
   "experience": {
-    "title": "Experience",
-    "companies": {
-      "global": "Global Consulting Firm",
-      "european": "European Consulting Firm",
-      "advertising": "Major Advertising Agency",
-      "it": "Major IT Company"
-    },
-    "roles": {
-      "specialistSenior": "Specialist Senior",
-      "consultant": "Consultant",
-      "dataAnalyst": "Data Analyst",
-      "sales": "Enterprise Sales Representative"
-    }
+    "title": "Experience"
   },
   "projects": {
-    "title": "Projects",
-    "meta": {
-      "global": "Global Consulting Firm",
-      "globalInternal": "Global Consulting Firm | Internal Project",
-      "european": "European Consulting Firm",
-      "europeanInternal": "European Consulting Firm | Internal Project",
-      "commissioned": "Commissioned Work",
-      "personalOss": "Personal Project | OSS",
-      "personal": "Personal Project"
-    }
+    "title": "Projects"
   },
   "skills": {
     "title": "Skills"
@@ -60,21 +39,7 @@
   },
   "project": {
     "back": "Back",
-    "overview": "Overview",
-    "architecture": "Architecture",
-    "keyFeatures": "Key Features",
-    "devQuality": "Development & Quality",
-    "technologies": "Technologies",
-    "details": "Details",
-    "experimentTypes": "Experiment Types",
-    "infrastructure": "Infrastructure",
-    "securityInfra": "Security & Infrastructure",
-    "techTransfer": "Technology Transfer & Training",
-    "cicd": "CI/CD & DevOps",
-    "operations": "Operations & Monitoring",
-    "achievement": "Achievement",
-    "uiux": "UI/UX Design",
-    "systemArch": "System Architecture"
+    "technologies": "Technologies"
   },
   "common": {
     "toggleTheme": "Toggle theme",
