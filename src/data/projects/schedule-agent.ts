@@ -60,7 +60,7 @@ export const scheduleAgent: Project = {
         ],
         en: [
           'Parse the request and estimate priority (LLM) → compute free time for all participants (rules: holidays excluded, business hours, 30-minute slots) → load memory → preference filters (rules) → propose candidates (LLM).',
-          'Confirmation: interrupt() shows the candidates to the user. Approval ends the run; on rejection or no candidates, the agent picks 1 to 3 questions (LLM), structures the answer into memory, recomputes free time, and proposes again.',
+          'Confirmation: interrupt() shows the candidates to the user. Approval ends the run; on rejection or no candidates, the agent picks one to three questions (LLM), structures the answer into memory, recomputes free time, and proposes again.',
           'The rejection reason goes to the next proposal and to question selection. Dates named in a rejection are applied to the request in code, not left to LLM interpretation.',
           "Memory: LangGraph's Store holds each user's preferences (one document updated by deep merge) and an append-only Q&A history. Memory is read for all participants but written only for the requester, and several people's conditions are combined by rules such as \"the strictest daily meeting cap wins\" and \"lunch is protected if anyone protects it\".",
         ],
