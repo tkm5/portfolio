@@ -16,7 +16,7 @@ export const insuranceAi: Project = {
       title: { ja: '背景と課題', en: 'Context and Problem' },
       content: {
         ja: [
-          'クライアント様は大手生命保険グループのIT子会社．目標は，技術社員が自らRAGアプリを開発・改修できる状態をつくること（RAGアプリの内製化）だった．対象はクライアント様の技術者約10名．',
+          'クライアント様は大手生命保険グループのIT子会社だった．目標は，技術社員が自らRAGアプリを開発・改修できる状態をつくること（RAGアプリの内製化）だった．対象はクライアント様の技術者約10名だった．',
           '講義だけで終えず，クライアント様の技術者と一緒に作りながら進めた．PythonとJavaScriptでRAGアプリを一から作る段階から始め，Azureのベストプラクティスを基盤としたRAGアプリの内製化へ進めた．',
         ],
         en: [
@@ -44,7 +44,7 @@ export const insuranceAi: Project = {
           '取り込み: Blobに置いたPDFからpypdfでテキストを抜き出し，1,000文字・重なり200文字で分割して埋め込みを作り，ファイル名と番号から決まるIDで検索インデックスに登録する．分割幅が重なり以下なら例外にして，設定の誤りで無限に分割しないようにした．',
           'インデックス: タイトル・本文とベクトル項目を持ち，ベクトルはHNSWで検索する．タイトルと本文を優先するセマンティック設定も定義した．',
           '検索と回答: キーワード検索とベクトル検索を組み合わせて上位3件を取り，インデックスにセマンティック設定があるときだけセマンティックランキングに切り替える．回答は渡した文脈だけに基づくようシステムプロンプトで制約した．',
-          'アプリ: FlaskのJSON API(/api/chat)と，Jinja2のテンプレートと素のJavaScriptの画面．gunicornでApp Serviceに載せる．',
+          'アプリ: FlaskのJSON API(/api/chat)と，Jinja2のテンプレートと素のJavaScriptの画面を作り，gunicornでApp Serviceに載せた．',
           '追加の実験: Document Intelligenceのprebuilt-readで手書きのPDFをMarkdownに変換する実験と，その解説資料を作成した．',
         ],
         en: [
@@ -62,11 +62,11 @@ export const insuranceAi: Project = {
       title: { ja: 'クライアント様環境のシステム', en: 'The System in the Client Environment' },
       content: {
         ja: [
-          'AzureのRAGサンプル(Azure-Samples/azure-search-openai-demo)を拡張した新システムを構築し，セキュリティ要件を満たす閉域構成でクライアント様環境にデプロイした．土台にしたサンプルは，ReactのフロントエンドとPython(Quart)のバックエンド，キーワード・ベクトル・セマンティックランキングを組み合わせた検索，Document Intelligenceによる文書の取り込み，Entra IDでのサインインと文書単位のアクセス制御を備える．',
+          'AzureのRAGサンプル(Azure-Samples/azure-search-openai-demo)を拡張した新システムを構築し，セキュリティ要件を満たす閉域構成でクライアント様環境にデプロイした．土台にしたサンプルは，ReactのフロントエンドとPython(Quart)のバックエンド，キーワード・ベクトル・セマンティックランキングを組み合わせた検索，Document Intelligenceによる文書の取り込みを備える．',
           '運用改善を進めたいというクライアント様の要望に応え，OpenTelemetryとLog Analyticsでログ基盤を整備した．',
         ],
         en: [
-          "Built a new system by extending Azure's RAG sample (Azure-Samples/azure-search-openai-demo) and deployed it into the client's environment in a private network that met the security requirements. The sample it starts from provides a React frontend with a Python (Quart) backend, retrieval that combines keyword, vector, and semantic ranking, document ingestion with Document Intelligence, and Entra ID sign-in with document-level access control.",
+          "Built a new system by extending Azure's RAG sample (Azure-Samples/azure-search-openai-demo) and deployed it into the client's environment in a private network that met the security requirements. The sample it starts from provides a React frontend with a Python (Quart) backend, retrieval that combines keyword, vector, and semantic ranking, and document ingestion with Document Intelligence.",
           "At the client's request to improve operations, added a logging platform with OpenTelemetry and Log Analytics.",
         ],
       },
@@ -95,7 +95,6 @@ export const insuranceAi: Project = {
     'Azure OpenAI Service',
     'Azure AI Document Intelligence',
     'Azure Blob Storage',
-    'Azure Container Apps',
     'Azure Cosmos DB',
     'Log Analytics',
     'OpenTelemetry',
