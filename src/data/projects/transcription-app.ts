@@ -31,7 +31,7 @@ export const transcriptionApp: Project = {
           '前処理: ffmpegで2パスのラウドネス正規化（EBU R128，-16 LUFS）をかけ，16kHzのモノラルにし，Silero VADで無音を詰める（無音500ミリ秒以上，前後400ミリ秒を残す）．',
           '文字起こし: mlx-whisper(whisper-large-v3)でMacのGPU上で実行し，詰めた無音の分を戻して元の時刻にそろえる．',
           '幻聴の抑制: 前の文脈を引き継がない設定でループの連鎖を防ぎ，無音区間の判定を加え，無音らしさが高く確信度の低い区間は捨てる．',
-          '時間帯の切り出し: 終日の録音から，指定した時間帯にかかる30分単位の区間を切り出して結合し，欠けている部分があれば報告する．10分未満の間隔で続く発話は1つの会議の候補にまとめる．',
+          '時間帯の切り出し: 長時間の録音から，指定した時間帯にかかる30分単位の区間を切り出して結合し，欠けている部分があれば報告する．10分未満の間隔で続く発話は1つの会議の候補にまとめる．',
           '話者分離（任意，既定はオフ）: DGX Spark上のNemotron-3-DiarizationをSSHとDockerで動かし，ローカルの文字起こしと同時に実行する．音声をFLACで送り，話者の区間を受け取って単語ごとに話者を割り当てる．失敗したときは話者なしの文字起こしに戻す．',
         ],
         en: [
@@ -39,7 +39,7 @@ export const transcriptionApp: Project = {
           'Preprocessing: two-pass loudness normalization with ffmpeg (EBU R128, -16 LUFS), conversion to 16 kHz mono, and silence trimming with Silero VAD (silences of 500 ms or more, keeping 400 ms of padding).',
           "Transcription: mlx-whisper (whisper-large-v3) on the Mac's GPU, with the trimmed silences added back so timestamps match the original clock.",
           'Hallucination control: no carry-over of previous text (so loops cannot propagate), a silence threshold, and dropping segments that look like silence and have low confidence.',
-          'Time-range extraction: from all-day recordings, the 30-minute pieces that overlap the requested range are cut out and merged, and any missing part is reported. Speech separated by gaps under 10 minutes is grouped into one meeting candidate.',
+          'Time-range extraction: from long recordings, the 30-minute pieces that overlap the requested range are cut out and merged, and any missing part is reported. Speech separated by gaps under 10 minutes is grouped into one meeting candidate.',
           'Speaker diarization (optional, off by default): Nemotron-3-Diarization runs on DGX Spark over SSH and Docker in parallel with local transcription. Audio goes up as FLAC, speaker turns come back, and each word is assigned a speaker. On any failure it falls back to a transcript without speakers.',
         ],
       },
@@ -82,8 +82,8 @@ export const transcriptionApp: Project = {
     {
       title: { ja: '開発', en: 'Development' },
       content: {
-        ja: ['Python 3.12とuvで管理し，設定はPydanticのSettingsで読む．文字起こしとLLMはProtocolで抽象化し，テストではモックに差し替える．pytestで357件のテストを持つ（話者の割り当て51件，終日録音の処理45件など）．'],
-        en: ['Managed with Python 3.12 and uv, with settings loaded through Pydantic Settings. Transcription and the LLM sit behind Protocols, which tests replace with mocks. The pytest suite collects 357 tests (51 for speaker alignment, 45 for all-day recording handling, and more).'],
+        ja: ['Python 3.12とuvで管理し，設定はPydanticのSettingsで読む．文字起こしとLLMはProtocolで抽象化し，テストではモックに差し替える．pytestの収集で357件のテストがある（収集時の件数で，実行結果ではない）（話者の割り当て51件，長時間録音の処理45件など）．'],
+        en: ['Managed with Python 3.12 and uv, with settings loaded through Pydantic Settings. Transcription and the LLM sit behind Protocols, which tests replace with mocks. pytest collects 357 tests (a collection count, not a run result) (51 for speaker alignment, 45 for long-recording handling, and more).'],
       },
     },
   ],

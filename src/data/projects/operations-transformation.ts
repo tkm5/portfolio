@@ -56,7 +56,7 @@ export const operationsTransformation: Project = {
       title: { ja: 'Agent Skillsの入門資料', en: 'Agent Skills Primer' },
       content: {
         ja: [
-          'AIエージェント前提の業務への変革に向け，業務手順をAIに指示できる形で定義・伝達する方法（Agent Skills）を体系化し，非技術者のクライアント様向けの入門資料を作成した．',
+          'AIエージェント前提の業務への変革に向け，業務手順をAIに指示できる形で定義・伝達する方法(Agent Skills)を体系化し，非技術者のクライアント様向けの入門資料を作成した．',
         ],
         en: [
           'Toward agent-first operations, systematized how to define and convey work procedures in a form AI can follow (Agent Skills) and wrote a primer for non-technical client staff.',
@@ -64,23 +64,23 @@ export const operationsTransformation: Project = {
       },
     },
     {
-      title: { ja: '業務分析シートのAccess向け変換（VBA）', en: 'Converting the Task-Analysis Sheet for Access (VBA)' },
+      title: { ja: '業務分析シートのAccess向け変換(VBA)', en: 'Converting the Task-Analysis Sheet for Access (VBA)' },
       content: {
         ja: [
-          '1業務を1行に書き，その横に3列の組を繰り返す横持ちのExcelの業務分析シートを，Accessで扱えるよう正規化（縦持ちに再設計）するVBAマクロを作った．',
+          '1業務を1行に書き，その横に繰り返しの列グループが続く横持ちのExcelの業務分析シートを，Accessで扱えるよう正規化（縦持ちに再設計）するVBAマクロを作った．',
         ],
         en: [
-          'Wrote a VBA macro that normalizes a wide Excel task-analysis sheet (one task per row, followed by repeating three-column sets) into long format for Access.',
+          'Wrote a VBA macro that normalizes a wide Excel task-analysis sheet (one task per row, followed by repeating column groups) into long format for Access.',
         ],
       },
       list: {
         ja: [
-          '正規化: 複数段の見出しを1つの列名に結合し，繰り返す3列の組を自動で検出して，マスタ1表と明細3表に分けた．業務IDの重複も検査する．',
+          '正規化: 複数段の見出しを1つの列名に結合し，繰り返しの列グループを自動で検出して，マスタと明細の表に分けた．業務IDの重複も検査する．',
           '出力: CSVはCP932（BOMなし）・CRLF・RFC 4180の引用で書き出し，CSVごとにschema.iniを生成して型を推定した（ID列は長整数に固定，255バイトを超える文字列はメモ型）．',
           '確認用SQL: 元の横持ちの表をJOINで再現するクエリ，表ごとの件数確認，参照整合性を有効にする前の孤立レコードの検出をまとめた．',
         ],
         en: [
-          'Normalizing: merged multi-row headers into single column names, detected the repeating three-column sets automatically, and split the sheet into one master table and three detail tables, checking task IDs for uniqueness.',
+          'Normalizing: merged multi-row headers into single column names, detected the repeating column groups automatically, and split the sheet into master and detail tables, checking task IDs for uniqueness.',
           'Output: CSVs in CP932 without BOM, CRLF line endings, and RFC 4180 quoting, with a generated schema.ini per CSV that infers types (ID columns fixed as Long, strings over 255 bytes as Memo).',
           'Check SQL: a query that rebuilds the original wide table with JOINs, row counts per table, and an orphan-record check to run before turning on referential integrity.',
         ],

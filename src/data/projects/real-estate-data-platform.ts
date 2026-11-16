@@ -16,10 +16,10 @@ export const realEstateDataPlatform: Project = {
       title: { ja: '背景と課題', en: 'Context and Problem' },
       content: {
         ja: [
-          '賃貸管理の契約・台帳の情報が，紙・個人のExcel・付箋・各システムに分散していた．申込から請求までの作業が担当者1名に集中し，個別の契約条件は担当者でないと分からないため，担当者が不在だと作業も問い合わせ対応も止まる属人化が起きていた．',
+          '契約・台帳の情報が個人のExcelなどに分散し，担当者が不在だと作業も問い合わせ対応も止まる属人化が起きていた．',
         ],
         en: [
-          'Rental-management contracts and ledgers were scattered across paper, personal Excel files, sticky notes, and several systems. Work from application to billing sat with one person, and only that person knew the individual contract terms, so work and inquiries stalled whenever they were away.',
+          'Contract and ledger information was scattered across personal Excel files and the like, so work and inquiries stalled whenever the person in charge was away.',
         ],
       },
     },
@@ -27,10 +27,10 @@ export const realEstateDataPlatform: Project = {
       title: { ja: '担当範囲', en: 'My Role' },
       content: {
         ja: [
-          '要件定義書の作成と構成の選定を担当した．チームが書いた3本の下書き（中核DB・2つの業務領域）を統合して要件定義書v1.0にまとめ，レビューの指摘を反映した．v1.0は機能要件44件と，確認事項68件を持つ．案件の範囲は提案と要件定義までだった．',
+          '要件定義書の作成と構成の選定を担当した．チームが書いた3本の下書き（中核DB・2つの業務領域）を統合して要件定義書v1.0にまとめ，レビューの指摘を反映した．案件の範囲は提案と要件定義までだった．',
         ],
         en: [
-          'Owned the requirements document and the architecture selection: merged the team\'s three drafts (core database and two business areas) into requirements v1.0 and addressed the review comments. v1.0 holds 44 functional requirements and 68 open questions. The engagement covered the proposal and requirements definition.',
+          'Owned the requirements document and the architecture selection: merged the team\'s three drafts (core database and two business areas) into requirements v1.0 and addressed the review comments. The engagement covered the proposal and requirements definition.',
         ],
       },
     },

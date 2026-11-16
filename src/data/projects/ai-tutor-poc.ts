@@ -62,12 +62,12 @@ export const aiTutorPoc: Project = {
       title: { ja: '検証', en: 'How It Was Verified' },
       list: {
         ja: [
-          '計測: 模範解答つき82問（保留しておいた74問と，自作した濃度の問題8問）で計測し，誤った回答の提示は0件だった（0/82のWilson法による95%信頼区間は0〜4.5%）．暫定の基準で，チューニング前の枠組みを確かめるための計測だった．値は合っているが表記が異なり自動で採点できなかった5問は，人の確認が必要として扱った．',
-          'テスト: テストファイル148本・テスト関数3,953件を書いた．比べる2者に何を見せるかを固定するテストもある．レビューで想定した2つの誤り（checkerに読み取り結果を見せる，一貫性の検査にcheckerの答えを見せる）を，既存のテストがほとんど検出できなかったため追加した．',
+          '計測: 受領資料から保留した問題と自作の問題の計82問で計測し，誤った回答の提示は0件だった（0/82のWilson法による95%信頼区間は0〜4.5%）．暫定の基準で，チューニング前の枠組みを確かめるための計測だった．値は合っているが表記が異なり自動で採点できなかった5問は，人の確認が必要として扱った．',
+          'テスト(計数): テストファイル148本・テスト関数3,953件を書いた（リポジトリを静的に数えた値で，実行結果ではない）．比べる2者に何を見せるかを固定するテストもある．レビューで想定した2つの誤り（checkerに読み取り結果を見せる，一貫性の検査にcheckerの答えを見せる）を，既存のテストがほとんど検出できなかったため追加した．',
         ],
         en: [
-          'Measured: 0 wrong answers shown in 82 test questions with reference answers (74 held-out questions plus 8 concentration problems I wrote); the Wilson 95% confidence interval for 0/82 is 0 to 4.5%. This was a provisional-criteria check of the framework before tuning; 5 questions whose value matched but whose notation differed could not be graded automatically and were flagged for human review.',
-          'Tests: 148 test files with 3,953 test functions, including a test that pins what each side of the cross-check is shown. It was added because existing tests barely caught two mistakes imagined in a review (showing the checker the reading, showing the consistency check the checker\'s answers).',
+          'Measured: 0 wrong answers shown in 82 test questions with reference answers (questions held out from the received material plus questions I wrote); the Wilson 95% confidence interval for 0/82 is 0 to 4.5%. This was a provisional-criteria check of the framework before tuning; 5 questions whose value matched but whose notation differed could not be graded automatically and were flagged for human review.',
+          'Tests (counted): 148 test files with 3,953 test functions (a static count of the repository, not a run result), including a test that pins what each side of the cross-check is shown. It was added because existing tests barely caught two mistakes imagined in a review (showing the checker the reading, showing the consistency check the checker\'s answers).',
         ],
       },
       content: { ja: [], en: [] },
@@ -82,7 +82,7 @@ export const aiTutorPoc: Project = {
         ],
         en: [
           "OKF: wrote the teaching policy one section per file in Google Cloud's Open Knowledge Format (OKF).",
-          'Failure handling: the Jev call never raises. It waits 0.6 seconds by default and otherwise falls back to the broader category\'s policy, so a failure only makes the guidance less specific and never loses an answer.',
+          'Failure handling: the Jev call never raises. It waits up to 0.6 seconds by default and otherwise falls back to the broader category\'s policy, so a failure only makes the guidance less specific and never loses an answer.',
           'Independence: the policy goes to the writer and the explanation, never to the checker or the consistency check, so the two sides being compared do not share a starting point.',
         ],
       },
