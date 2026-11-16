@@ -37,7 +37,6 @@ export const aiTutorPoc: Project = {
       },
       list: {
         ja: [
-          '写真の前処理: 氏名や点数は，モデルを呼ぶ前にMac上でApple Visionを使って隠す．問題文は隠さない．',
           '読み取りと単元の判定: 写真を読み取り，分類モデルJevで質問の単元を判定する．',
           '指導方針の選択: 判定した単元とタグが一致する指導方針の節を選ぶ．この選択はLLMを呼ばない決定的な処理にした．',
           '解答: 回答を書くモデル(writer)が，手順・式・小問ごとの最終解答からなる骨組みを書き，骨組みの一貫性を検査する．',
@@ -47,7 +46,6 @@ export const aiTutorPoc: Project = {
           '難問レーン: より強いモデルの解き手をすべての質問で別スレッドで並走させ，3社目のモデルとの一致を条件に答えを出す．速い組の邪魔はしない．',
         ],
         en: [
-          'Photo preprocessing: names and scores are masked on the Mac with Apple Vision before any model is called; the problem text is never masked.',
           'Reading and topic unit: the photo is read, and the Jev classifier decides which unit the question belongs to.',
           'Teaching-policy selection: the policy sections whose tags match that unit are selected; this step is deterministic and calls no LLM.',
           "Solving: the writer model drafts a skeleton (steps, equations, one final answer per sub-question), and the skeleton's consistency is checked.",
@@ -125,5 +123,5 @@ export const aiTutorPoc: Project = {
       content: { ja: [], en: [] },
     },
   ],
-  technologies: ['Python 3.12', 'uv', 'LangGraph', 'FastAPI', 'Pydantic', 'Jev', 'Open Knowledge Format (OKF)', 'OpenRouter', 'Apple Vision', 'Multi-vendor LLM', 'pytest'],
+  technologies: ['Python 3.12', 'uv', 'LangGraph', 'FastAPI', 'Pydantic', 'Jev', 'Open Knowledge Format (OKF)', 'OpenRouter', 'Multi-vendor LLM', 'pytest'],
 };
