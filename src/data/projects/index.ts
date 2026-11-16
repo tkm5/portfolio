@@ -7,6 +7,9 @@ import { operationsTransformation } from './operations-transformation';
 import { chatSystem } from './chat-system';
 import { aiTutorPoc } from './ai-tutor-poc';
 import { realEstateDataPlatform } from './real-estate-data-platform';
+import { scheduleAgent } from './schedule-agent';
+import { aiAgent } from './ai-agent';
+import { gasPaymentTable } from './gas-payment-table';
 import { codingAgentTooling } from './coding-agent-tooling';
 import { devcontainer } from './devcontainer';
 import { homeServer } from './home-server';
@@ -21,6 +24,9 @@ export const projects: Project[] = [
   governmentSimilarity,
   aiTutorPoc,
   realEstateDataPlatform,
+  scheduleAgent,
+  aiAgent,
+  gasPaymentTable,
   codingAgentTooling,
   transcriptionApp,
   devcontainer,
