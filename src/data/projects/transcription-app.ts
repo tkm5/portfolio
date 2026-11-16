@@ -32,7 +32,7 @@ export const transcriptionApp: Project = {
           '文字起こし: mlx-whisper(whisper-large-v3)でMacのGPU上で実行し，詰めた無音の分を戻して元の時刻にそろえる．',
           '幻聴の抑制: 前の文脈を引き継がない設定でループの連鎖を防ぎ，無音区間の判定を加え，無音らしさが高く確信度の低い区間は捨てる．',
           '時間帯の切り出し: 終日の録音から，指定した時間帯にかかる30分単位の区間を切り出して結合し，欠けている部分があれば報告する．10分未満の間隔で続く発話は1つの会議の候補にまとめる．',
-          '話者分離（任意，既定はオフ）: DGX Spark上のNemotron-3-DiarizationをSSHとDockerで動かし，ローカルの文字起こしと並行して実行する．音声をFLACで送り，話者の区間を受け取って単語ごとに話者を割り当てる．失敗したときは話者なしの文字起こしに戻す．',
+          '話者分離（任意，既定はオフ）: DGX Spark上のNemotron-3-DiarizationをSSHとDockerで動かし，ローカルの文字起こしと同時に実行する．音声をFLACで送り，話者の区間を受け取って単語ごとに話者を割り当てる．失敗したときは話者なしの文字起こしに戻す．',
         ],
         en: [
           'Picking a recording: the skill scans the macOS Voice Memos store, lists the recordings, and the user picks one. Recordings are copied, never moved, so the Voice Memos database and iCloud sync stay intact.',
