@@ -27,7 +27,7 @@ export const realEstateDataPlatform: Project = {
       title: { ja: '担当範囲', en: 'My Role' },
       content: {
         ja: [
-          '要件定義書の作成と構成の選定を担当した．チームが書いた3本の下書き（中核DB・2つの業務領域）を統合して要件定義書v1.0にまとめ，レビューの指摘を反映した．v1.0は機能要件44件と，確認事項68件を持つ．案件の範囲は提案と要件定義まで．',
+          '要件定義書の作成と構成の選定を担当した．チームが書いた3本の下書き（中核DB・2つの業務領域）を統合して要件定義書v1.0にまとめ，レビューの指摘を反映した．v1.0は機能要件44件と，確認事項68件を持つ．案件の範囲は提案と要件定義までだった．',
         ],
         en: [
           'Owned the requirements document and the architecture selection: merged the team\'s three drafts (core database and two business areas) into requirements v1.0 and addressed the review comments. v1.0 holds 44 functional requirements and 68 open questions. The engagement covered the proposal and requirements definition.',
@@ -72,18 +72,18 @@ export const realEstateDataPlatform: Project = {
         ja: [
           '原本: 受け取った書類はそのまま変更不可で保存し，あとから処理し直せるようにする．',
           '取り込み: マルチモーダルのLLMで書類から項目を抜き出し（LLMは差し替え可能），台帳に入れる前に人が承認する．確信度の低い抽出は人の確認に回す．',
-          'データベース: 契約が数百件の規模なので，台帳と分析を1つのPostgreSQLにまとめ，専用のDWHは過剰と判断した．将来の意味検索のためにpgvectorを候補に残した．',
+          'データベース: データ量が小さいので，台帳と分析を1つのPostgreSQLにまとめ，専用のDWHは過剰と判断した．将来の意味検索のためにpgvectorを候補に残した．',
           'セマンティックレイヤー: dbt coreを第一候補にし，スキーマと指標の定義をコードで持つ．',
-          '台帳のデータモデル: 建物と部屋，入居者と契約，契約と請求・入退去を親子関係で持ち，1つの契約が複数の部屋にまたがれる形にした．削除は論理削除，変更はすべて履歴に残す（チームの下書きを改訂）．',
+          '台帳のデータモデル: 建物と部屋，入居者と契約，契約と請求・入退去を親子関係で持ち，1つの契約が複数の部屋にまたがれる形にした．削除は論理削除，変更はすべて履歴に残す（チームのメンバーの案に，図と項目を追加した）．',
           'AI Ready: 原本の保持，スキーマと指標のコード化，どの原本からどのレコードができたかの来歴，確信度の低い抽出の人による確認，複数のLLMを前提にした設計の5点を保証し，権限と監査ログは初日から入れる．AIとの接続点は監査ログ付きの読み取り専用MCPサーバーとして設計した．エージェント本体は作らない範囲とした．',
           '段階的な拡張: 台帳のスキーマはリリース時にv1として固定し，以後の変更は追加だけにする．',
         ],
         en: [
           'Originals: received documents are stored unchanged and immutable so they can be reprocessed later.',
           'Ingestion: a multimodal LLM (swappable) extracts fields from documents, and a person approves them before they enter the ledger; low-confidence extractions go to human review.',
-          'Database: with contracts in the hundreds, the ledger and analytics share one PostgreSQL database, and a dedicated data warehouse was judged excessive. pgvector was kept as an option for future semantic search.',
+          'Database: since the data volume is small, the ledger and analytics share one PostgreSQL database, and a dedicated data warehouse was judged excessive. pgvector was kept as an option for future semantic search.',
           'Semantic layer: dbt Core as the first choice, with schema and metric definitions in code.',
-          'Ledger data model: buildings and units, tenants and contracts, and contracts with charges and move-in/move-out events as parent-child relations, with one contract able to span several units. Deletes are logical, and every change is kept in history (a revision of the team draft).',
+          'Ledger data model: buildings and units, tenants and contracts, and contracts with charges and move-in/move-out events as parent-child relations, with one contract able to span several units. Deletes are logical, and every change is kept in history (designed by a teammate; I added the diagram and fields).',
           'AI-ready: five guarantees (immutable originals, schema and metrics as code, lineage from each original to each record, human review of low-confidence extractions, and a multi-LLM design), with permissions and audit logs from day one. The AI access point is designed as a read-only MCP server with audit logging. Building the agent itself was out of scope.',
           'Staged growth: the ledger schema is frozen as v1 at release, and later changes are additive only.',
         ],
