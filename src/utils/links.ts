@@ -29,5 +29,7 @@ export function splitKnownLinks(text: string): TextSegment[] {
   return text
     .split(pattern)
     .filter((part) => part !== '')
-    .map((part) => (KNOWN_LINKS[part] ? { text: part, href: KNOWN_LINKS[part] } : { text: part }));
+    .map((part) =>
+      Object.hasOwn(KNOWN_LINKS, part) ? { text: part, href: KNOWN_LINKS[part] } : { text: part }
+    );
 }
