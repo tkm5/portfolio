@@ -16,23 +16,23 @@ export const governmentSimilarity: Project = {
       title: { ja: '背景と課題', en: 'Context and Problem' },
       content: {
         ja: [
-          '類似する行政事業を探す調査研究．各事業は，目的・現状と課題・概要・活動と成果目標が文章で書かれている．',
+          '類似する行政事業を探す調査研究を担当した．',
         ],
         en: [
-          'A research study to find government programs that resemble each other. Each program is described in prose: purpose, current issues, overview, and activities with outcome targets.',
+          'Worked on a research study to find government programs that resemble each other.',
         ],
       },
     },
     {
-      title: { ja: '試作と方針の切り替え', en: 'Prototype, and the Change of Approach' },
+      title: { ja: '試作から検索手法へ', en: 'From Prototype to Retrieval Method' },
       content: {
         ja: [
-          'まずAzureの公開サンプルを使って試作した．約5,400件の事業を1行1事業で収めた表データ（93列）を検索対象に取り込めるよう処理を足し，日本語向けに検索の設定を調整した（日本語アナライザーja.microsoft，クエリ言語ja-JP，スペル補正の無効化，問い合わせ文を日本語に直すプロンプト）．',
-          '試作だけでは調査の目的に足りなかったため，事業内容を詳細にベクトル化し，ベクトルの類似度で似た事業を探す検索手法に切り替えた．',
+          'まずAzureの公開サンプルを使って試作した．事業ごとの説明文をまとめた表データを検索対象に取り込めるよう処理を足し，日本語向けに検索の設定を調整した（日本語アナライザーja.microsoft，クエリ言語ja-JP，スペル補正の無効化，問い合わせ文を日本語に直すプロンプト）．',
+          '試作のあと，事業内容を詳細にベクトル化し，ベクトルの類似度で似た事業を探す検索手法を考案・実装した．',
         ],
         en: [
-          'First built a prototype on an Azure public sample: added processing to ingest a table of about 5,400 programs (one program per row, 93 columns) and tuned search for Japanese (the ja.microsoft analyzer, ja-JP query language, spell correction turned off, and a prompt that rewrites questions into Japanese).',
-          'The prototype alone did not meet the purpose of the study, so the approach changed to embedding the detailed program descriptions and finding similar programs by vector similarity.',
+          'First built a prototype on an Azure public sample: added processing to ingest a table of program descriptions and tuned search for Japanese (the ja.microsoft analyzer, ja-JP query language, spell correction turned off, and a prompt that rewrites questions into Japanese).',
+          'After the prototype, devised and implemented a retrieval method that embeds the detailed program descriptions and finds similar programs by vector similarity.',
         ],
       },
     },
