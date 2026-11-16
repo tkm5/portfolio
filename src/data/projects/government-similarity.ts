@@ -43,7 +43,7 @@ export const governmentSimilarity: Project = {
       title: { ja: '評価の方法', en: 'How It Was Evaluated' },
       content: {
         ja: [
-          '評価指標: クライアント様が正解とした事業が，類似度の上位200件に含まれる割合（Recall）で検索手法を評価した．',
+          '評価指標: クライアント様が正解とした事業が，類似度の上位200件に含まれる割合(Recall)で検索手法を評価した．',
         ],
         en: [
           'Metric: the retrieval was evaluated by recall, the share of client-labeled matching programs that appear in the top 200 by similarity.',

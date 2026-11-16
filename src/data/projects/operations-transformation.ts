@@ -31,7 +31,7 @@ export const operationsTransformation: Project = {
         ja: [
           '決算業務の分解: 税務課の決算業務のマニュアルを1文ずつ分け，13の操作に整理した．',
           'チェック表と解説資料: 13操作それぞれについて，AIエージェントで実行できるかを事前に判定し，実機で検証するためのチェック表と，業務の解説資料を作成した．',
-          'Agent Skills: 業務手順をAIに指示できる形で定義・伝達する方法（Agent Skills）を体系化し，非技術者のクライアント様向けの入門資料を作成した．',
+          'Agent Skills: 業務手順をAIに指示できる形で定義・伝達する方法(Agent Skills)を体系化し，非技術者のクライアント様向けの入門資料を作成した．',
         ],
         en: [
           'Breaking down the closing work: split the tax department\'s closing manual sentence by sentence into 13 operations.',

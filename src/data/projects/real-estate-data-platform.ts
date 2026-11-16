@@ -48,7 +48,7 @@ export const realEstateDataPlatform: Project = {
       title: { ja: '提案した構成', en: 'Proposed Architecture' },
       list: {
         ja: [
-          '統合DB: 台帳を統合DB（PostgreSQL）に集め，情報を一元化する．',
+          '統合DB: 台帳を統合DB(PostgreSQL)に集め，情報を一元化する．',
           'セマンティックレイヤー: dbt coreを第一候補にした．',
           'AI Ready: 将来AIエージェントが安全にデータへ届くように，指標の定義をコードで持つこと，原本の保持・来歴・権限を設計に入れ，AIとの接続点は読み取り専用のMCPサーバーとして設計した．エージェント本体は作らない範囲とした．',
         ],

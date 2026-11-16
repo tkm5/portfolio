@@ -81,10 +81,10 @@ export const businessAnalysisPipeline: Project = {
       title: { ja: '技術的な判断', en: 'Technical Decisions' },
       content: {
         ja: [
-          'エージェントのフレームワーク（LangGraph）は使わず，段ごとに処理を分けた単純なパイプラインにした（計画書で「LangGraph化 不要」と判断）．',
+          'パイプラインはエージェントのフレームワーク(LangGraph)を使わず，段ごとに処理を分けた単純な構成にした．計画書には「LangGraph化 不要」と記録している．',
         ],
         en: [
-          'Chose a plain stage-by-stage pipeline over an agent framework; the plan recorded LangGraph as unnecessary.',
+          'The pipeline is a plain stage-by-stage design rather than an agent framework; the plan records LangGraph as unnecessary.',
         ],
       },
     },
