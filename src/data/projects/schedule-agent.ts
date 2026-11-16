@@ -94,7 +94,7 @@ export const scheduleAgent: Project = {
           'クライアント様が試しやすいよう，FastAPIのAPIとNext.jsの画面を作り，Dockerでまとめて渡せる形にした．',
         ],
         en: [
-          'Tests (counted): 289 test functions in 33 files and 132 scenario definitions in 13 groups (a static count of the repository, not a run result). Scenario tests run the real graph with only the calendars replaced, and a checker inspects API output for preference violations (lunch, all-day events, time of day).',
+          'Tests (counted): 289 test functions in 33 files and 132 scenario definitions in 13 groups (a static count of the repository, not a run result). Scenario tests run the real graph with only the calendars replaced, and a checker inspects API output for preference violations (lunch, full-day events, time of day).',
           "Observed: checked against the prepared verification scenarios, the first version passed only the basic flow. The biggest cause was not recomputing free time after learning, so the fix added a recompute step, moving events, per-participant slots, and deadline and duration relaxation.",
           'Observed: during trial use, "exclude this date" was ignored because the structured request schema had no field for it and the condition was lost at the entrance. The fix added the field, skips those slots by rule, and adds dates the LLM extracts from a rejection reason to the excluded dates in code.',
           'To make trial use easy, built a FastAPI API and a Next.js screen, packaged together with Docker for hand-off.',
