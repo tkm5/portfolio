@@ -32,7 +32,7 @@ export const governmentSimilarity: Project = {
         ],
         en: [
           'First built a prototype on an Azure public sample: added processing to ingest a table of about 5,400 programs (one program per row, 93 columns) and tuned search for Japanese (the ja.microsoft analyzer, ja-JP query language, spell correction turned off, and a prompt that rewrites questions into Japanese).',
-          'The prototype alone did not meet the purpose of the study, so the approach changed to embedding each program description in detail and finding similar programs by vector similarity.',
+          'The prototype alone did not meet the purpose of the study, so the approach changed to embedding the detailed program descriptions and finding similar programs by vector similarity.',
         ],
       },
     },
