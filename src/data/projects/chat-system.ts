@@ -27,10 +27,21 @@ export const chatSystem: Project = {
       title: { ja: '構成', en: 'How It Works' },
       content: {
         ja: [
-          'Azure AI Searchで社内の文書を検索し，Azure OpenAI Serviceで回答を生成する構成．ほかのAzureのサービスと組み合わせて作成した．',
+          'Azure AI Searchで検索し，Azure OpenAI Serviceで回答を生成する構成．ほかのAzureのサービスと組み合わせて作成した．',
         ],
         en: [
-          'Azure AI Search retrieves internal documents and Azure OpenAI Service generates the answer, combined with other Azure services.',
+          'Azure AI Search handles retrieval and Azure OpenAI Service generates the answer, combined with other Azure services.',
+        ],
+      },
+    },
+    {
+      title: { ja: '開発の進め方', en: 'Delivery' },
+      content: {
+        ja: [
+          'Azure DevOpsでのCI/CDを提案し，導入を推進した．',
+        ],
+        en: [
+          'Proposed CI/CD on Azure DevOps and drove its adoption.',
         ],
       },
     },
@@ -42,5 +53,5 @@ export const chatSystem: Project = {
       },
     },
   ],
-  technologies: ['Azure AI Search', 'Azure OpenAI Service', 'RAG'],
+  technologies: ['Azure AI Search', 'Azure OpenAI Service', 'Azure DevOps', 'CI/CD', 'RAG'],
 };
