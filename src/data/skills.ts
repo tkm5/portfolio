@@ -3,18 +3,18 @@ import type { SkillCategory } from '@/types';
 export const skills: SkillCategory[] = [
   {
     title: 'Programming Languages',
-    skills: 'Python, JavaScript, TypeScript, C, C++, SQL, Shell Scripting',
+    skills: 'Python, TypeScript, JavaScript, SQL, C++, Shell',
   },
   {
     title: 'Tools',
-    skills: 'Docker, Docker Compose, Git, GitHub, Firebase, Clerk, tmux, Looker Studio, Figma',
+    skills: 'Claude Code, Antigravity IDE, OpenCode, Docker, GitHub Actions, GitHub Projects',
   },
   {
     title: 'Cloud',
-    skills: 'Google Cloud, Azure, AWS',
+    skills: 'Azure, Google Cloud',
   },
   {
     title: 'Others',
-    skills: 'Parallel Processing, Natural Language Processing, Large Language Model, AI Agent, Operating System, Computer Networks',
+    skills: 'LLM, vLLM, RAG, AI Agent, MCP, NLP, CUDA',
   },
 ];
