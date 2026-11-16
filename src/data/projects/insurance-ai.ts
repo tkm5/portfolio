@@ -29,10 +29,10 @@ export const insuranceAi: Project = {
       title: { ja: '講義と教材', en: 'Lectures and Teaching Material' },
       content: {
         ja: [
-          'HTML/CSS/JavaScript・Python・Azureを体系的に講義し，アジャイル開発を導入した．第1段階の教材として，自分でRAGアプリ一式と4章構成の教科書を作成した．教科書のコードは穴埋め形式にして，受講者が自分の手で書く形にした（穴埋め箇所は350か所，教科書のMarkdownから計数）．',
+          'Python・Azure・Web技術を体系的に講義し，アジャイル開発を導入した．第1段階の教材として，自分でRAGアプリ一式と4章構成の教科書を作成した．教科書のコードは穴埋め形式にして，受講者が自分の手で書く形にした（穴埋め箇所は350か所，教科書のMarkdownから計数）．',
         ],
         en: [
-          'Taught HTML/CSS/JavaScript, Python, and Azure systematically and introduced agile development. For the first stage, wrote a complete RAG app and a four-chapter textbook. The textbook code is in fill-in-the-blank form so participants write it themselves (350 blanks, counted in the textbook Markdown).',
+          'Taught Python, Azure, and web technologies systematically and introduced agile development. For the first stage, wrote a complete RAG app and a four-chapter textbook. The textbook code is in fill-in-the-blank form so participants write it themselves (350 blanks, counted in the textbook Markdown).',
         ],
       },
     },

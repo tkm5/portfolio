@@ -12,7 +12,7 @@ export const experiences: Experience[] = [
       en: 'Forward Deployed Engineer',
     },
     summary: {
-      ja: '大手生命保険グループのIT子会社でRAGアプリ内製化のための技術指導と開発を担当．大手生命保険会社では，業務マニュアルから業務分析テーブルを自動生成するパイプラインの2名での開発と，全社オペレーション変革の技術支援を担当．',
+      ja: '大手生命保険グループのIT子会社でRAGアプリ内製化のための技術指導と開発を担当．大手生命保険会社では，業務マニュアルから業務分析テーブルを自動生成するパイプラインを2名で開発し，全社オペレーション変革の技術支援も担当．',
       en: "Coached and built alongside a life insurance group's IT subsidiary to bring RAG apps in-house. For a major life insurer, built, with a teammate, a pipeline that generates business-analysis tables from operations manuals and provided technical support for a company-wide operations transformation.",
     },
   },

@@ -27,11 +27,11 @@ export const governmentSimilarity: Project = {
       title: { ja: '試作から検索手法へ', en: 'From Prototype to Retrieval Method' },
       content: {
         ja: [
-          'まずAzureの公開サンプルを使って試作した．事業ごとの説明文をまとめた表データをテキストとして読み込み，文単位で分割して索引に入れる処理を足し，日本語向けに検索の設定を調整した（日本語アナライザーja.microsoft，クエリ言語ja-JP，スペル補正の無効化，問い合わせ文を日本語に直すプロンプト）．',
+          'まずAzureの公開サンプル(Azure-Samples/azure-search-openai-demo)を使って試作した．事業ごとの説明文をまとめた表データをテキストとして読み込み，文単位で分割して索引に入れる処理を足し，日本語向けに検索の設定を調整した（日本語アナライザーja.microsoft，クエリ言語ja-JP，スペル補正の無効化，問い合わせ文を日本語に直すプロンプト）．',
           '試作のあと，事業内容を詳細にベクトル化し，ベクトルの類似度で似た事業を探す検索手法を考案・実装した．',
         ],
         en: [
-          'First built a prototype on an Azure public sample: added processing that reads a table of program descriptions as text and splits it by sentence for the index, and tuned search for Japanese (the ja.microsoft analyzer, ja-JP query language, spell correction turned off, and a prompt that rewrites questions into Japanese).',
+          'First built a prototype on an Azure public sample (Azure-Samples/azure-search-openai-demo): added processing that reads a table of program descriptions as text and splits it by sentence for the index, and tuned search for Japanese (the ja.microsoft analyzer, ja-JP query language, spell correction turned off, and a prompt that rewrites questions into Japanese).',
           'After the prototype, devised and implemented a retrieval method that embeds the detailed program descriptions and finds similar programs by vector similarity.',
         ],
       },

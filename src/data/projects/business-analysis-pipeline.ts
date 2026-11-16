@@ -16,7 +16,7 @@ export const businessAnalysisPipeline: Project = {
       title: { ja: '背景と課題', en: 'Context and Problem' },
       content: {
         ja: [
-          'マニュアルから業務を洗い出し，AI化の可否を判定する作業を自動化するパイプラインを，もう1名と2名で開発した．マニュアルはPDF・Word・Excel・PowerPointと形式がばらばらだった．',
+          'マニュアルから業務を洗い出し，AI化の可否を判定する作業を自動化するパイプラインを2名で開発した．マニュアルはPDF・Word・Excel・PowerPointと形式がばらばらだった．',
         ],
         en: [
           'With a teammate, built a pipeline that automates extracting tasks from operations manuals and assessing whether each can be automated with AI. The manuals came as PDF, Word, Excel, and PowerPoint.',

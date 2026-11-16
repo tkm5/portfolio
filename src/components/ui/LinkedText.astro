@@ -1,0 +1,26 @@
+---
+import { splitKnownLinks } from '@/utils/links';
+
+interface Props {
+  text: string;
+}
+
+const segments = splitKnownLinks(Astro.props.text);
+---
+
+{
+  segments.map((segment) =>
+    segment.href ? (
+      <a
+        href={segment.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-link hover:text-link-hover underline transition-colors"
+      >
+        {segment.text}
+      </a>
+    ) : (
+      segment.text
+    )
+  )
+}
