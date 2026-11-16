@@ -24,6 +24,24 @@ export const codingAgentTooling: Project = {
       },
     },
     {
+      title: { ja: 'hooksとレビューのモデル選択', en: 'Hooks and Review-Model Selection' },
+      list: {
+        ja: [
+          '委任の強制: メインのセッションが自分で使ったツールの回数を数え，読み取り60回・編集など8回の予算を超えると拒否する．委任すれば数え直す．',
+          'レビューのモデル選択: 差分が300行以上なら最上位のモデル，200〜299行なら次のモデル，200行未満なら標準のモデルにし，文書だけの変更ならレビューを出さない．機微なパス（認証情報・認証・決済・hooks），破壊的な操作（rm -rf，強制push，DROP TABLEなど），依存関係のマニフェストの変更，やり直しの変更は，規模によらず最上位のモデルにする．測れないものは必ず上の段に倒す（フェイルクローズ）．',
+          'hooks（登録6本）: 委任の強制，rmの前のバックアップ，push前の非破壊のマージ確認，計画モードの強制，日本語の件名が化けるメール送信経路の遮断，全角句読点の検査．',
+          'スキル: Claude Code用のスキルを17本自作した（外部から取り込んだものを除く）．',
+        ],
+        en: [
+          "Delegation enforcement: the hook counts the main session's own tool calls and denies them past a budget of 60 reads and 8 edits or other calls; delegating resets the count.",
+          'Review-model selection: 300 or more changed lines get the top model, 200 to 299 the next, and under 200 the standard model, with no review for documentation-only changes. Sensitive paths (credentials, auth, payments, hooks), destructive patterns (rm -rf, force push, DROP TABLE, and the like), dependency-manifest changes, and retried changes always get the top model. Anything that cannot be measured raises the tier (fail-closed).',
+          'Hooks (6 registered): enforce delegation, back up before rm, check merges non-destructively before push, enforce plan mode for the plan command, block a mail-sending path that garbles Japanese subjects, and lint full-width Japanese punctuation.',
+          'Skills: 17 self-written Claude Code skills (vendored ones excluded).',
+        ],
+      },
+      content: { ja: [], en: [] },
+    },
+    {
       title: { ja: '委任CLI', en: 'Delegation CLI' },
       content: {
         ja: [
@@ -53,24 +71,6 @@ export const codingAgentTooling: Project = {
       },
     },
     {
-      title: { ja: 'hooksとレビューのモデル選択', en: 'Hooks and Review-Model Selection' },
-      list: {
-        ja: [
-          'hooks（登録6本）: 委任の強制，rmの前のバックアップ，push前の非破壊のマージ確認，計画モードの強制，日本語の件名が化けるメール送信経路の遮断，全角句読点の検査．',
-          '委任の強制: メインのセッションが自分で使ったツールの回数を数え，読み取り60回・編集など8回の予算を超えると拒否する．委任すれば数え直す．',
-          'レビューのモデル選択: 差分が300行以上なら最上位のモデル，200〜299行なら次のモデル，200行未満なら標準のモデルにし，文書だけの変更ならレビューを出さない．機微なパス（認証情報・認証・決済・hooks），破壊的な操作（rm -rf，強制push，DROP TABLEなど），依存関係のマニフェストの変更，やり直しの変更は，規模によらず最上位のモデルにする．測れないものは必ず上の段に倒す（フェイルクローズ）．',
-          'スキル: Claude Code用のスキルを17本自作した（外部から取り込んだものを除く）．',
-        ],
-        en: [
-          'Hooks (6 registered): enforce delegation, back up before rm, check merges non-destructively before push, enforce plan mode for the plan command, block a mail-sending path that garbles Japanese subjects, and lint full-width Japanese punctuation.',
-          "Delegation enforcement: the hook counts the main session's own tool calls and denies them past a budget of 60 reads and 8 edits or other calls; delegating resets the count.",
-          'Review-model selection: 300 or more changed lines get the top model, 200 to 299 the next, and under 200 the standard model, with no review for documentation-only changes. Sensitive paths (credentials, auth, payments, hooks), destructive patterns (rm -rf, force push, DROP TABLE, and the like), dependency-manifest changes, and retried changes always get the top model. Anything that cannot be measured raises the tier (fail-closed).',
-          'Skills: 17 self-written Claude Code skills (vendored ones excluded).',
-        ],
-      },
-      content: { ja: [], en: [] },
-    },
-    {
       title: { ja: 'ローカルLLM', en: 'Local LLM' },
       content: {
         ja: [
@@ -82,14 +82,12 @@ export const codingAgentTooling: Project = {
       },
       list: {
         ja: [
-          'vLLMの設定: NVFP4とMXFP8の混在量子化，fp8のKVキャッシュ(12GiB)，コンテキスト長131,072，同時4系列，4トークンのMTP投機的デコード，プレフィックスキャッシュ．',
           'イメージの固定: 標準のvLLMイメージはこのモデルの量子化済みテーブルを読めず，また手順が1週間に2回壊れたため，動作したイメージのタグに固定した．26.8GiBのテーブルはNVMeに置き，io_uringで読んでメモリに収めた．',
           '採らなかった案: サブエージェントをヘッダーでローカルへ振り分ける方式は，専用の起動手段が必要でリモート操作の機能を失い，DGX Sparkが止まったときの代替経路もないため採らなかった．',
           '安全策: シェルは読み取り専用の許可リストに限る．同じ秒に複数の実行が始まるとOpenCodeのSQLiteがロックされるため，ランダムに待って1回だけ再試行する．',
           '観察: ローカルのモデルは「設定の既定値を変える」指示にも従ったため，任せる範囲は呼び出し側の規律で絞っている．',
         ],
         en: [
-          'vLLM settings: mixed NVFP4 / MXFP8 quantization, an fp8 KV cache (12 GiB), 131,072-token context, 4 concurrent sequences, MTP speculative decoding with 4 tokens, and prefix caching.',
           'Pinned image: the stock vLLM image cannot load this model\'s quantized tables, and the recipe broke twice in one week, so the working image tag is pinned. The 26.8 GiB tables live on NVMe and are read with io_uring to fit in memory.',
           'Rejected: routing sub-agents to the local model by request header needed a dedicated launcher that loses remote control, and had no fallback when the DGX Spark is down.',
           'Safeguards: shell access is limited to a read-only allowlist. When several runs start in the same second, OpenCode\'s SQLite database locks, so the runner waits a random interval and retries once.',
@@ -101,12 +99,12 @@ export const codingAgentTooling: Project = {
       title: { ja: '検証と利用の記録', en: 'Verification and Usage Record' },
       list: {
         ja: [
-          'テスト: 委任CLIは偽のClaude CLIを使うテストで472か所の合否を確かめ，レビューのモデル選択は140ケースで確かめる．hooksにもそれぞれテストスクリプトがある（委任の強制2,438行，rm前のバックアップ546行など）．',
-          '計測（ローカルLLMの切替時）: 起動631秒，1系列で46.3トークン/秒，4系列の並列で計96.1トークン/秒，4本の並列実行はすべて正常終了．',
+          'テスト: 委任CLIは偽のClaude CLIに差し替えたテストスイートで確かめ，2026年10月21日の実行記録では742件成功・0件失敗だった．レビューのモデル選択にも専用のテストがあり，hooksは6本中4本にテストスクリプトがある．',
+          '計測（ローカルLLMの切替時）: 起動631秒，1系列で46.3トークン/秒，4系列の並列で計96.1トークン/秒，4本の並列実行はすべて正常終了した．',
           '計測（2026年11月16日時点の実行ログ）: 委任CLIの実行は3,128回（1回 = ログに残った1回の呼び出し．再開と失敗を含む）．ローカルLLMの経路は139回で，うちQwen3.8-Flash-Nextでの実行は59回（それ以前は別のモデル）．',
         ],
         en: [
-          'Tests: the delegation CLI is checked at 472 pass/fail points against a fake Claude CLI, and review-model selection has 140 cases. Each hook has its own test script (2,438 lines for delegation enforcement, 546 for the rm backup, and so on).',
+          'Tests: the delegation CLI is tested against a fake Claude CLI; the run recorded on October 21, 2026 shows 742 passed and 0 failed. Review-model selection has its own tests, and 4 of the 6 hooks have test scripts.',
           'Measured (when switching the local model): 631 seconds to start, 46.3 tokens/s on one stream, 96.1 tokens/s in total over 4 parallel streams, and all 4 parallel runs exited normally.',
           'Measured (run logs as of November 16, 2026): 3,128 delegation-CLI runs (one run = one logged invocation, including resumes and failures). The local-LLM path ran 139 times, 59 of them on Qwen3.8-Flash-Next (earlier runs used a different model).',
         ],
