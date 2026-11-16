@@ -3,7 +3,8 @@ import type { Project } from '@/types';
 import { businessAnalysisPipeline } from './business-analysis-pipeline';
 import { slmMlops } from './slm-mlops';
 import { insuranceAi } from './insurance-ai';
-import { governmentRag } from './government-rag';
+import { governmentSimilarity } from './government-similarity';
+import { operationsTransformation } from './operations-transformation';
 import { chatSystem } from './chat-system';
 import { creativeCanvas } from './creative-canvas';
 import { pharmaAnalytics } from './pharma-analytics';
@@ -16,11 +17,12 @@ import { transcriptionApp } from './transcription-app';
 import { hpcParallel } from './hpc-parallel';
 
 export const projects: Project[] = [
-  businessAnalysisPipeline,
-  slmMlops,
   insuranceAi,
-  governmentRag,
+  businessAnalysisPipeline,
+  operationsTransformation,
   chatSystem,
+  governmentSimilarity,
+  slmMlops,
   creativeCanvas,
   pharmaAnalytics,
   scheduleAgent,
