@@ -10,7 +10,7 @@ export const operationsTransformation: Project = {
     ja: 'グローバルコンサルティングファーム',
     en: 'Global Consulting Firm',
   },
-  description: 'Technical support for a life insurer moving toward agent-first operations: AI-agent feasibility checks, an Agent Skills primer, and data conversion for Access',
+  description: 'Technical support for a life insurer moving toward agent-first operations: AI-agent feasibility checks on real work, revised agent instructions, and an Agent Skills primer',
   sections: [
     {
       title: { ja: '背景と課題', en: 'Context and Problem' },
@@ -63,45 +63,6 @@ export const operationsTransformation: Project = {
         ],
       },
     },
-    {
-      title: { ja: '業務分析シートのAccess向け変換(VBA)', en: 'Converting the Task-Analysis Sheet for Access (VBA)' },
-      content: {
-        ja: [
-          '1業務を1行に書き，その横に繰り返しの列グループが続く横持ちのExcelの業務分析シートを，Accessで扱えるよう正規化（縦持ちに再設計）するVBAマクロを作った．',
-        ],
-        en: [
-          'Wrote a VBA macro that normalizes a wide Excel task-analysis sheet (one task per row, followed by repeating column groups) into long format for Access.',
-        ],
-      },
-      list: {
-        ja: [
-          '正規化: 複数段の見出しを1つの列名に結合し，繰り返しの列グループを自動で検出して，マスタと明細の表に分けた．業務IDの重複も検査する．',
-          '出力: CSVはCP932（BOMなし）・CRLF・RFC 4180の引用で書き出し，CSVごとにschema.iniを生成して型を推定した（ID列は長整数に固定，255バイトを超える文字列はメモ型）．',
-          '確認用SQL: 元の横持ちの表をJOINで再現するクエリ，表ごとの件数確認，参照整合性を有効にする前の孤立レコードの検出をまとめた．',
-        ],
-        en: [
-          'Normalizing: merged multi-row headers into single column names, detected the repeating column groups automatically, and split the sheet into master and detail tables, checking task IDs for uniqueness.',
-          'Output: CSVs in CP932 without BOM, CRLF line endings, and RFC 4180 quoting, with a generated schema.ini per CSV that infers types (ID columns fixed as Long, strings over 255 bytes as Memo).',
-          'Check SQL: a query that rebuilds the original wide table with JOINs, row counts per table, and an orphan-record check to run before turning on referential integrity.',
-        ],
-      },
-    },
-    {
-      title: { ja: '開発中に見つかった問題と対処', en: 'Problems Found During Development, and Fixes' },
-      list: {
-        ja: [
-          '整数と想定した列に小数があり，長整数への固定で取り込みが壊れた → その列は型の推定に任せ，倍精度になるようにした．',
-          '値の中の半角カンマで列がずれ，Accessで型変換エラーが出た → 取り込み手順で引用符（"）を文字列の区切りに指定するよう定めた．',
-          '壊れた名前定義や外部リンクで実行時エラー1004が出た → リンクを更新せずに開き，予約済み以外の名前定義を消してから処理するようにした．',
-        ],
-        en: [
-          'A column assumed to be integer contained decimals, which broke the fixed Long type → that column is left to type inference and comes out as Double.',
-          'Half-width commas inside values shifted columns and caused type-conversion errors in Access → the import guide requires the double quote as the text qualifier.',
-          'Broken defined names and external links raised runtime error 1004 → the macro opens the workbook without updating links and deletes non-reserved names first.',
-        ],
-      },
-      content: { ja: [], en: [] },
-    },
   ],
-  technologies: ['AI Agent', 'Agent Skills', 'HTML', 'JavaScript', 'Excel VBA', 'Microsoft Access', 'SQL', 'GitHub Projects'],
+  technologies: ['AI Agent', 'Agent Skills', 'HTML', 'JavaScript', 'GitHub Projects'],
 };
