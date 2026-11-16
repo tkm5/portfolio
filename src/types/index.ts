@@ -38,6 +38,11 @@ export interface Experience {
     ja: string;
     en: string;
   };
+  /** Optional one-paragraph summary of the work done in this position. */
+  summary?: {
+    ja: string;
+    en: string;
+  };
 }
 
 export interface SkillCategory {

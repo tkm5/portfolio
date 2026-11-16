@@ -23,10 +23,10 @@
       "it": "Major IT Company"
     },
     "roles": {
-      "aiEngineer": "AI Engineer",
-      "consultingSe": "Consulting Software Engineer",
-      "dataScientist": "Data Scientist",
-      "sales": "Corporate Sales"
+      "specialistSenior": "Specialist Senior",
+      "consultant": "Consultant",
+      "dataAnalyst": "Data Analyst",
+      "sales": "Enterprise Sales Representative"
     }
   },
   "projects": {

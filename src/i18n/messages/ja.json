@@ -23,9 +23,9 @@
       "it": "大手IT企業"
     },
     "roles": {
-      "aiEngineer": "AI Engineer",
-      "consultingSe": "Consulting Software Engineer",
-      "dataScientist": "Data Scientist",
+      "specialistSenior": "スペシャリストシニア",
+      "consultant": "コンサルタント",
+      "dataAnalyst": "データアナリスト",
       "sales": "法人営業"
     }
   },
